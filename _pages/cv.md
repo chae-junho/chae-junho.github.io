@@ -30,3 +30,10 @@ Skills
   * First Prize🏅, Jilin Province Piano Competition (China)
 * Badminton 🏸
   * Special Talent Student (China)
+
+Languages
+======
+* **Chinese (Native or bilingual proficiency)**
+* **Korean (Native or bilingual proficiency)**
+  * TOPIK Level 6 (Highest Proficiency Level, 267/300)
+* English (Professional working proficiency)
