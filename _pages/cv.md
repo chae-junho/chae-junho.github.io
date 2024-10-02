@@ -11,54 +11,22 @@ redirect_from:
 
 Education
 ======
-* Ph.D in Version Control Theory, GitHub University, 2018 (expected)
-* M.S. in Jekyll, GitHub University, 2014
-* B.S. in GitHub, GitHub University, 2012
+* M.S. in Computer Science, Korea University (QS Ranking: 67th), 2023.09 - 2025.06
+  * GPA: 96.7/100
+  * Global Leader Scholarship (Top 1%)
+  * Natural Science and Engineering Scholarship (Top 5%)   
+* B.S. in Computer Scuence, Yanbian University (211 Project, China), 2019.09 - 2023.06
+  * GPA: 90.29/100, Major Ranking: 3/61, Major Representative
+  * Samsung Electronic Scholarship * 2, Top 1%
+  * National Inspirational Scholarship, Top 5%
+  * Excellent Student Scholarship * 8, Top 1-5%
 
-Work experience
-======
-* Spring 2024: Academic Pages Collaborator
-  * Github University
-  * Duties includes: Updates and improvements to template
-  * Supervisor: The Users
-
-* Fall 2015: Research Assistant
-  * Github University
-  * Duties included: Merging pull requests
-  * Supervisor: Professor Hub
-
-* Summer 2015: Research Assistant
-  * Github University
-  * Duties included: Tagging issues
-  * Supervisor: Professor Git
-  
 Skills
 ======
-* Skill 1
-* Skill 2
-  * Sub-skill 2.1
-  * Sub-skill 2.2
-  * Sub-skill 2.3
-* Skill 3
-
-Publications
-======
-  <ul>{% for post in site.publications reversed %}
-    {% include archive-single-cv.html %}
-  {% endfor %}</ul>
-  
-Talks
-======
-  <ul>{% for post in site.talks reversed %}
-    {% include archive-single-talk-cv.html  %}
-  {% endfor %}</ul>
-  
-Teaching
-======
-  <ul>{% for post in site.teaching reversed %}
-    {% include archive-single-cv.html %}
-  {% endfor %}</ul>
-  
-Service and leadership
-======
-* Currently signed in to 43 different slack teams
+* Coding (Python, PyTorch etc.)
+* Piano 🎹
+  * First Prize🏅, National Piano Competition (China)
+  * National-Level Special Talent Student (China)
+  * First Prize🏅, Jilin Province Piano Competition (China)
+* Badminton 🏸
+  * Special Talent Student (China)
