@@ -15,7 +15,7 @@ Education
   * GPA: 96.7/100
   * **Global Leader Scholarship (Top 1%)**
   * Natural Science and Engineering Scholarship (Top 5%)   
-* B.S. in Computer Scuence, Yanbian University (**211 Project, China**), 2019.09 - 2023.06
+* B.S. in Computer Science, Yanbian University (**211 Project, China**), 2019.09 - 2023.06
   * GPA: 90.29/100 (**Major Ranking: 3/61**, Major Representative)
   * **Samsung Electronic Scholarship * 2, Top 1%**
   * National Inspirational Scholarship, Top 5%
