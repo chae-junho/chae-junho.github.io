@@ -21,6 +21,16 @@ Education
   * National Inspirational Scholarship, Top 5%
   * Excellent Student Scholarship * 8, Top 1-5%
 
+Research Projects
+======
+* ERC - Center for Cognitive Augmentation and Metacommunication Research
+  * Distributed AI
+    * Image/ Video Compression
+  * Jointly optimizing AI computing and networking
+
+* 6G industrial technology development
+  * Open-RAN
+
 Skills
 ======
 * Coding (Python, PyTorch etc.)
