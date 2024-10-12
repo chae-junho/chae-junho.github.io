@@ -8,7 +8,7 @@
 
 # Basic Site Settings
 locale                   : "en-US"
-title                    : "Junhao Cai / Personal Homepage"
+title                    : "Junhao Cai"
 title_separator          : "-"
 name                     : &name "Junhao Cai"
 description              : &description "personal description"
