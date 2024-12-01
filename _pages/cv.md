@@ -15,8 +15,8 @@ Education 📑
   * GPA: 96.7/100
   * Research Assistant (RA), Teaching Assistant (TA)
   * Scholarships:
-    * **Global Leader Scholarship (Top 1%)**
-    * Natural Science and Engineering Scholarship (Top 5%)
+    * **Global Leader Scholarship, Top 1%**
+    * Natural Science and Engineering Scholarship, Top 5%
     * Research Scholarship
     * Teaching Assistant Scholarship 
 * B.S. in Computer Science, Yanbian University (**211 Project, China**), 2019.09 - 2023.06
