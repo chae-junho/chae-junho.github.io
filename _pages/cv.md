@@ -42,7 +42,7 @@ Publications 📖
 
 Skills 🧪
 ======
-* Coding 💻 (Python, PyTorch, scikit-learn, CompressAI etc.)
+* Coding 💻 (Python, PyTorch, scikit-learn, CompressAI, etc.)
 * Piano 🎹
   * First Prize🏅, National Piano Competition (China)
   * National-Level Special Talent Student (China)
