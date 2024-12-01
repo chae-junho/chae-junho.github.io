@@ -24,7 +24,7 @@ Education 📑
 
 Research Projects  📝
 ======
-* 6G industrial technology development **[Research Coordinator]** 
+* 6G Industrial Technology Development **[Research Coordinator]** 
   * Computer Network Pricing
   * Open-RAN
 
