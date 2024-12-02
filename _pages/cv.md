@@ -11,16 +11,16 @@ redirect_from:
 
 Education 📑
 ======
-* M.S. in Computer Science, Korea University (**QS Ranking: 67th, Korea**), 2023.09 - 2025.06
+* M.S. in Computer Science, Korea University **(QS Ranking: 67th, S.Korea)**, 2023.09 - 2025.06
   * GPA: 96.7/100
   * Research Assistant (RA), Teaching Assistant (TA)
   * Scholarships:
     * **Global Leader Scholarship, Top 1%**
     * Natural Science and Engineering Scholarship, Top 5%
-    * Research Scholarship
+    * Research Scholarship * 4
     * Teaching Assistant Scholarship 
-* B.S. in Computer Science, Yanbian University (**211 Project, China**), 2019.09 - 2023.06
-  * GPA: 90.29/100 (**Major Ranking: 3/61**)
+* B.E. in Computer Science, Yanbian University **(211 Project, China)**, 2019.09 - 2023.06
+  * GPA: 90.29/100 **[Major Ranking: 3/61]**
   * Major Representative
   * Scholarships:
     * **Samsung Electronic Scholarship * 2, Top 1%**
@@ -43,7 +43,7 @@ Publications 📖
 ======
 **2024:**
 * **International Conference:**
-  * (ICTC 2024) Toward Scalable and Efficient Visual Data Transmission in 6G Networks [**J Cai**, T An, C Joo] 
+  * ([ICTC 2024](https://ictc.org/)) Toward Scalable and Efficient Visual Data Transmission in 6G Networks [**J Cai**, T An, C Joo] [[PDF](https://scholar.google.com/citations?view_op=view_citation&hl=zh-CN&user=6D4rBUIAAAAJ&citation_for_view=6D4rBUIAAAAJ:u5HHmVD_uO8C)]  
 
 Skills 🧪
 ======
