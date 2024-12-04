@@ -48,11 +48,11 @@ Publications 📖
 
 Patents
 =====
-* 
+* 😊
 
 Software Copyrights
 =====
-*
+* 😊
 
 Skills 🧪
 ======
