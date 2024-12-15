@@ -30,11 +30,13 @@ Education 📑
 
 Research Projects  📝
 ======
-* 6G Industrial Technology Development **[Research Coordinator]** 
+* 6G Industrial Technology Development **[Research Coordinator]**, 2024.07 - Present 
   * Computer Network Pricing
+    * CDN Pricing
+    * Edge Computing Pricing
   * Open-RAN
 
-* ERC - Center for Cognitive Augmentation and Metacommunication Research
+* ERC - Center for Cognitive Augmentation and Metacommunication Research, 2023.09 - Present
   * Distributed AI
     * Image/ Video Compression
     * Split Learning
@@ -42,9 +44,10 @@ Research Projects  📝
 
 Publications 📖
 ======
-**2024:**
 * **International Conference:**
-  * ([ICTC 2024](https://ictc.org/)) Toward Scalable and Efficient Visual Data Transmission in 6G Networks [**J Cai**, T An, C Joo] [[PDF](https://scholar.google.com/citations?view_op=view_citation&hl=zh-CN&user=6D4rBUIAAAAJ&citation_for_view=6D4rBUIAAAAJ:u5HHmVD_uO8C)]  
+  * **2024:**
+    * ([ICTC 2024](https://ictc.org/)) Toward Scalable and Efficient Visual Data Transmission in 6G Networks [**J Cai**, T An, C Joo] [[PDF](https://scholar.google.com/citations?view_op=view_citation&hl=zh-CN&user=6D4rBUIAAAAJ&citation_for_view=6D4rBUIAAAAJ:u5HHmVD_uO8C)]  
+* **Journal:**
 
 Patents
 =====
@@ -52,7 +55,8 @@ Patents
 
 Software Copyrights
 =====
-* Adaptive image compression system for distributed environments using hierarchical cascade networks (계층적 카스케이드 네트워크를 활용한 분산 환경용 적응형 이미지 압축)
+* **2024**
+  * Adaptive image compression system for distributed environments using hierarchical cascade networks (계층적 카스케이드 네트워크를 활용한 분산 환경용 적응형 이미지 압축)
 
 Skills 🧪
 ======
