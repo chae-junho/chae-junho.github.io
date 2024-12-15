@@ -55,7 +55,7 @@ Patents
 
 Software Copyrights
 =====
-* **2024**
+* **2024:**
   * Adaptive image compression system for distributed environments using hierarchical cascade networks (계층적 카스케이드 네트워크를 활용한 분산 환경용 적응형 이미지 압축)
 
 Skills 🧪
