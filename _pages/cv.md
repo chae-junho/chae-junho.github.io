@@ -57,7 +57,7 @@ Patents
 Software Copyrights
 =====
 * **2024:**
-  * Adaptive image compression system for distributed environments using hierarchical cascade networks [[PDF](https://drive.google.com/file/d/19d162l5xmKdRcG6fh2oQ2nObdNWHuApv/view?usp=drive_link)]
+  * Adaptive image compression system for distributed environments using hierarchical cascade networks [**J Cai**] [[PDF](https://drive.google.com/file/d/19d162l5xmKdRcG6fh2oQ2nObdNWHuApv/view?usp=drive_link)]
 
 Skills 🧪
 ======
