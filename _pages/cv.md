@@ -31,7 +31,7 @@ Education 📑
 Research Projects  📝
 ======
 * 6G Industrial Technology Development **[Research Coordinator]**, 2024.07 - Present 
-  * Computer Network Pricing
+  * Network Economics
     * CDN Pricing
   * AI-RAN
 
