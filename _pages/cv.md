@@ -33,8 +33,7 @@ Research Projects  📝
 * 6G Industrial Technology Development **[Research Coordinator]**, 2024.07 - Present 
   * Computer Network Pricing
     * CDN Pricing
-    * Edge Computing Pricing
-  * Open-RAN
+  * AI-RAN
 
 * ERC - Center for Cognitive Augmentation and Metacommunication Research, 2023.09 - Present
   * Distributed AI
