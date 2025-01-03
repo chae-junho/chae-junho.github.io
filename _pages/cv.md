@@ -52,7 +52,7 @@ Publications 📖
 Patents
 =====
 * **2025:**
-  * Method for differentiated content distributed network services on market structure [C Joo, S Lee, **J Cai**]
+  * Method for differentiated content distributed network services on market structure [C Joo, S Lee, **J Cai**] [[PDF](https://drive.google.com/file/d/1tSeF02__LZ6Bbw8lT6-MIaSRGpb4khAB/view?usp=sharing)]
 
 Software Copyrights
 =====
