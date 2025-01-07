@@ -12,7 +12,7 @@ redirect_from:
 Education 📑
 ======
 * M.S. in Computer Science, Korea University **(QS Ranking: 67th, S.Korea)**, 2023.09 - 2025.06
-  * GPA: 96.7/100
+  * GPA: 97.1/100
   * Research Assistant (RA), Teaching Assistant (TA)
   * Scholarships:
     * **Global Leader Scholarship, Top 1%**
