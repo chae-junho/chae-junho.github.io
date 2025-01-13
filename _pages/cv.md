@@ -61,6 +61,11 @@ Software Copyrights
 * **2024:**
   * Adaptive image compression system for distributed environments using hierarchical cascade networks [**J Cai**] [[PDF](https://drive.google.com/file/d/19d162l5xmKdRcG6fh2oQ2nObdNWHuApv/view?usp=drive_link)]
 
+Academic activities
+======
+* **2024:**
+  * ([WiOpt 2024](https://wiopt24.github.io/index.html)) Student Volunteer
+
 Languages 👄
 ======
 * **Chinese (Native or bilingual proficiency)**
@@ -78,5 +83,4 @@ Skills 🧪
   * First Prize🏅, Jilin Province Piano Competition (China)
 * Badminton 🏸
   * Special Talent Student (China)
-
-
+  
