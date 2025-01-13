@@ -12,7 +12,7 @@ redirect_from:
 Education 📑
 ======
 * M.S. in Computer Science, Korea University **(QS Ranking: 67th, S.Korea)**, 2023.09 - 2025.06
-  * GPA: 97.1/100
+  * **GPA: 97.1/100**
   * Research Assistant (RA), Teaching Assistant (TA)
   * Scholarships:
     * **Global Leader Scholarship, Top 1%**
@@ -21,8 +21,8 @@ Education 📑
     * Teaching Assistant Scholarship 
   * Qualification Exam: Advanced Data Structure ✅, Computer Network ✅, Theory of Artificial Intelligence ✅
 * B.E. in Computer Science, Yanbian University **(211 Project, China)**, 2019.09 - 2023.06
-  * GPA: 90.29/100 **[Major Ranking: 3/61]**
-  * Major Representative
+  * GPA: 90.29/100 **[Major Ranking: 3/61, Innovation Class Student]**
+  * **Major Representative**
   * Scholarships:
     * **Samsung Electronic Scholarship * 2, Top 1%**
     * National Inspirational Scholarship, Top 5%
@@ -46,17 +46,28 @@ Publications 📖
 * **International Conference:**
   * **2024:**
     * ([ICTC 2024](https://ictc.org/)) Toward Scalable and Efficient Visual Data Transmission in 6G Networks [**J Cai**, T An, C Joo] [[PDF](https://scholar.google.com/citations?view_op=view_citation&hl=zh-CN&user=6D4rBUIAAAAJ&citation_for_view=6D4rBUIAAAAJ:u5HHmVD_uO8C)]  
-* **Journal:**
+* **Journal (SCIE):**
 
 Patents
 =====
 * **2025:**
-  * Method for differentiated content distributed network services on market structure [C Joo, S Lee, **J Cai**] [[PDF](https://drive.google.com/file/d/1tSeF02__LZ6Bbw8lT6-MIaSRGpb4khAB/view?usp=sharing)]
+  * S.Korea:
+    * Method for differentiated content distributed network services on market structure [C Joo, S Lee, **J Cai**] [[PDF](https://drive.google.com/file/d/1tSeF02__LZ6Bbw8lT6-MIaSRGpb4khAB/view?usp=sharing)]
+  * United States:
+    * Will be coming.
 
 Software Copyrights
 =====
 * **2024:**
   * Adaptive image compression system for distributed environments using hierarchical cascade networks [**J Cai**] [[PDF](https://drive.google.com/file/d/19d162l5xmKdRcG6fh2oQ2nObdNWHuApv/view?usp=drive_link)]
+
+Languages 👄
+======
+* **Chinese (Native or bilingual proficiency)**
+* **Korean (Native or bilingual proficiency)**
+  * TOPIK Level 6 (The Highest Proficiency Level)
+    * 100% scores in listening and reading
+* English (Professional working proficiency)
 
 Skills 🧪
 ======
@@ -68,10 +79,4 @@ Skills 🧪
 * Badminton 🏸
   * Special Talent Student (China)
 
-Languages 👄
-======
-* **Chinese (Native or bilingual proficiency)**
-* **Korean (Native or bilingual proficiency)**
-  * TOPIK Level 6 (The Highest Proficiency Level)
-    * 100% scores in listening and reading
-* English (Professional working proficiency)
+
