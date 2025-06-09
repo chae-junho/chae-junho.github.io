@@ -18,7 +18,7 @@ Education 📑
   * Scholarships:
     * **Global Leader Scholarship, Top 1%**
     * Natural Science and Engineering Scholarship, Top 5%
-    * Research Scholarship * 4
+    * Research Scholarship * 2
     * Teaching Assistant Scholarship 
   * Qualification Exam: Advanced Data Structure ✅, Computer Network ✅, Theory of Artificial Intelligence ✅
 * B.E. in Computer Science, Yanbian University **(211 Project, China)**, 2019.09 - 2023.06
