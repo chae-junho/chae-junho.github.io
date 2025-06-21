@@ -11,8 +11,8 @@ redirect_from:
 
 Education 📑
 ======
-* PhD in Computer Science...
-* M.S. in Computer Science, Korea University **(QS Ranking: 67th, S.Korea)**, 2023.09 - 2025.08
+* Ph.D in Computer Science...
+* M.S. in Computer Science, Korea University **(QS Ranking: 61th, S.Korea)**, 2023.09 - 2025.08
   * **GPA: 97.1/100**
   * Research Assistant (RA), Teaching Assistant (TA)
   * Scholarships:
