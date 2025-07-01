@@ -11,8 +11,9 @@ redirect_from:
 
 Education 📑
 ======
-* Ph.D in Computer Science...
-* M.S. in Computer Science, Korea University **(QS Ranking: 61th, S.Korea)**, 2023.09 - 2025.08
+* Ph.D. in Computer Science, Korea University **(QS Ranking: 61th, S.Korea)**, 2025.09 - Present
+  * Research Assistant (RA), Teaching Assistant (TA)
+* M.S. in Computer Science, Korea University, 2023.09 - 2025.08
   * **GPA: 97.1/100**
   * Research Assistant (RA), Teaching Assistant (TA)
   * Scholarships:
@@ -33,12 +34,11 @@ Research Projects  📝
 ======
 * 6G Industrial Technology Development **[Research Coordinator]**, 2024.07 - Present 
   * Network Economics
-    * CDN Pricing
   * AI-RAN
 
 * ERC - Center for Cognitive Augmentation and Metacommunication Research, 2023.09 - Present
+  * Learned Image Compression
   * Distributed AI
-    * Image/ Video Compression
     * Split Learning
   * Jointly optimizing AI computing and networking
 
@@ -48,6 +48,7 @@ Publications 📖
   * **2024:**
     * ([ICTC 2024](https://ictc.org/)) Toward Scalable and Efficient Visual Data Transmission in 6G Networks [**J Cai**, T An, C Joo] [[PDF](https://scholar.google.com/citations?view_op=view_citation&hl=zh-CN&user=6D4rBUIAAAAJ&citation_for_view=6D4rBUIAAAAJ:u5HHmVD_uO8C)]  
 * **Journal (SCIE):**
+  * Will be coming.
 
 Patents
 =====
