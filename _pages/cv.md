@@ -46,7 +46,7 @@ Publications 📖
 ======
 * **International Conference:**
   * **2024:**
-    * ([ICTC 2024](https://ictc.org/)) Toward Scalable and Efficient Visual Data Transmission in 6G Networks [**J Cai**, T An, C Joo] [[PDF](https://scholar.google.com/citations?view_op=view_citation&hl=zh-CN&user=6D4rBUIAAAAJ&citation_for_view=6D4rBUIAAAAJ:u5HHmVD_uO8C)]  
+    * ([ICTC 2024](https://ictc.org/)) Toward Scalable and Efficient Visual Data Transmission in 6G Networks [**J Cai**, T An, C Joo] [[PDF](https://ieeexplore.ieee.org/document/10827560)]  
 * **Journal (SCIE):**
   * Will be coming.
 
