@@ -56,6 +56,7 @@ Patents
   * S.Korea:
     * Device and Method for Adaptive Image Compression for Distributed Environments Using Hierarchical Cascade Networks [**J Cai**, T An, C Joo] [[PDF](https://drive.google.com/file/d/1ndmq3pUajRwp7RtgcnqH0JqOrs5EaX82/view?usp=drive_link)]
     * Method for differentiated content distributed network services on market structure [C Joo, S Lee, **J Cai**] [[PDF](https://drive.google.com/file/d/1tSeF02__LZ6Bbw8lT6-MIaSRGpb4khAB/view?usp=sharing)]
+    * Device and Method of Graph-based Smart Offloading for Edge Computing [R Paul, J Cai, C Joo]
   * United States:
     * Will be coming.
 
