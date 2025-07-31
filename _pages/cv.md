@@ -46,27 +46,27 @@ Publications 📖
 ======
 * **International Conference:**
   * **2025:**
-    * Under Review...
+    * Under Review.
   * **2024:**
     * ([ICTC 2024](https://ictc.org/)) Toward Scalable and Efficient Visual Data Transmission in 6G Networks [**J Cai**, T An, C Joo] [[PDF](https://ieeexplore.ieee.org/document/10827560)]  
 * **Journal (SCIE):**
   * **2025:**
-    * Under Review...
+    * Under Review.
 
 Patents
 =====
 * **2025:**
   * S.Korea:
-    * Device and Method for Adaptive Image Compression for Distributed Environments Using Hierarchical Cascade Networks [**J Cai**, T An, C Joo] [[PDF](https://drive.google.com/file/d/1ndmq3pUajRwp7RtgcnqH0JqOrs5EaX82/view?usp=drive_link)]
-    * Method for differentiated content distributed network services on market structure [C Joo, S Lee, **J Cai**] [[PDF](https://drive.google.com/file/d/1tSeF02__LZ6Bbw8lT6-MIaSRGpb4khAB/view?usp=sharing)]
     * Device and Method of Graph-based Smart Offloading for Edge Computing [R Paul, **J Cai**, C Joo]
+    * Device and Method for Adaptive Image Compression for Distributed Environments Using Hierarchical Cascade Networks [**J Cai**, T An, C Joo] [[PDF](https://drive.google.com/file/d/1ndmq3pUajRwp7RtgcnqH0JqOrs5EaX82/view?usp=drive_link)]
+    * Method for Differentiated Content Distributed Network Services on Market Structure [C Joo, S Lee, **J Cai**] [[PDF](https://drive.google.com/file/d/1tSeF02__LZ6Bbw8lT6-MIaSRGpb4khAB/view?usp=sharing)]
   * United States:
     * Will be coming.
 
 Software Copyrights
 =====
 * **2024:**
-  * Adaptive image compression system for distributed environments using hierarchical cascade networks [**J Cai**] [[PDF](https://drive.google.com/file/d/19d162l5xmKdRcG6fh2oQ2nObdNWHuApv/view?usp=drive_link)]
+  * Adaptive Image Compression System for Distributed Environments Using Hierarchical Cascade Networks [**J Cai**] [[PDF](https://drive.google.com/file/d/19d162l5xmKdRcG6fh2oQ2nObdNWHuApv/view?usp=drive_link)]
 
 Academic activities
 ======
