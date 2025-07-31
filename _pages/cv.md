@@ -23,7 +23,7 @@ Education 📑
     * Teaching Assistant Scholarship 
   * Qualification Exam: Advanced Data Structure ✅, Computer Network ✅, Theory of Artificial Intelligence ✅
 * B.E. in Computer Science, Yanbian University **(211 Project, China)**, 2019.09 - 2023.06
-  * GPA: 90.29/100 **[Major Ranking: 3/61, Innovation Class Student]**
+  * GPA: 90.29/100 **[Major Ranking: Top 3, Innovation Class Student]**
   * **Major Representative**
   * Scholarships:
     * **Samsung Electronic Scholarship * 2, Top 1%**
@@ -45,10 +45,13 @@ Research Projects  📝
 Publications 📖
 ======
 * **International Conference:**
+  * **2025:**
+    * Under Review...
   * **2024:**
     * ([ICTC 2024](https://ictc.org/)) Toward Scalable and Efficient Visual Data Transmission in 6G Networks [**J Cai**, T An, C Joo] [[PDF](https://ieeexplore.ieee.org/document/10827560)]  
 * **Journal (SCIE):**
-  * Will be coming.
+  * **2025:**
+    * Under Review...
 
 Patents
 =====
@@ -56,7 +59,7 @@ Patents
   * S.Korea:
     * Device and Method for Adaptive Image Compression for Distributed Environments Using Hierarchical Cascade Networks [**J Cai**, T An, C Joo] [[PDF](https://drive.google.com/file/d/1ndmq3pUajRwp7RtgcnqH0JqOrs5EaX82/view?usp=drive_link)]
     * Method for differentiated content distributed network services on market structure [C Joo, S Lee, **J Cai**] [[PDF](https://drive.google.com/file/d/1tSeF02__LZ6Bbw8lT6-MIaSRGpb4khAB/view?usp=sharing)]
-    * Device and Method of Graph-based Smart Offloading for Edge Computing [R Paul, J Cai, C Joo]
+    * Device and Method of Graph-based Smart Offloading for Edge Computing [R Paul, **J Cai**, C Joo]
   * United States:
     * Will be coming.
 

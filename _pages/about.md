@@ -9,7 +9,7 @@ redirect_from:
 
 **🎉 Welcome! Hope you have a wonderful day! 🍀**
 
-I'm a 1st year Ph.D. student from [Department of Computer Science and Engineering](https://cs.korea.ac.kr/cs/index.do), [Korea University](https://www.korea.ac.kr/sites/ko/index.do). My research interest includes Learned Image Compression, Distributed AI, Privacy Computing, and Computer Networking.
+I'm a 1st year Ph.D. student from [Department of Computer Science and Engineering](https://cs.korea.ac.kr/cs/index.do), [Korea University](https://www.korea.ac.kr/sites/ko/index.do). My research interest includes Learned Image Compression, Distributed AI, Privacy Computing, and Network Economics.
 
 I am very fortunate to be advised by Prof. [Changhee Joo](https://rain.korea.ac.kr/members/professor) of [RAIN Lab.](https://rain.korea.ac.kr/)
 
