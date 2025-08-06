@@ -57,7 +57,7 @@ Patents
 =====
 * **2025:**
   * S.Korea:
-    * Device and Method of Graph-based Smart Offloading for Edge Computing [R Paul, **J Cai**, C Joo]
+    * Device and Method of Graph-based Smart Offloading for Edge Computing [R Paul, **J Cai**, C Joo] [[PDF](https://drive.google.com/file/d/1lSnUjHoIEyyWrOSQTCDFCYVsGQup45ey/view?usp=drive_link)]
     * Device and Method for Adaptive Image Compression for Distributed Environments Using Hierarchical Cascade Networks [**J Cai**, T An, C Joo] [[PDF](https://drive.google.com/file/d/1ndmq3pUajRwp7RtgcnqH0JqOrs5EaX82/view?usp=drive_link)]
     * Method for Differentiated Content Distributed Network Services on Market Structure [C Joo, S Lee, **J Cai**] [[PDF](https://drive.google.com/file/d/1tSeF02__LZ6Bbw8lT6-MIaSRGpb4khAB/view?usp=sharing)]
   * United States:
@@ -70,6 +70,8 @@ Software Copyrights
 
 Academic activities
 ======
+* **2026:**
+  * ([AAAI 2026](https://aaai.org/conference/aaai/aaai-26/)) Program Committee
 * **2024:**
   * ([WiOpt 2024](https://wiopt24.github.io/index.html)) Student Volunteer
 
