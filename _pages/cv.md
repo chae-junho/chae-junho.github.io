@@ -32,15 +32,14 @@ Education 📑
 
 Research Projects  📝
 ======
-* 6G Industrial Technology Development **[Research Coordinator]**, 2024.07 - Present 
+* 6G Industrial Technology Development -- High-level application-network integration programmable interface technology **[Research Coordinator]**, 2024.07 - Present 
   * Network Economics
   * AI-RAN
 
-* ERC - Center for Cognitive Augmentation and Metacommunication Research, 2023.09 - Present
+* ERC -- Cognitive Augmentation Metacommunication Research Center, 2023.09 - Present
   * Learned Image Compression
   * Distributed AI
-    * Split Learning
-  * Jointly optimizing AI computing and networking
+  * Network for AI services -- AI computing over network
 
 Publications 📖
 ======
@@ -70,7 +69,7 @@ Software Copyrights
 
 Academic activities
 ======
-* **2026:**
+* **2025:**
   * ([AAAI 2026](https://aaai.org/conference/aaai/aaai-26/)) Program Committee
 * **2024:**
   * ([WiOpt 2024](https://wiopt24.github.io/index.html)) Student Volunteer
