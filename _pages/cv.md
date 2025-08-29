@@ -67,7 +67,7 @@ Software Copyrights
 * **2024:**
   * Adaptive Image Compression System for Distributed Environments Using Hierarchical Cascade Networks [**J Cai**] [[PDF](https://drive.google.com/file/d/19d162l5xmKdRcG6fh2oQ2nObdNWHuApv/view?usp=drive_link)]
 
-Academic activities
+Academic Activities
 ======
 * **2025:**
   * ([AAAI 2026](https://aaai.org/conference/aaai/aaai-26/)) Program Committee
