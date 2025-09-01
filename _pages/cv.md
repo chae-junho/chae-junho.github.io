@@ -21,7 +21,10 @@ Education 📑
     * Natural Science and Engineering Scholarship, Top 5%
     * Research Scholarship * 2
     * Teaching Assistant Scholarship 
-  * Qualification Exam: Advanced Data Structure ✅, Computer Network ✅, Theory of Artificial Intelligence ✅
+  * Qualification Exam: 
+    * ✅ Advanced Data Structure
+    * ✅ Computer Network
+    * ✅ Theory of Artificial Intelligence
 * B.E. in Computer Science, Yanbian University **(211 Project, China)**, 2019.09 - 2023.06
   * GPA: 90.29/100 **[Major Ranking: Top 3, Innovation Class Student]**
   * **Major Representative**
@@ -38,7 +41,6 @@ Research Projects  📝
 
 * ERC -- Cognitive Augmentation Metacommunication Research Center, 2023.09 - Present
   * Learned Image Compression
-  * Distributed AI
   * Network for AI services -- AI computing over network
 
 Publications 📖
@@ -52,7 +54,7 @@ Publications 📖
   * **2025:**
     * Under Review.
 
-Patents
+Patents 💡
 =====
 * **2025:**
   * S.Korea:
@@ -62,19 +64,19 @@ Patents
   * United States:
     * Will be coming.
 
-Software Copyrights
+Software Copyrights 🖥️
 =====
 * **2024:**
   * Adaptive Image Compression System for Distributed Environments Using Hierarchical Cascade Networks [**J Cai**] [[PDF](https://drive.google.com/file/d/19d162l5xmKdRcG6fh2oQ2nObdNWHuApv/view?usp=drive_link)]
 
-Academic Activities
+Academic Activities 🎓
 ======
 * **2025:**
-  * ([AAAI 2026](https://aaai.org/conference/aaai/aaai-26/)) Program Committee
+  * ([AAAI 2026](https://aaai.org/conference/aaai/aaai-26/)) Program Committee Member
 * **2024:**
   * ([WiOpt 2024](https://wiopt24.github.io/index.html)) Student Volunteer
 
-Languages 👄
+Languages 🌍
 ======
 * **Chinese (Native or bilingual proficiency)**
 * **Korean (Native or bilingual proficiency)**
@@ -82,7 +84,7 @@ Languages 👄
     * 100% scores in listening and reading
 * English (Professional working proficiency)
 
-Skills 🧪
+Skills 🛠️
 ======
 * Coding 💻 (Python, PyTorch, scikit-learn, CompressAI, etc.)
 * Piano 🎹
