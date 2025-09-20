@@ -37,17 +37,11 @@
     z-index: 1 !important;
   }
   
-  /* 在手机端调整地球仪和Follow按钮布局 */
+  /* 在手机端调整地球仪布局 */
   @media (max-width: 768px) {
-    /* 手机端垂直排列地球仪和Follow按钮 */
-    .author__urls-wrapper > div:last-child {
-      flex-direction: column !important;
-      align-items: center !important;
-      gap: 15px;
-    }
-    
     .globe-widget {
-      text-align: center; /* 手机端居中显示 */
+      text-align: center !important; /* 手机端居中显示 */
+      margin: 30px 0 !important; /* 增加上下间距 */
     }
     
     .globe-widget > div {
