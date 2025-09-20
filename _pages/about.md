@@ -17,7 +17,7 @@ If you have any questions, please contact me via LinkedIn or Email. =)
 
 [Email](mailto:junhochae@korea.ac.kr) / [CSDN](https://blog.csdn.net/cjh0318?spm=1000.2115.3001.5343)
 
+<script type="text/javascript" id="mmvst_globe" src="//mapmyvisitors.com/globe.js?d=L8eS2IU2XRgmKL2JYmIsfjgKeiIXYXxX60-rX50dfrs"></script>
 
 >If you're reading this, you're probably wondering what it's like in our lab. Honestly? Our professor is amazing - not just brilliant at research, but also someone who really cares about his students. I never feel like I'm just another grad student to him, and he's the kind of person who makes you want to push yourself while also making sure you don't burn out. I've been here for a while now, and I can say this place has really shaped who I am as a researcher. It's one of those environments where you actually look forward to coming in each day, so if you're thinking about joining, I'd say go for it - you won't regret it. =) 🍀
 
-<script type="text/javascript" id="mmvst_globe" src="//mapmyvisitors.com/globe.js?d=L8eS2IU2XRgmKL2JYmIsfjgKeiIXYXxX60-rX50dfrs"></script>
