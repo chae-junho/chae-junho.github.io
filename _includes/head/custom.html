@@ -51,59 +51,67 @@
     }
   }
   
-  /* Follow按钮样式和行为修复 */
-  .author__urls-wrapper {
-    position: relative;
-  }
-  
+  /* 桌面端隐藏Follow按钮，只在手机端显示 */
   .author__urls-wrapper .btn {
-    position: relative;
-    z-index: 1000 !important;
-    display: block;
-    margin: 0 auto 10px auto; /* 水平居中，下方10px间距 */
-    text-align: center;
-    cursor: pointer;
-    transition: background-color 0.2s ease !important;
-    outline: none !important;
+    display: none; /* 桌面端默认隐藏 */
   }
   
-  /* 修复Follow按钮点击状态颜色 */
-  .author__urls-wrapper .btn--inverse {
-    background-color: #fff !important;
-    color: #494e52 !important;
-    border: 1px solid #494e52 !important;
-  }
-  
-  .author__urls-wrapper .btn--inverse:hover,
-  .author__urls-wrapper .btn--inverse:focus,
-  .author__urls-wrapper .btn--inverse:active,
-  .author__urls-wrapper .btn--inverse.btn--clicked {
-    background-color: #494e52 !important;
-    color: #fff !important;
-    border: 1px solid #494e52 !important;
-  }
-  
-  /* 社交媒体菜单覆盖地球仪显示 */
   .author__urls-wrapper .social-icons {
-    position: absolute !important;
-    z-index: 1001 !important;
-    background: #fff;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-    width: calc(100% - 2px);
-    top: 100%;
-    left: 0;
-    margin: 0 !important;
-    padding: 15px !important;
-    max-height: 300px;
-    overflow-y: auto;
+    display: block; /* 桌面端直接显示社交媒体链接 */
   }
   
-  /* 地球仪保持原位，允许被菜单覆盖 */
-  .globe-widget {
-    position: relative;
-    z-index: 1 !important;
+  /* 手机端显示Follow按钮和菜单交互 */
+  @media (max-width: 768px) {
+    .author__urls-wrapper {
+      position: relative;
+    }
+    
+    .author__urls-wrapper .btn {
+      display: block !important; /* 手机端显示Follow按钮 */
+      position: relative;
+      z-index: 1000 !important;
+      margin: 0 auto 10px auto;
+      text-align: center;
+      cursor: pointer;
+      transition: background-color 0.2s ease !important;
+      outline: none !important;
+      background-color: #fff !important;
+      color: #494e52 !important;
+      border: 1px solid #494e52 !important;
+    }
+    
+    .author__urls-wrapper .btn:hover,
+    .author__urls-wrapper .btn:focus,
+    .author__urls-wrapper .btn:active {
+      background-color: #494e52 !important;
+      color: #fff !important;
+    }
+    
+    /* 手机端菜单覆盖地球仪 */
+    .author__urls-wrapper .social-icons {
+      position: absolute !important;
+      z-index: 1001 !important;
+      background: #fff;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+      width: calc(100% - 2px);
+      left: 0;
+      margin: 0 !important;
+      padding: 15px !important;
+      max-height: 250px;
+      overflow-y: auto;
+      /* 关键：相对于按钮定位，覆盖下方所有内容包括地球仪 */
+      top: 40px; /* 紧贴Follow按钮下方 */
+    }
+  }
+  
+  /* 地球仪在手机端的层级调整 */
+  @media (max-width: 768px) {
+    .globe-widget {
+      position: relative;
+      z-index: 1 !important; /* 确保被菜单覆盖 */
+    }
   }
 </style>
 
