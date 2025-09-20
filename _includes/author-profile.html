@@ -20,9 +20,8 @@
     {% if author.bio %}<p class="author__bio">{{ author.bio }}</p>{% endif %}
   </div>
 
-  <div class="author__urls-wrapper">
-    <button class="btn btn--inverse">Follow</button>
-    <ul class="author__urls social-icons">
+  <div class="author__urls-wrapper" style="display: flex; justify-content: space-between; align-items: flex-start;">
+    <ul class="author__urls social-icons" style="flex: 1; margin: 0;"">
       <!-- Font Awesome icons / Biographic information  -->
       {% if author.location %}
         <li class="author__desktop"><i class="fa-solid fa-location-dot icon-pad-right" aria-hidden="true"></i>{{ author.location }}</li>
@@ -155,11 +154,14 @@
       {% endif %}      
     </ul>
     
-    <!-- Visitor Globe Widget -->
-    <div class="globe-widget" style="text-align: left; margin: 20px 0; position: relative; z-index: 1;">
-      <div style="width: 180px; height: 180px; margin: 0; transform: scale(0.7); transform-origin: left; pointer-events: none;">
-        <script type="text/javascript" id="mmvst_globe" src="//mapmyvisitors.com/globe.js?d=L8eS2IU2XRgmKL2JYmIsfjgKeiIXYXxX60-rX50dfrs"></script>
+    <!-- Visitor Globe Widget and Follow Button -->
+    <div style="display: flex; justify-content: space-between; align-items: center; margin: 20px 0;">
+      <div class="globe-widget" style="position: relative; z-index: 1;">
+        <div style="width: 180px; height: 180px; margin: 0; transform: scale(0.7); transform-origin: left; pointer-events: none;">
+          <script type="text/javascript" id="mmvst_globe" src="//mapmyvisitors.com/globe.js?d=L8eS2IU2XRgmKL2JYmIsfjgKeiIXYXxX60-rX50dfrs"></script>
+        </div>
       </div>
+      <button class="btn btn--inverse" style="z-index: 999; position: relative;">Follow</button>
     </div>
   </div>
 </div>
