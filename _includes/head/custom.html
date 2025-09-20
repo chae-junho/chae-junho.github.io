@@ -51,11 +51,18 @@
     }
   }
   
-  /* 确保Follow按钮和菜单有更高的z-index */
-  .author__urls-wrapper .btn,
+  /* Follow按钮右对齐 */
+  .author__urls-wrapper .btn {
+    position: relative;
+    z-index: 999 !important;
+    float: right;
+    margin-bottom: 10px;
+  }
+  
   .author__urls-wrapper .social-icons {
     position: relative;
     z-index: 999 !important;
+    clear: both; /* 确保社交媒体链接在Follow按钮下方 */
   }
 </style>
 
