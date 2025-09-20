@@ -51,12 +51,13 @@
     }
   }
   
-  /* Follow按钮右对齐 */
+  /* Follow按钮居中对齐，位于地球仪正上方 */
   .author__urls-wrapper .btn {
     position: relative;
     z-index: 999 !important;
-    float: right;
-    margin-bottom: 10px;
+    display: block;
+    margin: 0 auto 10px auto; /* 水平居中，下方10px间距 */
+    text-align: center;
   }
   
   .author__urls-wrapper .social-icons {
