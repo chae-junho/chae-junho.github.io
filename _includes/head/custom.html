@@ -51,19 +51,44 @@
     }
   }
   
-  /* Follow按钮居中对齐，位于地球仪正上方 */
+  /* Follow按钮样式和行为修复 */
   .author__urls-wrapper .btn {
     position: relative;
     z-index: 999 !important;
     display: block;
     margin: 0 auto 10px auto; /* 水平居中，下方10px间距 */
     text-align: center;
+    cursor: pointer;
+    transition: all 0.2s ease;
   }
   
+  /* 修复Follow按钮点击状态 */
+  .author__urls-wrapper .btn:hover,
+  .author__urls-wrapper .btn:focus,
+  .author__urls-wrapper .btn:active {
+    background-color: #494e52 !important;
+    color: #fff !important;
+    transform: none !important;
+  }
+  
+  /* 社交媒体菜单覆盖显示，不推动内容 */
   .author__urls-wrapper .social-icons {
-    position: relative;
-    z-index: 999 !important;
-    clear: both; /* 确保社交媒体链接在Follow按钮下方 */
+    position: absolute !important;
+    z-index: 998 !important;
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+    width: 100%;
+    top: 100%;
+    left: 0;
+    margin: 0 !important;
+    padding: 10px !important;
+  }
+  
+  /* 确保地球仪不会被覆盖菜单影响 */
+  .globe-widget {
+    margin-top: 10px !important;
   }
 </style>
 
