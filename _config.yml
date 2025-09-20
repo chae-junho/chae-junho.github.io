@@ -25,7 +25,7 @@ author:
   # Biographic information
   avatar           : "profile.png"
   name             : "Junhao Cai"
-  pronouns         : # example: "she/her"  
+  pronouns         : # example: "she/she"  
   bio              : "Ph.D. student of CSE, Korea University"
   location         : "Seoul, South Korea"
   #employer         : "Red Brick University"
@@ -350,7 +350,3 @@ compress_html:
   ignore:
     envs: development
 
-
-<div style="width: 200px; height: 200px; margin: 20px auto; transform: scale(0.6); transform-origin: center;">
-<script type="text/javascript" id="mmvst_globe" src="//mapmyvisitors.com/globe.js?d=L8eS2IU2XRgmKL2JYmIsfjgKeiIXYXxX60-rX50dfrs"></script>
-</div>
