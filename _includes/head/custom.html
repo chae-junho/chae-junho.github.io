@@ -37,20 +37,20 @@
     z-index: 1 !important;
   }
   
-  /* 在手机端隐藏地球仪或调整位置 */
+  /* 在手机端调整地球仪位置 */
   @media (max-width: 768px) {
-    .globe-widget {
-      display: none; /* 手机端隐藏地球仪 */
-    }
-    
-    /* 或者如果您想在手机端保留地球仪，可以用下面的样式替代上面的 display: none */
-    /*
     .globe-widget {
       margin-top: 30px;
       margin-bottom: 30px;
       transform: translateY(20px);
+      text-align: center; /* 手机端居中显示 */
     }
-    */
+    
+    .globe-widget > div {
+      transform: scale(0.6) !important; /* 手机端稍微缩小 */
+      transform-origin: center !important; /* 居中缩放 */
+      margin: 0 auto !important; /* 居中对齐 */
+    }
   }
   
   /* 确保Follow按钮和菜单有更高的z-index */
