@@ -138,13 +138,38 @@
        vertical-align: middle !important; /* 垂直对齐 */
      }
      
-     /* 统一图标间距 */
-     .author__urls-wrapper .social-icons li i {
+     /* 统一所有图标间距 */
+     .author__urls-wrapper .social-icons li i,
+     .author__urls-wrapper .social-icons li .fa,
+     .author__urls-wrapper .social-icons li .fas,
+     .author__urls-wrapper .social-icons li .fab,
+     .author__urls-wrapper .social-icons li .fa-solid,
+     .author__urls-wrapper .social-icons li .fa-fw {
        margin-right: 8px !important; /* 图标与文字间距统一 */
        width: 16px !important; /* 图标宽度统一 */
        text-align: center !important; /* 图标居中 */
        display: inline-block !important;
        vertical-align: middle !important;
+       min-width: 16px !important; /* 确保最小宽度 */
+     }
+     
+     /* 特别处理位置和邮箱图标 */
+     .author__urls-wrapper .social-icons li .fa-location-dot,
+     .author__urls-wrapper .social-icons li .fa-envelope {
+       margin-right: 8px !important;
+       width: 16px !important;
+       min-width: 16px !important;
+       text-align: center !important;
+       display: inline-block !important;
+     }
+     
+     /* 覆盖可能存在的icon-pad-right类 */
+     .author__urls-wrapper .social-icons .icon-pad-right {
+       margin-right: 8px !important;
+       width: 16px !important;
+       min-width: 16px !important;
+       text-align: center !important;
+       padding-right: 0 !important; /* 移除可能的右侧padding */
      }
   }
   
