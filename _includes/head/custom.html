@@ -171,6 +171,35 @@
        text-align: center !important;
        padding-right: 0 !important; /* 移除可能的右侧padding */
      }
+     
+     /* 特殊处理位置信息（没有链接的项目） */
+     .author__urls-wrapper .social-icons li.author__desktop {
+       margin: 3px 0 !important;
+       padding: 4px 0 !important;
+       line-height: 1.4 !important;
+     }
+     
+     .author__urls-wrapper .social-icons li.author__desktop i {
+       margin-right: 8px !important;
+       width: 16px !important;
+       min-width: 16px !important;
+       text-align: center !important;
+       display: inline-block !important;
+       vertical-align: middle !important;
+     }
+     
+     /* 强制覆盖所有可能的间距样式 */
+     .author__urls-wrapper .social-icons li i.icon-pad-right,
+     .author__urls-wrapper .social-icons li i.fa-fw,
+     .author__urls-wrapper .social-icons li.author__desktop i.icon-pad-right {
+       margin-right: 8px !important;
+       margin-left: 0 !important;
+       padding-right: 0 !important;
+       padding-left: 0 !important;
+       width: 16px !important;
+       min-width: 16px !important;
+       max-width: 16px !important;
+     }
   }
   
   /* 全局页面底部地球仪样式 - 简洁小尺寸 */
