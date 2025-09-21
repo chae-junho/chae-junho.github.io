@@ -91,26 +91,28 @@
       color: #fff !important;
     }
     
-     /* 手机端菜单覆盖地球仪 - 自适应屏幕宽度 */
+     /* 手机端菜单在Links按钮附近 - 内容自适应宽度 */
      .author__urls-wrapper .social-icons {
-       position: fixed !important; /* 改为fixed相对于视窗定位 */
+       position: absolute !important;
        z-index: 1001 !important;
        background: #fff !important;
        border: 1px solid #ddd;
        border-radius: 4px;
        box-shadow: 0 4px 12px rgba(0,0,0,0.25);
-       width: calc(100vw - 40px) !important; /* 视窗宽度减去边距 */
-       max-width: 350px !important; /* 最大宽度限制 */
+       width: auto !important; /* 自动宽度 */
+       min-width: 200px !important; /* 最小宽度 */
+       max-width: 90vw !important; /* 最大不超过屏幕90% */
        left: 50% !important;
-       transform: translateX(-50%) !important; /* 水平居中 */
+       transform: translateX(-50%) !important; /* 相对于按钮居中 */
        margin: 0 !important;
-       padding: 20px !important;
+       padding: 15px 20px !important; /* 左右多一点内边距 */
        max-height: none !important;
        height: auto !important;
        overflow: visible !important;
-       /* 相对于Follow按钮位置调整 */
-       top: 200px !important; /* 从顶部固定距离 */
+       /* 紧贴Links按钮下方 */
+       top: 50px !important;
        box-sizing: border-box !important;
+       white-space: nowrap !important; /* 防止文字换行 */
      }
      
      /* 确保菜单内的每个链接都有适当的间距和背景 */
@@ -118,7 +120,16 @@
        background: transparent !important;
        margin: 5px 0 !important;
        padding: 8px 0 !important;
-       width: 100% !important;
+       width: auto !important; /* 自动宽度 */
+       white-space: nowrap !important; /* 不换行 */
+       display: block !important;
+     }
+     
+     /* 确保链接文字不换行 */
+     .author__urls-wrapper .social-icons li a {
+       white-space: nowrap !important;
+       display: inline-block !important;
+       width: auto !important;
      }
   }
   
