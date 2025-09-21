@@ -100,35 +100,35 @@
     }
   }
   
-  /* 全局页面底部地球仪样式 - 小尺寸 */
+  /* 全局页面底部地球仪样式 - 简洁小尺寸 */
   .globe-global-container {
     text-align: center;
-    margin: 20px auto;
-    padding: 15px;
-    max-width: 600px; /* 缩小最大宽度 */
-    background: #f8f9fa;
-    border-radius: 6px;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    margin: 30px auto;
+    max-width: 500px;
   }
   
-  /* 强制缩小地球仪大小 */
-  .globe-global-container * {
-    max-width: 400px !important;
-    max-height: 300px !important;
+  /* 缩小地球仪尺寸 */
+  .globe-global-container canvas,
+  .globe-global-container iframe,
+  .globe-global-container > div {
+    max-width: 350px !important;
+    max-height: 250px !important;
     transform: scale(0.7) !important;
     transform-origin: center !important;
+    margin: 0 auto !important;
   }
   
   @media (max-width: 768px) {
     .globe-global-container {
-      margin: 15px 10px !important;
-      padding: 10px !important;
-      max-width: 100% !important;
+      margin: 20px auto !important;
+      max-width: 90% !important;
     }
     
-    .globe-global-container * {
-      max-width: 280px !important;
-      max-height: 200px !important;
+    .globe-global-container canvas,
+    .globe-global-container iframe,
+    .globe-global-container > div {
+      max-width: 250px !important;
+      max-height: 180px !important;
       transform: scale(0.6) !important;
     }
   }
