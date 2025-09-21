@@ -39,15 +39,9 @@
   
   /* 在手机端调整地球仪布局 */
   @media (max-width: 768px) {
-    .globe-widget {
+    .author__urls-wrapper > div:last-child {
       text-align: center !important; /* 手机端居中显示 */
       margin: 30px 0 !important; /* 增加上下间距 */
-    }
-    
-    .globe-widget > div {
-      transform: scale(0.6) !important; /* 手机端稍微缩小 */
-      transform-origin: center !important; /* 居中缩放 */
-      margin: 0 auto !important; /* 居中对齐 */
     }
   }
   
@@ -108,26 +102,10 @@
   
   /* 地球仪在手机端的层级调整 */
   @media (max-width: 768px) {
-    .globe-widget {
+    .author__urls-wrapper > div:last-child {
       position: relative;
       z-index: 1 !important; /* 确保被菜单覆盖 */
     }
-  }
-  
-  /* 确保地球仪容器正常显示 */
-  .globe-widget {
-    min-height: 120px; /* 确保有足够空间显示 */
-    width: 200px; /* 固定宽度 */
-  }
-  
-  /* 通过CSS控制地球仪大小而不是transform */
-  .globe-widget iframe,
-  .globe-widget canvas,
-  .globe-widget > div {
-    max-width: 180px !important;
-    max-height: 180px !important;
-    transform: scale(0.8) !important;
-    transform-origin: left top !important;
   }
 </style>
 
