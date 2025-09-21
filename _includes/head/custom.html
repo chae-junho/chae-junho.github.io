@@ -54,11 +54,21 @@
     display: block; /* 桌面端直接显示社交媒体链接 */
   }
   
-  /* 手机端显示Follow按钮和菜单交互 */
-  @media (max-width: 768px) {
-    .author__urls-wrapper {
-      position: relative;
-    }
+   /* 手机端显示Follow按钮和菜单交互 */
+   @media (max-width: 768px) {
+     .author__urls-wrapper {
+       position: relative;
+       overflow: visible !important; /* 确保菜单不被父容器裁剪 */
+     }
+     
+     /* 确保侧边栏容器不裁剪菜单 */
+     .sidebar {
+       overflow: visible !important;
+     }
+     
+     .author__sidebar {
+       overflow: visible !important;
+     }
     
     .author__urls-wrapper .btn {
       display: block !important; /* 手机端显示Follow按钮 */
@@ -81,23 +91,24 @@
       color: #fff !important;
     }
     
-    /* 手机端菜单覆盖地球仪 */
-    .author__urls-wrapper .social-icons {
-      position: absolute !important;
-      z-index: 1001 !important;
-      background: #fff;
-      border: 1px solid #ddd;
-      border-radius: 4px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.25);
-      width: calc(100% - 2px);
-      left: 0;
-      margin: 0 !important;
-      padding: 15px !important;
-      max-height: 250px;
-      overflow-y: auto;
-      /* 关键：相对于按钮定位，覆盖下方所有内容包括地球仪 */
-      top: 40px; /* 紧贴Follow按钮下方 */
-    }
+     /* 手机端菜单覆盖地球仪 */
+     .author__urls-wrapper .social-icons {
+       position: absolute !important;
+       z-index: 1001 !important;
+       background: #fff;
+       border: 1px solid #ddd;
+       border-radius: 4px;
+       box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+       width: calc(100% - 2px);
+       left: 0;
+       margin: 0 !important;
+       padding: 15px !important;
+       max-height: none !important; /* 移除高度限制 */
+       height: auto !important;
+       overflow: visible !important; /* 确保内容完全显示 */
+       /* 关键：相对于按钮定位，覆盖下方所有内容包括地球仪 */
+       top: 40px; /* 紧贴Follow按钮下方 */
+     }
   }
   
   /* 全局页面底部地球仪样式 - 简洁小尺寸 */
