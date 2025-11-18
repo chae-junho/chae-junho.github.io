@@ -50,9 +50,9 @@ Publications 📖
 ======
 * **International Conference:**
   * **2025:**
-    * Loading...
+    * ([AAAI 2026, Oral Presentation, Acceptance rate: 17.6%](https://aaai.org/conference/aaai/aaai-26/)) HCF: Hierarchical Cascade Framework for Distributed Multi-Stage Image Compression [**J Cai**, T An, C Jin, SI Choi, J Park, C Joo] [[PDF](https://arxiv.org/abs/2508.02051)] 
   * **2024:**
-    * ([ICTC 2024](https://ictc.org/)) Toward Scalable and Efficient Visual Data Transmission in 6G Networks [**J Cai**, T An, C Joo] [[PDF](https://ieeexplore.ieee.org/document/10827560)]  
+    * ([ICTC 2024, Oral Presentation](https://ictc.org/)) Toward Scalable and Efficient Visual Data Transmission in 6G Networks [**J Cai**, T An, C Joo] [[PDF](https://ieeexplore.ieee.org/document/10827560)]  
 * **Journal (SCIE):**
   * **2025:**
     * Under Review.
@@ -61,7 +61,7 @@ Publications 📖
 Patents 💡
 =====
 * **2025:**
-  * Under Review.
+  * Device and Method for Runtime Extra Compression for Time-Critical Content Delivery [C Joo, T An, **J Cai**] [[PDF](https://drive.google.com/file/d/1NZhNvaklGAUsUBBtAdfbZRM7ojY-5vZD/view?usp=drive_link)]
   * Device and Method of Graph-based Smart Offloading for Edge Computing [R Paul, **J Cai**, C Joo] [[PDF](https://drive.google.com/file/d/1lSnUjHoIEyyWrOSQTCDFCYVsGQup45ey/view?usp=drive_link)]
   * Device and Method for Adaptive Image Compression for Distributed Environments Using Hierarchical Cascade Networks [**J Cai**, T An, C Joo] [[PDF](https://drive.google.com/file/d/1ndmq3pUajRwp7RtgcnqH0JqOrs5EaX82/view?usp=drive_link)]
   * Method for Differentiated Content Distributed Network Services on Market Structure [C Joo, S Lee, **J Cai**] [[PDF](https://drive.google.com/file/d/1tSeF02__LZ6Bbw8lT6-MIaSRGpb4khAB/view?usp=sharing)]
