@@ -11,7 +11,7 @@ redirect_from:
 
 Education 📑
 ======
-* Ph.D. in Computer Science, Korea University **(QS Ranking: 61th, S.Korea)**, 2025.09 - Present
+* Ph.D. in Computer Science, Korea University **(QS Ranking: 61th)**, 2025.09 - Present
   * GPA: 
   * Research Assistant (RA), Teaching Assistant (TA)
   * Scholarships:
@@ -24,11 +24,11 @@ Education 📑
     * Natural Science and Engineering Scholarship, Top 5%
     * Research Scholarship * 2
     * Teaching Assistant Scholarship 
-  * Qualification Exam: 
+  <!-- * Qualification Exam: 
     * ✅ Advanced Data Structure
     * ✅ Computer Network
-    * ✅ Theory of Artificial Intelligence
-* B.E. in Computer Science, Yanbian University **(211 Project, China)**, 2019.09 - 2023.06
+    * ✅ Theory of Artificial Intelligence -->
+* B.E. in Computer Science, Yanbian University **(211 Project)**, 2019.09 - 2023.06
   * GPA: 90.29/100 **[Major Ranking: Top 3, Innovation Class Student]**
   * **Major Representative**
   * Scholarships:
@@ -38,11 +38,11 @@ Education 📑
 
 Publications 📖
 ======
-* **International Conference:**
+* **Conference:**
   * **2026:**
     * Under Review.
   * **2025:**
-    * **[Top-tier]** ([AAAI 2026, Oral Presentation, Acceptance rate: 17.6%](https://aaai.org/conference/aaai/aaai-26/)) HCF: Hierarchical Cascade Framework for Distributed Multi-Stage Image Compression [**J Cai**, T An, C Jin, SI Choi, J Park, C Joo] [[PDF](https://arxiv.org/abs/2508.02051)] 
+    * **[[Top-tier](https://scholar.google.com/citations?view_op=top_venues&hl=en&vq=eng)]** ([AAAI 2026, Oral Presentation, Acceptance rate: 17.6%](https://aaai.org/conference/aaai/aaai-26/)) HCF: Hierarchical Cascade Framework for Distributed Multi-Stage Image Compression [**J Cai**, T An, C Jin, SI Choi, J Park, C Joo] [[PDF](https://arxiv.org/abs/2508.02051)] 
   * **2024:**
     * ([ICTC 2024, Oral Presentation](https://ictc.org/)) Toward Scalable and Efficient Visual Data Transmission in 6G Networks [**J Cai**, T An, C Joo] [[PDF](https://ieeexplore.ieee.org/document/10827560)]  
 * **Journal (SCIE):**
@@ -50,6 +50,23 @@ Publications 📖
     * Under Review.
     * Under Review.
 
+Patents 💡
+=====
+* **2025:**
+  * Device and Method for Runtime Extra Compression for Time-Critical Content Delivery [C Joo, T An, **J Cai**] [[PDF](https://drive.google.com/file/d/1NZhNvaklGAUsUBBtAdfbZRM7ojY-5vZD/view?usp=drive_link)]
+  * Device and Method of Graph-based Smart Offloading for Edge Computing [R Paul, **J Cai**, C Joo] [[PDF](https://drive.google.com/file/d/1lSnUjHoIEyyWrOSQTCDFCYVsGQup45ey/view?usp=drive_link)]
+  * Device and Method for Adaptive Image Compression for Distributed Environments Using Hierarchical Cascade Networks [**J Cai**, T An, C Joo] [[PDF](https://drive.google.com/file/d/1ndmq3pUajRwp7RtgcnqH0JqOrs5EaX82/view?usp=drive_link)]
+  * Method for Differentiated Content Distributed Network Services on Market Structure [C Joo, S Lee, **J Cai**] [[PDF](https://drive.google.com/file/d/1tSeF02__LZ6Bbw8lT6-MIaSRGpb4khAB/view?usp=sharing)]
+
+Academic Activities 🎓
+======
+* **2026:**
+  * ([CVPR 2026](https://cvpr.thecvf.com/Conferences/2026)) Reviewer
+* **2025:**
+  * ([AAAI 2026](https://aaai.org/conference/aaai/aaai-26/)) Program Committee Member
+* **2024:**
+  * ([WiOpt 2024](https://wiopt24.github.io/index.html)) Student Volunteer
+  
 Research Projects  📝
 ======
 * 6G Industrial Technology Development -- High-level application-network integration programmable interface technology **[Research Coordinator]**, 2024.07 - Present 
@@ -60,26 +77,12 @@ Research Projects  📝
   * Learned Image Compression
   * Network for AI services -- AI computing over network
 
-Patents 💡
-=====
-* **2025:**
-  * Device and Method for Runtime Extra Compression for Time-Critical Content Delivery [C Joo, T An, **J Cai**] [[PDF](https://drive.google.com/file/d/1NZhNvaklGAUsUBBtAdfbZRM7ojY-5vZD/view?usp=drive_link)]
-  * Device and Method of Graph-based Smart Offloading for Edge Computing [R Paul, **J Cai**, C Joo] [[PDF](https://drive.google.com/file/d/1lSnUjHoIEyyWrOSQTCDFCYVsGQup45ey/view?usp=drive_link)]
-  * Device and Method for Adaptive Image Compression for Distributed Environments Using Hierarchical Cascade Networks [**J Cai**, T An, C Joo] [[PDF](https://drive.google.com/file/d/1ndmq3pUajRwp7RtgcnqH0JqOrs5EaX82/view?usp=drive_link)]
-  * Method for Differentiated Content Distributed Network Services on Market Structure [C Joo, S Lee, **J Cai**] [[PDF](https://drive.google.com/file/d/1tSeF02__LZ6Bbw8lT6-MIaSRGpb4khAB/view?usp=sharing)]
 
 
-Software Copyrights 🖥️
-=====
-* **2024:**
-  * Adaptive Image Compression System for Distributed Environments Using Hierarchical Cascade Networks [**J Cai**] [[PDF](https://drive.google.com/file/d/19d162l5xmKdRcG6fh2oQ2nObdNWHuApv/view?usp=drive_link)]
 
-Academic Activities 🎓
-======
-* **2025:**
-  * ([AAAI 2026](https://aaai.org/conference/aaai/aaai-26/)) Program Committee Member
-* **2024:**
-  * ([WiOpt 2024](https://wiopt24.github.io/index.html)) Student Volunteer
+
+
+
 
 Languages 🌍
 ======
@@ -99,3 +102,7 @@ Skills 🛠️
 * Badminton 🏸
   * Special Talent Student (China)
   
+Software Copyrights 🖥️
+=====
+* **2024:**
+  * Adaptive Image Compression System for Distributed Environments Using Hierarchical Cascade Networks [**J Cai**] [[PDF](https://drive.google.com/file/d/19d162l5xmKdRcG6fh2oQ2nObdNWHuApv/view?usp=drive_link)]
