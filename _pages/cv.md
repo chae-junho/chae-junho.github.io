@@ -36,6 +36,20 @@ Education 📑
     * National Inspirational Scholarship, Top 5%
     * Excellent Student Scholarship * 8, Top 1-5%
 
+Publications 📖
+======
+* **International Conference:**
+  * **2026:**
+    * Under Review.
+  * **2025:**
+    * **[Top-tier]** ([AAAI 2026, Oral Presentation, Acceptance rate: 17.6%](https://aaai.org/conference/aaai/aaai-26/)) HCF: Hierarchical Cascade Framework for Distributed Multi-Stage Image Compression [**J Cai**, T An, C Jin, SI Choi, J Park, C Joo] [[PDF](https://arxiv.org/abs/2508.02051)] 
+  * **2024:**
+    * ([ICTC 2024, Oral Presentation](https://ictc.org/)) Toward Scalable and Efficient Visual Data Transmission in 6G Networks [**J Cai**, T An, C Joo] [[PDF](https://ieeexplore.ieee.org/document/10827560)]  
+* **Journal (SCIE):**
+  * **2025:**
+    * Under Review.
+    * Under Review.
+
 Research Projects  📝
 ======
 * 6G Industrial Technology Development -- High-level application-network integration programmable interface technology **[Research Coordinator]**, 2024.07 - Present 
@@ -46,18 +60,6 @@ Research Projects  📝
   * Learned Image Compression
   * Network for AI services -- AI computing over network
 
-Publications 📖
-======
-* **International Conference:**
-  * **2025:**
-    * ([AAAI 2026, Oral Presentation, Acceptance rate: 17.6%](https://aaai.org/conference/aaai/aaai-26/)) HCF: Hierarchical Cascade Framework for Distributed Multi-Stage Image Compression [**J Cai**, T An, C Jin, SI Choi, J Park, C Joo] [[PDF](https://arxiv.org/abs/2508.02051)] 
-  * **2024:**
-    * ([ICTC 2024, Oral Presentation](https://ictc.org/)) Toward Scalable and Efficient Visual Data Transmission in 6G Networks [**J Cai**, T An, C Joo] [[PDF](https://ieeexplore.ieee.org/document/10827560)]  
-* **Journal (SCIE):**
-  * **2025:**
-    * Under Review.
-    * Under Review.
-    
 Patents 💡
 =====
 * **2025:**
