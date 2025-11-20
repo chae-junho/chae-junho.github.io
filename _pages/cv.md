@@ -24,10 +24,6 @@ Education 📑
     * Natural Science and Engineering Scholarship, Top 5%
     * Research Scholarship * 2
     * Teaching Assistant Scholarship 
-  <!-- * Qualification Exam: 
-    * ✅ Advanced Data Structure
-    * ✅ Computer Network
-    * ✅ Theory of Artificial Intelligence -->
 * B.E. in Computer Science, Yanbian University **(211 Project)**, 2019.09 - 2023.06
   * GPA: 90.29/100 **[Major Ranking: Top 3, Innovation Class Student]**
   * **Major Representative**
