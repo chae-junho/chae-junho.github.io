@@ -48,6 +48,10 @@ Publications 📖
 
 Patents 💡
 =====
+* **2026:**
+  * Under Review.
+  * Under Review.
+  * Under Review.
 * **2025:**
   * Device and Method for Runtime Extra Compression for Time-Critical Content Delivery [C Joo, T An, **J Cai**] [[PDF](https://drive.google.com/file/d/1NZhNvaklGAUsUBBtAdfbZRM7ojY-5vZD/view?usp=drive_link)]
   * Device and Method of Graph-based Smart Offloading for Edge Computing [R Paul, **J Cai**, C Joo] [[PDF](https://drive.google.com/file/d/1lSnUjHoIEyyWrOSQTCDFCYVsGQup45ey/view?usp=drive_link)]
