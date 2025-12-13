@@ -43,7 +43,7 @@ Publications 📖
     * ([ICTC 2024, Oral Presentation](https://ictc.org/)) Toward Scalable and Efficient Visual Data Transmission in 6G Networks [**J Cai**, T An, C Joo] [[PDF](https://ieeexplore.ieee.org/document/10827560)]  
 * **Journal (SCIE):**
   * **2025:**
-    * Under Review.
+    * ([COMPUT NETW](https://www.sciencedirect.com/journal/computer-networks)) Economic and Strategic Perspectives on CDN Pricing: A Comprehensive Review [C Jin, **J Cai**, J Park, C Joo]
     * Under Review.
 
 Patents 💡
