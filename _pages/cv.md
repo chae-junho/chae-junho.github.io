@@ -12,7 +12,7 @@ redirect_from:
 Education 📑
 ======
 * Ph.D. in Computer Science, Korea University **(QS Ranking: 61th)**, 2025.09 - Present
-  * GPA: N/A
+  * **GPA: 100/100**
   * Research Assistant (RA), Teaching Assistant (TA)
   * Scholarships:
     * **Global Leader Scholarship, Top 1%**
@@ -49,11 +49,10 @@ Publications 📖
 
 Patents 💡
 =====
-* **2026:**
-  * Under Review.
-  * Under Review.
-  * Under Review.
 * **2025:**
+  * Device and Method for Model Performance-preserving Machine Unlearning for Lossy Training Data [C Joo, J Park, **J Cai**] [[PDF](https://drive.google.com/file/d/1eEMYfBAqkH6AHphBmXBFeT5k7gLiRvKN/view?usp=drive_link)]
+  * Device and Method for Machine Unlearning Based on Per-sample Hessian Information [C Joo, SI Choi, J Park, **J Cai**] [[PDF](https://drive.google.com/file/d/1K_NUcxaq3pmUwPjOD9hpygEAUja8rIKo/view?usp=drive_link)]
+  * Device and Method for Certified Machine Unlearning Using Dual Noise Injection [C Joo, SI Choi, J Park, **J Cai**] [[PDF](https://drive.google.com/file/d/1yzB1y8zHGuB5eZ2Rx56Ah_91OfyV4nrK/view?usp=drive_link)]
   * Device and Method for Runtime Extra Compression for Time-Critical Content Delivery [C Joo, T An, **J Cai**] [[PDF](https://drive.google.com/file/d/1NZhNvaklGAUsUBBtAdfbZRM7ojY-5vZD/view?usp=drive_link)]
   * Device and Method of Graph-based Smart Offloading for Edge Computing [R Paul, **J Cai**, C Joo] [[PDF](https://drive.google.com/file/d/1lSnUjHoIEyyWrOSQTCDFCYVsGQup45ey/view?usp=drive_link)]
   * Device and Method for Adaptive Image Compression for Distributed Environments Using Hierarchical Cascade Networks [**J Cai**, T An, C Joo] [[PDF](https://drive.google.com/file/d/1ndmq3pUajRwp7RtgcnqH0JqOrs5EaX82/view?usp=drive_link)]
@@ -61,8 +60,6 @@ Patents 💡
 
 Academic Activities 🎓
 ======
-* **2026:**
-  * ([CVPR 2026](https://cvpr.thecvf.com/Conferences/2026)) Reviewer
 * **2025:**
   * ([AAAI 2026](https://aaai.org/conference/aaai/aaai-26/)) Program Committee Member
 * **2024:**
