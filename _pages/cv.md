@@ -16,7 +16,7 @@ Education 📑
   * Research Assistant (RA), Teaching Assistant (TA)
   * Scholarships & Honors:
     * **Global Leader Scholarship * 2, Top 1%**
-    * **우수논문상**
+    * **Outstanding Paper Award**
 * M.S. in Computer Science, Korea University, 2023.09 - 2025.08
   * **GPA: 97.1/100**
   * Research Assistant (RA), Teaching Assistant (TA)
