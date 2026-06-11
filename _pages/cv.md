@@ -53,6 +53,8 @@ Publications 📖
 
 Patents 💡
 =====
+* **2026:**
+  * Under Review.
 * **2025:**
   * Device and Method for Model Performance-preserving Machine Unlearning for Lossy Training Data [C Joo, J Park, **J Cai**] [[PDF](https://drive.google.com/file/d/1eEMYfBAqkH6AHphBmXBFeT5k7gLiRvKN/view?usp=drive_link)]
   * Device and Method for Machine Unlearning Based on Per-sample Hessian Information [C Joo, SI Choi, J Park, **J Cai**] [[PDF](https://drive.google.com/file/d/1K_NUcxaq3pmUwPjOD9hpygEAUja8rIKo/view?usp=drive_link)]
@@ -71,9 +73,10 @@ Academic Activities 🎓
   
 Research Projects  📝
 ======
+* Development of Core Technologies for Multimodal Machine Unlearning, 2026 - Present
+  * Machine Unlearning
 * 6G Industrial Technology Development -- High-level application-network integration programmable interface technology **[Research Coordinator]**, 2024.07 - Present 
   * Network Economics
-  * AI-RAN
 
 * ERC -- Cognitive Augmentation Metacommunication Research Center, 2023.09 - Present
   * Learned Image Compression
