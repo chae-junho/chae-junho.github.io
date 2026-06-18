@@ -11,7 +11,7 @@ redirect_from:
 
 Education 📑
 ======
-* Ph.D. in Computer Science, Korea University **(QS Ranking: 61th)**, 2025.09 - Present
+* Ph.D. in Computer Science, Korea University **(QS Ranking: 52th)**, 2025.09 - Present
   * **GPA: 100/100**
   * Research Assistant (RA), Teaching Assistant (TA)
   * Scholarships & Honors:
@@ -30,7 +30,7 @@ Education 📑
   * **Major Representative**
   * Scholarships & Honors:
     * **Samsung Electronic Scholarship * 2, Top 1%**
-    * National Inspirational Scholarship, Top 5%
+    * National Inspirational Scholarship, Top 1%
     * Excellent Student Scholarship * 8, Top 1-5%
 
 Publications 📖
@@ -42,13 +42,13 @@ Publications 📖
     * Under Review.
     * Under Review.
   * **2025:**
-    * **[[Top-tier](https://scholar.google.com/citations?view_op=top_venues&hl=en&vq=eng_artificialintelligence)]** ([AAAI 2026, Oral Presentation, Acceptance rate: 17.6%](https://aaai.org/conference/aaai/aaai-26/)) HCF: Hierarchical Cascade Framework for Distributed Multi-Stage Image Compression [**J Cai**, T An, C Jin, SI Choi, J Park, C Joo] [[PDF](
+    * **<span style="color:#FF0000">[CCF A, BK21 4IF]</span>** ([AAAI 2026, Oral Presentation, Acceptance rate: 17.6%](https://aaai.org/conference/aaai/aaai-26/)) HCF: Hierarchical Cascade Framework for Distributed Multi-Stage Image Compression [**J Cai**, T An, C Jin, SI Choi, J Park, C Joo] [[PDF](
     https://doi.org/10.48550/arXiv.2508.02051)] 
   * **2024:**
     * ([ICTC 2024, Oral Presentation](https://ictc.org/)) Toward Scalable and Efficient Visual Data Transmission in 6G Networks [**J Cai**, T An, C Joo] [[PDF](https://doi.org/10.1109/ICTC62082.2024.10827560)]  
 * **Journal (SCIE):**
   * **2025:**
-    * ([COMPUT NETW](https://www.sciencedirect.com/journal/computer-networks)) Economic and Strategic Perspectives on CDN Pricing: A Comprehensive Review [C Jin, **J Cai**, J Park, C Joo] [[PDF](https://doi.org/10.1016/j.comnet.2025.111944)]  
+    * <span style="color:#FF0000">[CCF B]</span> ([COMPUT NETW](https://www.sciencedirect.com/journal/computer-networks)) Economic and Strategic Perspectives on CDN Pricing: A Comprehensive Review [C Jin, **J Cai**, J Park, C Joo] [[PDF](https://doi.org/10.1016/j.comnet.2025.111944)]  
     * Under Review.
 
 Patents 💡
