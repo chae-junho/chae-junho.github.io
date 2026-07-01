@@ -66,6 +66,8 @@ Patents 💡
 
 Academic Activities 🎓
 ======
+* **2026:**
+  * ([AAAI 2027](https://aaai.org/conference/aaai/aaai-27/)) Program Committee Member
 * **2025:**
   * ([AAAI 2026](https://aaai.org/conference/aaai/aaai-26/)) Program Committee Member
 * **2024:**
