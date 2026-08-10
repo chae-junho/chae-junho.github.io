@@ -41,6 +41,8 @@ Publications 📖
     * Under Review.
     * Under Review.
     * Under Review.
+    * Under Review.
+    * Under Review.
   * **2025:**
     * **<span style="color:#FF0000">[CCF A, BK+ IF 4]</span>** ([AAAI 2026, Oral Presentation, Acceptance rate: 17.6%](https://aaai.org/conference/aaai/aaai-26/)) HCF: Hierarchical Cascade Framework for Distributed Multi-Stage Image Compression [**J Cai**, T An, C Jin, SI Choi, J Park, C Joo] [[PDF](
     https://doi.org/10.48550/arXiv.2508.02051)] 
