@@ -49,9 +49,10 @@ Publications 📖
   * **2024:**
     * ([ICTC 2024, Oral Presentation](https://ictc.org/)) Toward Scalable and Efficient Visual Data Transmission in 6G Networks [**J Cai**, T An, C Joo] [[PDF](https://doi.org/10.1109/ICTC62082.2024.10827560)]  
 * **Journal (SCIE):**
+  * **2026:**
+    * <span style="color:#FF0000">[IF 8.2]</span> ([IEEE COMMUN MAG](https://www.comsoc.org/publications/magazines/ieee-communications-magazine)) RXC: Runtime Extra Compression for Time-Critical Content Delivery [J Bae, H Kang, T Kim, T An, S Lee, **J Cai**, C Joo, K Lee] [[PDF]()]
   * **2025:**
     * <span style="color:#FF0000">[CCF B]</span> ([COMPUT NETW](https://www.sciencedirect.com/journal/computer-networks)) Economic and Strategic Perspectives on CDN Pricing: A Comprehensive Review [C Jin, **J Cai**, J Park, C Joo] [[PDF](https://doi.org/10.1016/j.comnet.2025.111944)]  
-    * Under Review.
 
 Patents 💡
 =====
