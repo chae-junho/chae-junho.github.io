@@ -11,11 +11,11 @@ redirect_from:
 
 Education 📑
 ======
-* Ph.D. in Computer Science, Korea University **(QS Ranking: 52th)**, 2025.09 - Present
+* Ph.D. in Computer Science, Korea University **(QS Ranking: 52nd)**, 2025.09 - Present
   * **GPA: 100/100**
   * Research Assistant (RA), Teaching Assistant (TA)
   * Scholarships & Honors:
-    * **Global Leader Scholarship * 2, Top 1%**
+    * **Global Leader Scholarship * 3, Top 1%**
     * **Outstanding Paper Award**
 * M.S. in Computer Science, Korea University, 2023.09 - 2025.08
   * **GPA: 97.1/100**
