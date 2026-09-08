@@ -59,7 +59,7 @@ Patents 💡
 * **2026:**
   * Under Review.
   * Under Review.
-  * Device and Method for Retain-Orthogonal Updates Based Machine Unlearning for Continual Diffusion Concept Erasure [[PDF](https://drive.google.com/file/d/1WQpeeXKnqmCnNVe34Egl_MxoyvVuPOux/view?usp=drive_link)]
+  * Device and Method for Retain-Orthogonal Updates Based Machine Unlearning for Continual Diffusion Concept Erasure [**J Cai**, C Joo] [[PDF](https://drive.google.com/file/d/1WQpeeXKnqmCnNVe34Egl_MxoyvVuPOux/view?usp=drive_link)]
 * **2025:**
   * Device and Method for Model Performance-preserving Machine Unlearning for Lossy Training Data [C Joo, J Park, **J Cai**] [[PDF](https://drive.google.com/file/d/1eEMYfBAqkH6AHphBmXBFeT5k7gLiRvKN/view?usp=drive_link)]
   * Device and Method for Machine Unlearning Based on Per-sample Hessian Information [C Joo, SI Choi, J Park, **J Cai**] [[PDF](https://drive.google.com/file/d/1K_NUcxaq3pmUwPjOD9hpygEAUja8rIKo/view?usp=drive_link)]
