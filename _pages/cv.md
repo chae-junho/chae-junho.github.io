@@ -58,15 +58,17 @@ Publications 📖
 
 Patents 💡
 =====
+<sup>*</sup> denotes equal contribution.
 * **2026:**
+  * Under Review.
   * Under Review.
   * Under Review.
   * Device and Method for Retain-Orthogonal Updates Based Machine Unlearning for Continual Diffusion Concept Erasure [**J Cai**, C Joo] [[PDF](https://drive.google.com/file/d/1WQpeeXKnqmCnNVe34Egl_MxoyvVuPOux/view?usp=drive_link)]
 * **2025:**
-  * Device and Method for Model Performance-preserving Machine Unlearning for Lossy Training Data [C Joo, J Park, **J Cai**] [[PDF](https://drive.google.com/file/d/1eEMYfBAqkH6AHphBmXBFeT5k7gLiRvKN/view?usp=drive_link)]
-  * Device and Method for Machine Unlearning Based on Per-sample Hessian Information [C Joo, SI Choi, J Park, **J Cai**] [[PDF](https://drive.google.com/file/d/1K_NUcxaq3pmUwPjOD9hpygEAUja8rIKo/view?usp=drive_link)]
-  * Device and Method for Certified Machine Unlearning Using Dual Noise Injection [C Joo, SI Choi, J Park, **J Cai**] [[PDF](https://drive.google.com/file/d/1yzB1y8zHGuB5eZ2Rx56Ah_91OfyV4nrK/view?usp=drive_link)]
-  * Device and Method for Runtime Extra Compression for Time-Critical Content Delivery [C Joo, T An, **J Cai**] [[PDF](https://drive.google.com/file/d/1NZhNvaklGAUsUBBtAdfbZRM7ojY-5vZD/view?usp=drive_link)]
+  * Device and Method for Model Performance-preserving Machine Unlearning for Lossy Training Data [C Joo, J Park<sup>&#42;</sup>, **J Cai**<sup>&#42;</sup>] [[PDF](https://drive.google.com/file/d/1eEMYfBAqkH6AHphBmXBFeT5k7gLiRvKN/view?usp=drive_link)]
+  * Device and Method for Machine Unlearning Based on Per-sample Hessian Information [C Joo, SI Choi<sup>&#42;</sup>, J Park<sup>&#42;</sup>, **J Cai**<sup>&#42;</sup>] [[PDF](https://drive.google.com/file/d/1K_NUcxaq3pmUwPjOD9hpygEAUja8rIKo/view?usp=drive_link)]
+  * Device and Method for Certified Machine Unlearning Using Dual Noise Injection [C Joo, SI Choi<sup>&#42;</sup>, J Park<sup>&#42;</sup>, **J Cai**<sup>&#42;</sup>] [[PDF](https://drive.google.com/file/d/1yzB1y8zHGuB5eZ2Rx56Ah_91OfyV4nrK/view?usp=drive_link)]
+  * Device and Method for Runtime Extra Compression for Time-Critical Content Delivery [C Joo, **J Cai**, T An] [[PDF](https://drive.google.com/file/d/1NZhNvaklGAUsUBBtAdfbZRM7ojY-5vZD/view?usp=drive_link)]
   * Device and Method of Graph-based Smart Offloading for Edge Computing [R Paul, **J Cai**, C Joo] [[PDF](https://drive.google.com/file/d/1lSnUjHoIEyyWrOSQTCDFCYVsGQup45ey/view?usp=drive_link)]
   * Device and Method for Adaptive Image Compression for Distributed Environments Using Hierarchical Cascade Networks [**J Cai**, T An, C Joo] [[PDF](https://drive.google.com/file/d/1ndmq3pUajRwp7RtgcnqH0JqOrs5EaX82/view?usp=drive_link)]
   * Method for Differentiated Content Distributed Network Services on Market Structure [C Joo, S Lee, **J Cai**] [[PDF](https://drive.google.com/file/d/1tSeF02__LZ6Bbw8lT6-MIaSRGpb4khAB/view?usp=sharing)]
