@@ -46,8 +46,7 @@ Publications 📖
     * **<span style="color:#FF0000">[CCF A, BK+ IF 4]</span>** ([NeurIPS 2026](https://neurips.cc/Conferences/2026)) Retain-Neutral Surrogates for Min-Max Unlearning [**J Cai**, D Kim, D Kim, SI Choi, C Jin, J Park, C Joo*] [[PDF]()]
     * **<span style="color:#FF0000">[CCF A, BK+ IF 4]</span>** ([NeurIPS 2026](https://neurips.cc/Conferences/2026)) Spectral Unlearning: Transformer Structure-Preserving Updates for Language Model [SI Choi, **J Cai**, D Kim, C Joo*] [[PDF]()]
   * **2025:**
-    * **<span style="color:#FF0000">[CCF A, BK+ IF 4]</span>** ([AAAI 2026, Oral Presentation, Acceptance rate: 17.6%](https://aaai.org/conference/aaai/aaai-26/)) HCF: Hierarchical Cascade Framework for Distributed Multi-Stage Image Compression [**J Cai**, T An, C Jin, SI Choi, J Park, C Joo] [[PDF](
-    https://doi.org/10.48550/arXiv.2508.02051)] 
+    * **<span style="color:#FF0000">[CCF A, BK+ IF 4]</span>** ([AAAI 2026, <span style="color:#FF0000">Oral Presentation</span>](https://aaai.org/conference/aaai/aaai-26/)) HCF: Hierarchical Cascade Framework for Distributed Multi-Stage Image Compression [**J Cai**, T An, C Jin, SI Choi, J Park, C Joo] [[PDF](https://doi.org/10.48550/arXiv.2508.02051)]
   * **2024:**
     * ([ICTC 2024, Oral Presentation](https://ictc.org/)) Toward Scalable and Efficient Visual Data Transmission in 6G Networks [**J Cai**, T An, C Joo] [[PDF](https://doi.org/10.1109/ICTC62082.2024.10827560)]  
 * **Journal (SCIE):**
