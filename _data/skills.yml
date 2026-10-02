@@ -1,4 +1,4 @@
-# Skills. tags become small chips; items become a nested list.
+# Skills. tags become small boxes after the name; items are shown one per line.
 # An entry with "hero" is also mentioned in the opening paragraphs at the top of the page
 # (name_ko and name_zh are the names, and hero_ko and hero_zh the achievements, used in the Korean and Chinese versions).
 

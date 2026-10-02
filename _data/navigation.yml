@@ -1,4 +1,4 @@
-# main links links
+# Links in the top bar. Each url is the id of a section of the page (the headings in _pages/about.md).
 main:
   - title: "About Me"
     url: "/#about-me"
