@@ -52,7 +52,7 @@
   oral: true
   venue_url: https://aaai.org/conference/aaai/aaai-26/
   title: "HCF: Hierarchical Cascade Framework for Distributed Multi-Stage Image Compression"
-  title_url: https://arxiv.org/pdf/2508.02051
+  title_url: https://doi.org/10.48550/arXiv.2508.02051
   authors: ["J Cai", "T An", "C Jin", "SI Choi", "J Park", "C Joo"]
   ccf: "A"
   bk: "BK+ IF 4"
