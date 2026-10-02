@@ -1,0 +1,14 @@
+{%- include counts.html -%}
+{%- assign hero_honors = site.data.honors | where_exp: "h", "h.hero" | sort: "hero" -%}
+{%- assign top_honor = hero_honors | first -%}
+{%- capture ccf_names -%}{%- for g in ccf_a_venues -%}{{ g.name }}{%- unless forloop.last -%}、{%- endunless -%}{%- endfor -%}{%- endcapture -%}
+{%- capture agency_names -%}{%- for g in agencies -%}{{ g.name }}{%- unless forloop.last -%}、{%- endunless -%}{%- endfor -%}{%- endcapture -%}
+{%- comment -%}
+  Short on purpose (see intro-en.html). Written the way a Chinese speaker would write a personal introduction: who I
+  am first, then short clauses, and a space between Chinese text and Latin letters or numbers. It is not a translation
+  of the English version.
+{%- endcomment -%}
+<p class="hero__lead">我是蔡俊豪，目前在首尔 <a href="https://www.korea.ac.kr/sites/ko/index.do">Korea University</a> 的 <a href="https://cs.korea.ac.kr/cs/index.do">Computer Science and Engineering</a> 攻读博士学位。<strong>给我一个挑战，我来拆解它，再做出能攻克它的 AI。</strong></p>
+<p><strong>中文和韩语都是我的母语</strong>（TOPIK 6 级），工作中也可以使用英语。</p>
+<p>我研究机器遗忘（让训练好的 AI 模型按需忘掉指定的数据）和 AI 应用，已有<strong>论文 {{ papers_n }} 篇</strong>{% if ccf_a_n > 0 %}（其中 {{ ccf_a_n }} 篇发表在 {{ ccf_names }} 等人工智能顶级会议上）{% endif %}、<strong>专利 {{ patents_n }} 项</strong>、<strong>国家级研究项目 {{ projects_n }} 项</strong>（{{ agency_names }}）{% if top_honor %}，并{% if top_honor.times %}<strong>{% case top_honor.times %}{% when 2 %}两次{% when 3 %}三次{% else %}{{ top_honor.times }} 次{% endcase %}获得 {{ top_honor.name }}</strong>{% else %}获得 <strong>{{ top_honor.name }}</strong>{% endif %}{% if top_honor.rank %}（前 {{ top_honor.rank | replace: "Top ", "" }}）{% endif %}{% endif %}。</p>
+<p>欢迎发邮件到 <span class="hero__email">{{ site.author.email }}</span>，或者通过 <a href="https://www.linkedin.com/in/{{ site.author.linkedin }}">LinkedIn</a> 联系我。</p>

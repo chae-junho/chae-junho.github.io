@@ -1,0 +1,27 @@
+{%- comment -%}
+  Every number shown at the top of the page and in the section summaries is computed here from _data/*.yml,
+  so it follows whatever is added to those files.
+{%- endcomment -%}
+{%- assign pubs = site.data.publications -%}
+{%- assign accepted = pubs | where: "status", "accepted" -%}
+{%- assign papers_n = accepted | size -%}
+{%- assign review_n = 0 -%}
+{%- for p in pubs -%}{%- if p.status == "review" -%}{%- assign review_n = review_n | plus: p.count -%}{%- endif -%}{%- endfor -%}
+{%- assign ccf_a = accepted | where: "ccf", "A" -%}
+{%- assign ccf_a_n = ccf_a | size -%}
+{%- assign ccf_a_venues = ccf_a | group_by: "venue" -%}
+{%- assign if_papers = accepted | where_exp: "p", "p.impact_factor" -%}
+{%- assign if_n = if_papers | size -%}
+{%- assign max_if = 0 -%}
+{%- for p in if_papers -%}{%- if p.impact_factor > max_if -%}{%- assign max_if = p.impact_factor -%}{%- endif -%}{%- endfor -%}
+{%- assign orals = accepted | where_exp: "p", "p.oral == true" -%}
+{%- assign oral_n = orals | size -%}
+{%- assign patents_all = site.data.patents | where: "kind", "patent" -%}
+{%- assign patents_n = patents_all | where_exp: "p", "p.status != 'review'" | size -%}
+{%- assign patents_review_n = 0 -%}
+{%- for p in patents_all -%}{%- if p.status == "review" -%}{%- assign patents_review_n = patents_review_n | plus: p.count -%}{%- endif -%}{%- endfor -%}
+{%- assign software_n = site.data.patents | where: "kind", "software" | size -%}
+{%- assign projects_n = site.data.projects | size -%}
+{%- assign agencies = site.data.projects | group_by: "agency" -%}
+{%- assign natives = site.data.languages | where: "short", "Native" -%}
+{%- assign natives_n = natives | size -%}

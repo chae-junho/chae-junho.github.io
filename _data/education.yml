@@ -1,0 +1,28 @@
+# Degrees, newest first. Degrees of the same school are shown together, with the logos of that school
+# (the logos are set in schools.yml, under the same school name).
+#
+#   tag:        small chip after the school
+#   roles:      plain text after the GPA
+#   highlights: list of short facts shown in bold after the GPA
+#   advisor, advisor_url, lab, lab_url: shown as "Advisor: Prof. ... of ..."
+
+- period: "2025.09 - Present"
+  degree: "Ph.D. in Computer Science"
+  school: "Korea University"
+  tag: "QS Ranking: 52nd"
+  gpa: "100/100"
+  roles: "Research Assistant (RA), Teaching Assistant (TA)"
+
+- period: "2023.09 - 2025.08"
+  degree: "M.S. in Computer Science"
+  school: "Korea University"
+  tag: "QS Ranking: 52nd"
+  gpa: "97.1/100"
+  roles: "Research Assistant (RA), Teaching Assistant (TA)"
+
+- period: "2019.09 - 2023.06"
+  degree: "B.E. in Computer Science"
+  school: "Yanbian University"
+  tag: "211 Project"
+  gpa: "90.29/100"
+  highlights: ["Major Ranking: Top 3, Innovation Class Student", "Major Representative"]

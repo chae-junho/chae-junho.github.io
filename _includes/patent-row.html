@@ -1,0 +1,6 @@
+{%- if include.p.status == "review" -%}
+<li><span class="pub-badge pub-badge--review">Under Review ×{{ include.p.count }}</span><div class="pub__body"><span class="pub__title">Patents, {{ include.p.year }}</span></div></li>
+{%- else -%}
+<li><span class="pub-badge pub-badge--patent">{% if include.p.kind == "software" %}Software{% else %}Patent{% endif %} {{ include.p.year }}</span><div class="pub__body"><span class="pub__title">{{ include.p.title }}</span>{% if include.p.url %} <a class="pub-link" href="{{ include.p.url }}">PDF</a>{% endif %}
+<span class="pub__meta">{% include authors.html authors=include.p.authors sup=true %}{% if include.p.topic %} <span class="pub-tags"><span class="pub-tag">{{ include.p.topic }}</span></span>{% endif %}</span></div></li>
+{%- endif -%}

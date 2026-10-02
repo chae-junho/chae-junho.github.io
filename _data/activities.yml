@@ -1,0 +1,16 @@
+# Academic service, newest first. year is the year you did it; venue is the badge text.
+
+- year: 2026
+  venue: "AAAI 2027"
+  url: https://aaai.org/conference/aaai/aaai-27/
+  role: "Program Committee Member"
+
+- year: 2025
+  venue: "AAAI 2026"
+  url: https://aaai.org/conference/aaai/aaai-26/
+  role: "Program Committee Member"
+
+- year: 2024
+  venue: "WiOpt 2024"
+  url: https://wiopt24.github.io/index.html
+  role: "Student Volunteer"

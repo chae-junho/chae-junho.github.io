@@ -1,0 +1,50 @@
+# Scholarships and awards. Entries with the same degree are shown together in one row.
+#
+#   degree: Ph.D. | M.S. | B.E. (rows appear in the order each degree first shows up)
+#   name, times ("x N" is added when present), rank (e.g. "Top 1%")
+#   bold:   true makes the chip stand out
+#   hero:   a number; the entry with the lowest number is named in the short opening text at the top of the page
+
+- degree: "Ph.D."
+  name: "Global Leader Scholarship"
+  times: 3
+  rank: "Top 1%"
+  bold: true
+  hero: 2
+
+- degree: "Ph.D."
+  name: "Outstanding Paper Award"
+  bold: true
+  hero: 3
+
+- degree: "M.S."
+  name: "Global Leader Scholarship"
+  rank: "Top 1%"
+  bold: true
+
+- degree: "M.S."
+  name: "Natural Science and Engineering Scholarship"
+  rank: "Top 5%"
+
+- degree: "M.S."
+  name: "Research Scholarship"
+  times: 2
+
+- degree: "M.S."
+  name: "Teaching Assistant Scholarship"
+
+- degree: "B.E."
+  name: "Samsung Electronic Scholarship"
+  times: 2
+  rank: "Top 1%"
+  bold: true
+  hero: 1
+
+- degree: "B.E."
+  name: "National Inspirational Scholarship"
+  rank: "Top 1%"
+
+- degree: "B.E."
+  name: "Excellent Student Scholarship"
+  times: 8
+  rank: "Top 1-5%"

@@ -1,0 +1,43 @@
+<section class="hero" data-lang="en">
+<div class="lang-switch" role="group" aria-label="Language">
+<span class="lang-switch__icon" aria-hidden="true"><i class="fas fa-language"></i></span>
+<button type="button" data-lang="en" aria-pressed="true">EN</button>
+<button type="button" data-lang="ko" aria-pressed="false">한국어</button>
+<button type="button" data-lang="zh" aria-pressed="false">中文</button>
+</div>
+<div class="hero__text i18n i18n--en" lang="en">
+{% include intro-en.html %}
+</div>
+<div class="hero__text i18n i18n--ko" lang="ko">
+{% include intro-ko.html %}
+</div>
+<div class="hero__text i18n i18n--zh" lang="zh">
+{% include intro-zh.html %}
+</div>
+</section>
+<script>
+(function () {
+  var hero = document.querySelector('.hero');
+  if (!hero) { return; }
+  var buttons = hero.querySelectorAll('.lang-switch button');
+  var codes = ['en', 'ko', 'zh'];
+  function show(code) {
+    hero.setAttribute('data-lang', code);
+    for (var i = 0; i < buttons.length; i++) {
+      buttons[i].setAttribute('aria-pressed', buttons[i].getAttribute('data-lang') === code ? 'true' : 'false');
+    }
+  }
+  var saved = null;
+  try { saved = window.localStorage.getItem('hero-lang'); } catch (e) {}
+  var browser = String((navigator.languages && navigator.languages[0]) || navigator.language || 'en').toLowerCase();
+  var guess = browser.indexOf('ko') === 0 ? 'ko' : (browser.indexOf('zh') === 0 ? 'zh' : 'en');
+  show(codes.indexOf(saved) >= 0 ? saved : guess);
+  for (var j = 0; j < buttons.length; j++) {
+    buttons[j].addEventListener('click', function () {
+      var code = this.getAttribute('data-lang');
+      show(code);
+      try { window.localStorage.setItem('hero-lang', code); } catch (e) {}
+    });
+  }
+})();
+</script>

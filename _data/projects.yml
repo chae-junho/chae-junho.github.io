@@ -1,0 +1,37 @@
+# Funded research projects, newest first. Taken from https://rain.korea.ac.kr/research/project
+#
+#   agency:       funding agency; projects with the same agency are counted together at the top of the page
+#   badge_extra:  shown in brackets after the agency, e.g. ERC
+#   from, to:     the project term
+#   since:        when you joined, if different from the start of the term
+#   role:         your role, if any (role_ko and role_zh: the same in Korean and Chinese, for the opening text)
+#   program:      umbrella program, shown as a tag
+#   topics:       what you work on inside the project, shown as tags
+
+- agency: "NRF"
+  title: "Development of Core Technologies for Multimodal Machine Unlearning"
+  title_ko: "멀티모달 머신 언러닝 핵심기술 개발"
+  from: 2026
+  to: 2031
+  topics: ["Machine Unlearning"]
+
+- agency: "IITP"
+  title: "High-level application-network integration programmable interface technology"
+  title_ko: "고수준 응용-네트워크 연동 프로그래머블 인터페이스 기술"
+  from: 2024
+  to: 2028
+  since: "2024.07"
+  role: "Research Coordinator"
+  role_ko: "연구 코디네이터"
+  role_zh: "研究协调员"
+  program: "6G Industrial Technology Development"
+  topics: ["Network Economics"]
+
+- agency: "NRF"
+  badge_extra: "ERC"
+  title: "Cognitive Augmentation Metacommunication Research Center"
+  title_ko: "인지증강 메타통신 연구센터"
+  from: 2022
+  to: 2028
+  since: "2023.09"
+  topics: ["AI Applications", "Network for AI services (AI computing over network)"]

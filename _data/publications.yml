@@ -1,0 +1,86 @@
+# Papers. Newest first. The page and the numbers at the top are generated from this file.
+#
+#   status:         accepted | review
+#   type:           conference | journal
+#   venue, year:    shown on the badge, e.g. NeurIPS 2026
+#   venue_url:      link on the badge
+#   title_url:      optional, shown as a small colored PDF link (DOI when the address is a doi.org one) next to the title;
+#                   leave it out until one exists
+#   authors:        a trailing * is kept as written; your own name (see "me" in _config.yml) is bolded
+#   oral:           true shows the red (Oral) marker
+#   ccf:            "A" | "B" | "C" | "none"; leave it out when unknown
+#   bk:             free text tag, e.g. "BK+ IF 4"
+#   impact_factor:  journal impact factor, e.g. 8.2
+#   scie:           true adds a SCIE tag
+#
+# A row with status: review and a count stands for several papers under review.
+
+- status: accepted
+  type: conference
+  venue: NeurIPS
+  year: 2026
+  venue_url: https://neurips.cc/Conferences/2026
+  title: "Retain-Neutral Surrogates for Min-Max Unlearning"
+  authors: ["J Cai", "D Kim", "D Kim", "SI Choi", "C Jin", "J Park", "C Joo*"]
+  ccf: "A"
+  bk: "BK+ IF 4"
+
+- status: accepted
+  type: conference
+  venue: NeurIPS
+  year: 2026
+  venue_url: https://neurips.cc/Conferences/2026
+  title: "Spectral Unlearning: Transformer Structure-Preserving Updates for Language Model"
+  authors: ["SI Choi", "J Cai", "D Kim", "C Joo*"]
+  ccf: "A"
+  bk: "BK+ IF 4"
+
+- status: accepted
+  type: journal
+  venue: "IEEE COMMUN MAG"
+  year: 2026
+  venue_url: https://www.comsoc.org/publications/magazines/ieee-communications-magazine
+  title: "RXC: Runtime Extra Compression for Time-Critical Content Delivery"
+  authors: ["J Bae", "H Kang", "T Kim", "T An", "S Lee", "J Cai", "C Joo", "K Lee"]
+  impact_factor: 8.2
+  scie: true
+
+- status: accepted
+  type: conference
+  venue: AAAI
+  year: 2026
+  oral: true
+  venue_url: https://aaai.org/conference/aaai/aaai-26/
+  title: "HCF: Hierarchical Cascade Framework for Distributed Multi-Stage Image Compression"
+  title_url: https://arxiv.org/pdf/2508.02051
+  authors: ["J Cai", "T An", "C Jin", "SI Choi", "J Park", "C Joo"]
+  ccf: "A"
+  bk: "BK+ IF 4"
+  topic: "AI application"
+
+- status: accepted
+  type: journal
+  venue: "COMPUT NETW"
+  year: 2025
+  venue_url: https://www.sciencedirect.com/journal/computer-networks
+  title: "Economic and Strategic Perspectives on CDN Pricing: A Comprehensive Review"
+  title_url: https://doi.org/10.1016/j.comnet.2025.111944
+  authors: ["C Jin", "J Cai", "J Park", "C Joo"]
+  ccf: "B"
+  scie: true
+
+- status: accepted
+  type: conference
+  venue: ICTC
+  year: 2024
+  oral: true
+  venue_url: https://ictc.org/
+  title: "Toward Scalable and Efficient Visual Data Transmission in 6G Networks"
+  title_url: https://doi.org/10.1109/ICTC62082.2024.10827560
+  authors: ["J Cai", "T An", "C Joo"]
+  ccf: "none"
+
+- status: review
+  type: conference
+  year: 2026
+  count: 6

@@ -1,0 +1,67 @@
+# Patents and software copyrights. Newest first.
+#
+#   kind:    patent | software
+#   status:  review marks a row that stands for several filings under review (with count)
+#   url:     shown as a small colored PDF link next to the title
+#   authors: a trailing * means equal contribution and is shown as a superscript
+
+- kind: patent
+  year: 2026
+  title: "Device and Method for Retain-Orthogonal Updates Based Machine Unlearning for Continual Diffusion Concept Erasure"
+  url: https://drive.google.com/file/d/1WQpeeXKnqmCnNVe34Egl_MxoyvVuPOux/view?usp=drive_link
+  authors: ["J Cai", "C Joo"]
+
+- kind: patent
+  year: 2025
+  title: "Device and Method for Model Performance-preserving Machine Unlearning for Lossy Training Data"
+  url: https://drive.google.com/file/d/1eEMYfBAqkH6AHphBmXBFeT5k7gLiRvKN/view?usp=drive_link
+  authors: ["C Joo", "J Park*", "J Cai*"]
+
+- kind: patent
+  year: 2025
+  title: "Device and Method for Machine Unlearning Based on Per-sample Hessian Information"
+  url: https://drive.google.com/file/d/1K_NUcxaq3pmUwPjOD9hpygEAUja8rIKo/view?usp=drive_link
+  authors: ["C Joo", "SI Choi*", "J Park*", "J Cai*"]
+
+- kind: patent
+  year: 2025
+  title: "Device and Method for Certified Machine Unlearning Using Dual Noise Injection"
+  url: https://drive.google.com/file/d/1yzB1y8zHGuB5eZ2Rx56Ah_91OfyV4nrK/view?usp=drive_link
+  authors: ["C Joo", "SI Choi*", "J Park*", "J Cai*"]
+
+- kind: patent
+  year: 2025
+  title: "Device and Method for Runtime Extra Compression for Time-Critical Content Delivery"
+  url: https://drive.google.com/file/d/1NZhNvaklGAUsUBBtAdfbZRM7ojY-5vZD/view?usp=drive_link
+  authors: ["C Joo", "J Cai", "T An"]
+
+- kind: patent
+  year: 2025
+  title: "Device and Method of Graph-based Smart Offloading for Edge Computing"
+  url: https://drive.google.com/file/d/1lSnUjHoIEyyWrOSQTCDFCYVsGQup45ey/view?usp=drive_link
+  authors: ["R Paul", "J Cai", "C Joo"]
+
+- kind: patent
+  year: 2025
+  title: "Device and Method for Adaptive Image Compression for Distributed Environments Using Hierarchical Cascade Networks"
+  url: https://drive.google.com/file/d/1ndmq3pUajRwp7RtgcnqH0JqOrs5EaX82/view?usp=drive_link
+  authors: ["J Cai", "T An", "C Joo"]
+  topic: "AI application"
+
+- kind: patent
+  year: 2025
+  title: "Method for Differentiated Content Distributed Network Services on Market Structure"
+  url: https://drive.google.com/file/d/1tSeF02__LZ6Bbw8lT6-MIaSRGpb4khAB/view?usp=sharing
+  authors: ["C Joo", "S Lee", "J Cai"]
+
+- kind: patent
+  status: review
+  year: 2026
+  count: 4
+
+- kind: software
+  year: 2024
+  title: "Adaptive Image Compression System for Distributed Environments Using Hierarchical Cascade Networks"
+  url: https://drive.google.com/file/d/19d162l5xmKdRcG6fh2oQ2nObdNWHuApv/view?usp=drive_link
+  authors: ["J Cai"]
+  topic: "AI application"

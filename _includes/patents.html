@@ -1,0 +1,24 @@
+{%- include counts.html -%}
+{%- assign has_star = false -%}
+{%- for p in site.data.patents -%}
+  {%- for a in p.authors -%}
+    {%- if a contains "*" -%}{%- assign has_star = true -%}{%- endif -%}
+  {%- endfor -%}
+{%- endfor -%}
+{%- if has_star -%}<p class="pub__meta"><sup>*</sup> denotes equal contribution.</p>{%- endif %}
+<ul class="pub-list pub-list--grid pub-list--patents">
+{%- for p in site.data.patents limit: 3 %}
+{% include patent-row.html p=p %}
+{%- endfor %}
+</ul>
+{%- assign total = site.data.patents | size %}
+{%- if total > 3 %}
+<details class="more">
+<summary>Show all {{ patents_n }} patents{% if software_n > 0 %} and {{ software_n }} software copyright{% if software_n > 1 %}s{% endif %}{% endif %}{% if patents_review_n > 0 %}, {{ patents_review_n }} under review{% endif %}</summary>
+<ul class="pub-list pub-list--grid pub-list--patents">
+{%- for p in site.data.patents offset: 3 %}
+{% include patent-row.html p=p %}
+{%- endfor %}
+</ul>
+</details>
+{%- endif %}

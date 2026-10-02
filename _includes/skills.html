@@ -1,0 +1,5 @@
+<ul class="pub-list pub-list--skills">
+{%- for s in site.data.skills %}
+<li><strong>{{ s.name }}</strong> {{ s.icon }}{% for t in s.tags %} <span class="pub-tag">{{ t }}</span>{% endfor %}{% if s.suffix %} {{ s.suffix }}{% endif %}{% if s.items %}<ul>{% for i in s.items %}<li>{{ i }}</li>{% endfor %}</ul>{% endif %}</li>
+{%- endfor %}
+</ul>

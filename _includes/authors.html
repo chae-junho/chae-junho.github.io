@@ -1,0 +1,9 @@
+{%- for a in include.authors -%}
+  {%- if include.sup -%}
+    {%- assign a_html = a | replace: "*", "<sup>*</sup>" -%}
+  {%- else -%}
+    {%- assign a_html = a -%}
+  {%- endif -%}
+  {%- if a contains site.me -%}<strong>{{ a_html }}</strong>{%- else -%}{{ a_html }}{%- endif -%}
+  {%- unless forloop.last -%}, {% endunless -%}
+{%- endfor -%}

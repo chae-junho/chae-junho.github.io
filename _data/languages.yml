@@ -1,0 +1,23 @@
+# Languages. Entries with "short" appear as the big chips at the top of the page.
+#
+#   native_name:  how the language writes its own name
+#   short:        one word for the top chip, e.g. Native
+#   short_detail: optional extra for the top chip, e.g. TOPIK 6
+#   level, detail: full wording for the Languages section further down
+
+- name: "Chinese"
+  native_name: "中文"
+  short: "Native"
+  level: "Native or bilingual proficiency"
+
+- name: "Korean"
+  native_name: "한국어"
+  short: "Native"
+  short_detail: "TOPIK 6"
+  level: "Native or bilingual proficiency"
+  detail: "TOPIK Level 6 (The Highest Proficiency Level), 100% scores in listening and reading"
+
+- name: "English"
+  native_name: "English"
+  short: "Professional"
+  level: "Professional working proficiency"

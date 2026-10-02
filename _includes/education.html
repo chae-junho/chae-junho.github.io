@@ -1,0 +1,19 @@
+{%- assign schools = site.data.education | group_by: "school" -%}
+{%- for g in schools %}
+{%- assign info = site.data.schools | where: "name", g.name | first %}
+<div class="edu-school{% if g.items.size == 1 %} edu-school--single{% endif %}">
+{%- if info.logos %}
+<div class="edu-school__logos">
+{%- for l in info.logos %}
+<a class="edu-logo{% if l.round %} edu-logo--round{% endif %}" href="{{ l.url }}" title="{{ l.alt }}"><img src="{{ l.src | relative_url }}" alt="{{ l.alt }}"{% if l.w %} width="{{ l.w }}" height="{{ l.h }}"{% endif %} loading="lazy"></a>
+{%- endfor %}
+</div>
+{%- endif %}
+<ul class="pub-list pub-list--education edu-school__degrees">
+{%- for e in g.items %}
+<li><em>{{ e.period }}</em>, <span class="pub__title">{{ e.degree }}</span>, {{ e.school }}{% if e.tag %} <span class="pub-tag">{{ e.tag }}</span>{% endif %}
+<span class="pub__meta">{% if e.dept %}<a href="{{ e.dept_url }}">{{ e.dept }}</a>. {% endif %}{% if e.gpa %}<strong>GPA: {{ e.gpa }}</strong>.{% endif %}{% if e.roles %} {{ e.roles }}.{% endif %}{% for h in e.highlights %} <strong>{{ h }}</strong>.{% endfor %}{% if e.advisor %} Advisor: Prof. <a href="{{ e.advisor_url }}">{{ e.advisor }}</a> of <a href="{{ e.lab_url }}">{{ e.lab }}</a>{% endif %}</span></li>
+{%- endfor %}
+</ul>
+</div>
+{%- endfor %}

@@ -1,0 +1,5 @@
+<ul class="pub-list pub-list--grid pub-list--activities">
+{%- for a in site.data.activities %}
+<li><a class="pub-badge" href="{{ a.url }}">{{ a.venue }}</a><div class="pub__body">{{ a.role }}, <em>{{ a.year }}</em></div></li>
+{%- endfor %}
+</ul>

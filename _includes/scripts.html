@@ -1,3 +1,34 @@
-<script src="{{ base_path }}/assets/js/main.min.js"></script>
+<script src="assets/js/main.min.js"></script>
+
+<script>
+// Marks the link of the section you are reading in the top bar (the color under it is set in _sass/_custom.scss).
+(function () {
+  var links = {}, ids = [];
+  var anchors = document.querySelectorAll('#site-nav a[href*="#"]');
+  for (var i = 0; i < anchors.length; i++) {
+    var id = anchors[i].getAttribute('href').split('#')[1];
+    if (id && id !== 'about-me' && document.getElementById(id)) { links[id] = anchors[i]; ids.push(id); }
+  }
+  if (!ids.length) { return; }
+  var waiting = false;
+  function update() {
+    waiting = false;
+    var current = null, line = window.innerHeight * 0.3;
+    for (var j = 0; j < ids.length; j++) {
+      if (document.getElementById(ids[j]).getBoundingClientRect().top <= line) { current = ids[j]; }
+    }
+    for (var k = 0; k < ids.length; k++) {
+      if (ids[k] === current) { links[ids[k]].classList.add('is-current'); }
+      else { links[ids[k]].classList.remove('is-current'); }
+    }
+  }
+  function schedule() {
+    if (!waiting) { waiting = true; window.requestAnimationFrame(update); }
+  }
+  window.addEventListener('scroll', schedule, { passive: true });
+  window.addEventListener('resize', schedule);
+  update();
+})();
+</script>
 
 {% include analytics.html %}

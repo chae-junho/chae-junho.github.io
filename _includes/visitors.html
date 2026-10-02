@@ -1,0 +1,45 @@
+<div class="visitors-end">
+<div class="visitors">
+<div class="globe-global-container">
+<script type="text/javascript" id="mmvst_globe" src="//mapmyvisitors.com/globe.js?d=4zSjajbb3_Ic7lmO_NtdPgAowE3L4QJZqk6GfdWOQAI"></script>
+</div>
+<p class="visitors__caption">Where visitors come from</p>
+</div>
+</div>
+<script>
+(function () {
+  var box = document.querySelector('.visitors');
+  var side = document.getElementById('visitors-slot-side');
+  var end = document.querySelector('.visitors-end');
+  var column = document.querySelector('.sidebar');
+  if (!box || !side || !end || !window.matchMedia) { return; }
+  // Same width as the theme's breakpoint: from here on the profile card is a column on the left.
+  var wide = window.matchMedia('(min-width: 57.8125em)');
+
+  // The column follows the page while you read, but only if card and globe fit in the window;
+  // otherwise it scrolls with the page, so that the globe can still be scrolled into view.
+  function fit() {
+    if (!column) { return; }
+    column.classList.remove('sidebar--free');
+    if (wide.matches && column.offsetHeight + 84 > window.innerHeight) {
+      column.classList.add('sidebar--free');
+    }
+  }
+
+  function place() {
+    var target = wide.matches ? side : end;
+    if (box.parentNode !== target) {
+      target.appendChild(box);
+    }
+    fit();
+    // let the widget check again whether it is in view
+    if (window.globe_jq) { window.globe_jq(window).trigger('scroll'); }
+  }
+
+  place();
+  if (wide.addEventListener) { wide.addEventListener('change', place); }
+  else if (wide.addListener) { wide.addListener(place); }
+  window.addEventListener('resize', fit);
+  window.addEventListener('load', fit);
+})();
+</script>

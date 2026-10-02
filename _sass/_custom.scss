@@ -1,0 +1,708 @@
+// Site-specific additions (not part of the upstream theme).
+//
+// The look follows the conventions of academic CVs and papers (checked against CV guides of universities and career
+// services, Butterick's Practical Typography, and Tufte CSS), kept deliberately quiet:
+//   1. One typeface, Times New Roman, at about 18px on screen with a line height of 1.45. The text runs the whole
+//      width of the column beside the profile card, so that its right end lines up with the rule under the section
+//      titles. Chinese and Korean use the serif fonts that go with Times in academic documents there (Songti /
+//      SimSun and Batang / Myeongjo).
+//   2. Near black text on white and ONE color, the crimson of Korea University, for links, the language shown, the
+//      badges and the thin rules, plus grays. Nothing else is colored and nothing is yellow. Only the conference
+//      badges are solid crimson; every other label (journals, patents, projects, honors, activities) and the CCF
+//      tags are thin outlines. No shadows or gradients.
+//   3. Section titles are bold capitals with some letter spacing, over a thin rule in the accent color.
+//   4. Entries that start with a badge (publications, patents, projects, honors, activities) keep the badges in a
+//      column of their own, so that all titles of a list start at the same place and the left edge stays straight.
+//   5. Titles of papers are bold, the author's own name is bold, the rest is regular. Spacing is even and modest.
+//      Sizes follow one scale, counted from the text (1em, about 18px): 0.75em tags, 0.8em badges and captions,
+//      0.88em secondary lines (authors, GPA, the profile card), 1em text and titles, 1.15em the opening paragraph
+//      and the section titles, 1.45em the name. The top bar is 0.92em.
+//   6. Everything wraps with flexbox or grid, so it reflows from a phone to a wide desktop.
+
+// ---------------------------------------------------------------------------
+// Palette and type
+// ---------------------------------------------------------------------------
+$ink:     #151515; // text and titles
+$muted:   #555;    // secondary text
+$faint:   #8a8a8a; // captions
+$rule:    #cfcfcf; // thin lines
+$accent:    #8b0029; // Korea University crimson (the red of the crest): links, badges, the language shown, the rule under section titles
+$link:      $accent; // the color of link text (darker than the accent when the accent is a light color)
+$badge-ink: #fff;    // text on the accent badges (dark when the accent is a light color)
+$tint:    mix(#fff, $accent, 92%); // a pale rose, for hover backgrounds
+$tint-d:  mix(#fff, $accent, 80%); // a rose, for the text you select
+
+// Chinese and Korean text: serif fonts of the visitor's system, after Times New Roman for the Latin letters.
+$cjk-zh: "Songti SC", "STSong", "SimSun", "NSimSun", "Noto Serif CJK SC", "Noto Serif SC", "Source Han Serif SC";
+$cjk-ko: "AppleMyungjo", "Batang", "BatangChe", "Nanum Myeongjo", "NanumMyeongjo", "Noto Serif CJK KR", "Noto Serif KR", "Source Han Serif K";
+
+html {
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+body {
+  color: $ink;
+  font-size: 1.2em; // about 18px: Times has a small x-height, and the text runs the whole width of the column
+  line-height: 1.45;
+  font-kerning: normal;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+::selection {
+  background: $tint-d;
+}
+
+// Links: the accent color, with a thin underline.
+.page__content a {
+  color: $link;
+  text-decoration-line: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.14em;
+
+  &:hover {
+    color: darken($link, 8%);
+  }
+}
+
+a:focus-visible,
+button:focus-visible,
+summary:focus-visible {
+  outline: 2px solid rgba($link, 0.6);
+  outline-offset: 2px;
+}
+
+strong,
+b {
+  font-weight: 700;
+}
+
+// Dates are plain figures of equal width, not italics.
+.pub-list em {
+  font-style: normal;
+  font-variant-numeric: tabular-nums lining-nums;
+}
+
+// ---------------------------------------------------------------------------
+// Top bar. A section's link is underlined in the accent color when it is hovered, and while you read that section
+// (a small script in _includes/scripts.html sets .is-current).
+// ---------------------------------------------------------------------------
+.masthead {
+  border-bottom: 1px solid $rule;
+  box-shadow: none;
+}
+
+.masthead__inner-wrap {
+  font-family: $serif;
+  font-size: 0.92em;
+}
+
+.masthead__menu-item a {
+  color: #333;
+  transition: box-shadow 0.15s ease, color 0.15s ease;
+}
+
+.masthead__menu-item--lg a {
+  letter-spacing: 0.02em;
+}
+
+.masthead__menu-item:not(.masthead__menu-home-item) a {
+  &:hover,
+  &:focus,
+  &.is-current {
+    color: $ink;
+    box-shadow: inset 0 -2px 0 $accent;
+  }
+}
+
+// The theme draws its own bar under a link that is hovered; the crimson underline above replaces it.
+.greedy-nav .visible-links a:before {
+  display: none;
+}
+
+// The menu that holds the links that do not fit (narrow windows): a pale rose under the pointer, not a green.
+.greedy-nav .hidden-links a:hover {
+  color: $accent;
+  background: $tint;
+}
+
+// ---------------------------------------------------------------------------
+// Profile card
+// ---------------------------------------------------------------------------
+.author__name {
+  word-break: keep-all; // keep Chinese and Korean words intact when the name wraps in the narrow card
+}
+
+.sidebar .author__name {
+  color: $ink;
+  font-family: "Times New Roman", "Tinos", Times, $cjk-zh, $cjk-ko, serif;
+  font-size: 1.45em;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.sidebar .author__bio {
+  color: $muted;
+  font-size: 0.88em;
+  line-height: 1.4;
+}
+
+.sidebar .author__urls a {
+  color: #222;
+  font-size: 0.88em;
+}
+
+.sidebar .author__urls a:hover {
+  color: $link;
+}
+
+@media (min-width: 57.8125em) {
+  .sidebar .author__avatar img {
+    border-color: $rule;
+  }
+}
+
+// ---------------------------------------------------------------------------
+// Section titles: bold capitals with letter spacing, over a thin rule.
+// ---------------------------------------------------------------------------
+.page__content > h1 {
+  margin: 2.2em 0 0.7em;
+  padding-bottom: 0.25em;
+  color: $ink;
+  font-size: 1.15em;
+  font-weight: 700;
+  letter-spacing: 0.09em;
+  line-height: 1.25;
+  text-transform: uppercase;
+  border-bottom: 1px solid $accent;
+}
+
+// subheadings (Languages, Skills)
+.page__content h2 {
+  margin: 1.2em 0 0.45em;
+  color: $ink;
+  font-size: 1.05em;
+  font-weight: 700;
+  letter-spacing: 0;
+}
+
+// ---------------------------------------------------------------------------
+// Badges and tags
+//   .pub-badge   solid label in front of an entry (venue, patent, degree, ...)
+//   .pub-tag     small outlined label (rank, topic, level, ...)
+//   .pub__title  the entry's title; .pub__meta the line under it
+// ---------------------------------------------------------------------------
+.pub-badge {
+  display: inline-block;
+  margin-right: 0.25em;
+  padding: 0 0.5em;
+  color: $accent;
+  background-color: #fff;
+  box-shadow: inset 0 0 0 1px $accent;
+  border-radius: 2px;
+  font-size: 0.8em;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  line-height: 1.5;
+  text-decoration: none;
+  white-space: nowrap;
+  vertical-align: 0.04em;
+}
+
+a.pub-badge,
+.page__content a.pub-badge {
+  color: $accent;
+  text-decoration: none;
+
+  &:hover,
+  &:focus {
+    color: $accent;
+    background-color: $tint;
+    text-decoration: none;
+  }
+}
+
+// In Publications the badge says the kind in a single color: a conference is a solid crimson badge (only the
+// conferences are solid, so that they stand out), a journal an outlined one, and a paper under review a cream one.
+// An oral presentation says so in the text of the badge ("AAAI 2026 Oral"). The labels of the other sections
+// (patents, projects, honors, activities) are cream boxes with crimson text.
+.pub-list--publications .pub-badge,
+.pub-list--publications a.pub-badge,
+.page__content .pub-list--publications a.pub-badge {
+  color: #fff;
+  background-color: $accent;
+  box-shadow: none;
+
+  &:hover,
+  &:focus {
+    color: #fff;
+    background-color: $accent;
+    filter: brightness(1.15);
+  }
+}
+
+.pub-list .pub-badge--journal,
+.page__content .pub-list a.pub-badge--journal {
+  color: $accent;
+  background-color: #fff;
+  box-shadow: inset 0 0 0 1px $accent;
+
+  &:hover,
+  &:focus {
+    color: $accent;
+    background-color: $tint;
+    filter: none;
+  }
+}
+
+.pub-list .pub-badge--review {
+  color: #555;
+  background-color: #fff;
+  box-shadow: inset 0 0 0 1px #9a9a9a;
+}
+
+// Tags are gray everywhere, so that the badges are the only colored things in a list.
+.pub-tag {
+  display: inline-block;
+  margin-left: 0.3em;
+  padding: 0 0.4em;
+  color: #4a4a4a;
+  border: 1px solid #b9b9b9;
+  border-radius: 2px;
+  font-size: 0.75em;
+  font-variant-numeric: lining-nums;
+  line-height: 1.45;
+  vertical-align: 0.06em;
+}
+
+// keeps a group of tags together when the line wraps
+.pub-tags {
+  white-space: nowrap;
+}
+
+// CCF levels as outlines: A in crimson, B in dark gray, and "no CCF rank" as a dashed light gray outline.
+.pub-list .pub-tag--ccf-a {
+  color: $accent;
+  background-color: #fff;
+  border-color: $accent;
+  font-weight: 700;
+}
+
+.pub-list .pub-tag--ccf-b,
+.pub-list .pub-tag--ccf-c {
+  color: #444;
+  background-color: #fff;
+  border-color: #777;
+  font-weight: 700;
+}
+
+.pub-list .pub-tag--ccf-none {
+  color: #777;
+  border: 1px dashed #aaa;
+}
+
+.pub-list .pub-tag--role {
+  font-weight: 700;
+}
+
+// Honor chips carry a whole sentence, so they are a little larger than other tags.
+.pub-tag--honor {
+  margin: 0 0.2em 0.25em 0;
+  padding: 0.02em 0.5em;
+  font-size: 0.88em;
+  line-height: 1.5;
+}
+
+.pub-list--honors .pub-tag--honor.is-bold {
+  color: $accent;
+  background-color: #fff;
+  border-color: $accent;
+  font-weight: 700;
+}
+
+// ---------------------------------------------------------------------------
+// Lists generated from _data/*.yml
+// ---------------------------------------------------------------------------
+.pub-list {
+  margin: 0 0 1em;
+  padding: 0;
+  list-style: none;
+
+  > li {
+    margin: 0 0 0.7em;
+    line-height: 1.4;
+  }
+
+  ul {
+    margin: 0.25em 0 0.25em 1.2em;
+    padding-left: 0.8em;
+    list-style: disc;
+
+    > li {
+      margin: 0 0 0.2em;
+    }
+  }
+}
+
+// Publications, patents, projects, honors and activities: every entry is a badge and a body. The badges stand in a
+// column of their own (one grid for the whole list), so that all titles start at the same place. The patents use a
+// fixed column, because they are in two lists (the first three, and the rest) that must line up with each other.
+.pub-list--grid {
+  display: grid;
+  grid-template-columns: max-content minmax(0, 1fr);
+  column-gap: 1em;
+  row-gap: 0.8em;
+  align-items: start;
+
+  > li {
+    display: contents;
+  }
+
+  .pub-badge {
+    justify-self: start;
+    margin: 0.1em 0 0;
+  }
+
+  .pub__body {
+    min-width: 0;
+    line-height: 1.4;
+  }
+}
+
+// Patents, projects, honors, activities and education share one narrower label column (the venue names of the
+// publications need a wider one), so that the text of these five sections starts at the same place. The patents are
+// in two lists (the first three, and the rest) that must line up with each other, so a fixed width is needed anyway.
+.pub-list--patents,
+.pub-list--projects,
+.pub-list--honors,
+.pub-list--activities {
+  grid-template-columns: 120px minmax(0, 1fr);
+}
+
+// On a phone the badge stands above its body instead.
+@media (max-width: 37.4em) {
+  .pub-list--grid {
+    display: block;
+
+    > li {
+      display: block;
+      margin: 0 0 0.9em;
+    }
+
+    .pub-badge {
+      margin: 0 0 0.15em;
+    }
+  }
+}
+
+.pub__title {
+  color: $ink;
+  font-weight: 700;
+}
+
+// The title stays black. What can be clicked is the small link after it (PDF, or DOI), in the accent color.
+.pub-link {
+  margin-left: 0.35em;
+  font-size: 0.78em;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+}
+
+.pub__meta {
+  display: block;
+  margin-top: 0.1em;
+  color: #444;
+  font-size: 0.88em;
+  line-height: 1.4;
+
+  strong {
+    color: $ink;
+  }
+}
+
+.pub-sub {
+  color: $muted;
+  font-size: 0.9em;
+}
+
+// Collapsed content (patents, lab note).
+.more {
+  margin: 0.2em 0 1em;
+
+  > summary {
+    color: $link;
+    cursor: pointer;
+    font-weight: 700;
+
+    p {
+      display: inline;
+      margin: 0;
+      font-size: inherit;
+    }
+  }
+
+  &[open] > summary {
+    margin-bottom: 0.6em;
+  }
+
+  blockquote {
+    margin: 0.6em 0 0.6em 0.2em;
+    padding: 0 1em;
+    border-left: 3px solid $rule;
+    font-style: italic;
+  }
+}
+
+// ---------------------------------------------------------------------------
+// Education: the emblems of a school stand at the left of its degrees (above them on phones). Only the emblems are
+// drawn; the name of the school is in the text next to them.
+// ---------------------------------------------------------------------------
+.edu-school {
+  margin: 0 0 1.2em;
+
+  .pub-list {
+    margin-bottom: 0;
+
+    > li:last-child {
+      margin-bottom: 0;
+    }
+  }
+}
+
+.edu-school__logos {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.6em 14px;
+  margin: 0 0 0.7em;
+}
+
+// (.page__content in front, so that these win over the link style above)
+.page__content .edu-logo {
+  display: block;
+  line-height: 0;
+  text-decoration: none;
+
+  &:hover,
+  &:focus {
+    opacity: 0.85;
+  }
+
+  img {
+    display: block;
+    width: auto;
+    height: 52px;
+  }
+}
+
+// a round emblem looks larger than a shield of the same height
+.page__content .edu-logo--round img {
+  height: 46px;
+}
+
+// Next to the degrees the emblems stand in the same label column as the badges of the other sections and are centered in it, so
+// that a single emblem (Yanbian) sits right under the middle of the pair above it. A school with several degrees has
+// its emblems centered on the whole block of degrees, so that the gap between two degrees is level with the middle
+// of the emblems. A school with one degree has the bottom edge of its emblem on the last line of that degree (the
+// second declaration, where it is understood; otherwise the bottom of the text).
+@media (min-width: 37.5em) {
+  .edu-school {
+    display: grid;
+    grid-template-columns: 120px minmax(0, 1fr);
+    column-gap: 1em;
+    align-items: center;
+  }
+
+  .edu-school--single {
+    align-items: end;
+    align-items: last baseline;
+  }
+
+  .edu-school__logos {
+    justify-content: center;
+    margin: 0;
+  }
+}
+
+// ---------------------------------------------------------------------------
+// Top of the page: a language switch, then a few plain paragraphs in the visitor's language.
+// ---------------------------------------------------------------------------
+.hero {
+  margin: 0 0 1em;
+}
+
+// A row of three plain buttons with thin outlines in the accent color; the language shown is filled.
+.lang-switch {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.4em 0.5em;
+  margin: 0 0 1em;
+
+  .lang-switch__icon {
+    margin-right: 0.15em;
+    color: $link;
+    font-size: 1.35em;
+    line-height: 1;
+  }
+
+  button {
+    margin: 0;
+    padding: 0.1em 0.8em;
+    color: $link;
+    background-color: #fff;
+    border: 1px solid $accent;
+    border-radius: 2px;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 0.95em;
+    font-weight: 700;
+    line-height: 1.5;
+    transition: background-color 0.12s ease, color 0.12s ease;
+
+    &:hover {
+      background-color: $tint;
+    }
+
+    // the language on the page now
+    &[aria-pressed="true"] {
+      color: $badge-ink;
+      background-color: $accent;
+      cursor: default;
+    }
+  }
+}
+
+// Text in the three languages: only the one picked by the switch is shown.
+.i18n {
+  display: none;
+}
+
+.hero[data-lang="en"] .i18n--en,
+.hero[data-lang="ko"] .i18n--ko,
+.hero[data-lang="zh"] .i18n--zh {
+  display: block;
+}
+
+.hero .hero__text p {
+  margin: 0 0 0.8em;
+  font-size: 1em;
+  line-height: 1.5;
+}
+
+// The first paragraph (who I am and what I offer) is one step larger than the rest.
+.hero .hero__text .hero__lead {
+  font-size: 1.15em;
+  line-height: 1.45;
+}
+
+.hero .hero__text:lang(ko) {
+  font-family: "Times New Roman", "Tinos", Times, $cjk-ko, serif;
+
+  p {
+    word-break: keep-all;
+  }
+}
+
+.hero .hero__text:lang(zh) {
+  font-family: "Times New Roman", "Tinos", Times, $cjk-zh, serif;
+}
+
+// ---------------------------------------------------------------------------
+// The visitor globe (MapMyVisitors) and its caption.
+//
+// There is one widget on the page and it cannot be duplicated, so a small script (in _includes/visitors.html)
+// moves it: from the width where the theme turns the profile card into a column on the left (925px) it sits under
+// that card, and on narrower screens, where the card is a strip at the top, it sits at the end of the page.
+// The widget sizes itself from the width of the element that holds it, so the size is set here with a plain
+// width and the globe is drawn at its natural size. Some height is reserved so nothing jumps when it appears.
+// ---------------------------------------------------------------------------
+.visitors {
+  text-align: center;
+
+  p {
+    margin: 0;
+  }
+}
+
+.visitors .visitors__caption {
+  margin: 0.2em 0 0;
+  color: $faint;
+  font-size: 0.8em;
+  letter-spacing: 0.04em;
+}
+
+.globe-global-container {
+  width: 140px;
+  max-width: 100%;
+  min-height: 153px;
+  margin: 0 auto;
+}
+
+// At the end of the page (phones and tablets).
+.visitors-end .visitors {
+  margin: 3em 0 0.5em;
+  padding: 1.4em 0 1.2em;
+  border-top: 1px solid $rule;
+}
+
+// Under the profile card (wide screens).
+.sidebar .visitors {
+  margin: 1.4em 0 0;
+  padding-top: 1em;
+  border-top: 1px solid $rule;
+}
+
+// The email address is plain text on purpose: it can be copied and no mail window pops up. It is a little smaller
+// than the other links, so that it stays on one line next to its icon in the narrow card.
+.author__urls li.author__email {
+  white-space: normal;
+
+  span {
+    font-size: 0.93em;
+  }
+}
+
+// (it moves to the next line as a whole, and is only split when it is wider than the line itself)
+.author__email span,
+.hero__email {
+  overflow-wrap: anywhere;
+  -webkit-user-select: all;
+  user-select: all;
+}
+
+.hero__email {
+  font-weight: 700;
+}
+
+// The left column follows the page on wide screens. A slightly more compact card keeps card and globe within a
+// laptop-sized window. When the window is still too short, a script (_includes/visitors.html) adds
+// .sidebar--free, the column then scrolls with the page, and the globe comes into view as you scroll.
+@media (min-width: 57.8125em) {
+  .sidebar .author__avatar img {
+    max-width: 150px;
+  }
+
+  .sidebar .author__urls a {
+    margin-bottom: 1px;
+    padding-top: 1px;
+    padding-bottom: 1px;
+  }
+
+  .sidebar.sticky {
+    position: -webkit-sticky;
+    position: sticky;
+    top: 4.5em;
+  }
+
+  .sidebar.sticky.sidebar--free {
+    position: static !important;
+  }
+}

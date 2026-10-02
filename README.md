@@ -1,75 +1,95 @@
-# Academic Pages
-**Academic Pages is a Github Pages template for academic websites.**
+# Junhao Cai's Personal Homepage
 
-# Getting Started
+Live site: <https://chae-junho.github.io>
 
-1. Register a GitHub account if you don't have one and confirm your e-mail (required!)
-1. Click the "Use this template" button in the top right.
-1. On the "New repository" page, enter your repository name as "[your GitHub username].github.io", which will also be your website's URL.
-1. Set site-wide configuration and add your content.
-1. Upload any files (like PDFs, .zip files, etc.) to the `files/` directory. They will appear at https://[your GitHub username].github.io/files/example.pdf.
-1. Check status by going to the repository settings, in the "GitHub pages" section
-1. (Optional) Use the Jupyter notebooks or python scripts in the `markdown_generator` folder to generate markdown files for publications and talks from a TSV file.
+A single page academic homepage built with [Jekyll](https://jekyllrb.com/) and published with GitHub Pages.
 
-See more info at https://academicpages.github.io/
+## Credits
 
-## Running locally
+The layout and styling come from [AcadHomepage](https://github.com/RayeRen/acad-homepage.github.io) by Yi Ren
+(MIT License), whose styles are derived from the [Minimal Mistakes](https://github.com/mmistakes/minimal-mistakes)
+theme by Michael Rose. See [LICENSE](LICENSE).
 
-When you are initially working your website, it is very useful to be able to preview the changes locally before pushing them to GitHub. To work locally you will need to:
+The page is set in Times New Roman. Devices that do not have it get [Tinos](https://github.com/googlefonts/tinos), a
+font with the same letter widths, from `assets/fonts/` (SIL Open Font License 1.1, see
+`assets/fonts/LICENSE-tinos.txt`). The school emblems in `images/logos/` are the official marks of the schools.
 
-1. Clone the repository and made updates as detailed above.
-1. Make sure you have ruby-dev, bundler, and nodejs installed
-    
-    On most Linux distribution and [Windows Subsystem Linux](https://learn.microsoft.com/en-us/windows/wsl/about) the command is:
-    ```bash
-    sudo apt install ruby-dev ruby-bundler nodejs
-    ```
-    On MacOS the commands are:
-    ```bash
-    brew install ruby
-    brew install node
-    gem install bundler
-    ```
-1. Run `bundle install` to install ruby dependencies. If you get errors, delete Gemfile.lock and try again.
-1. Run `jekyll serve -l -H localhost` to generate the HTML and serve it from `localhost:4000` the local server will automatically rebuild and refresh the pages on change.
+## How the page is put together
 
-If you are running on Linux it may be necessary to install some additional dependencies prior to being able to run locally: `sudo apt install build-essential gcc make`
+The content lives in `_data/*.yml`. The lists on the page and the numbers in the opening paragraphs (papers, CCF A
+papers, oral talks, patents, projects, scholarships) are generated from those files, so they change by themselves
+when you add or remove an entry.
 
-## Using Docker
+| To change | Edit |
+| --- | --- |
+| Name, bio, contact and social links, site description | `_config.yml` |
+| The opening paragraphs, in English, Korean and Chinese | `_includes/intro-en.html`, `_includes/intro-ko.html`, `_includes/intro-zh.html` |
+| Papers | `_data/publications.yml` |
+| Patents and software copyrights | `_data/patents.yml` |
+| Funded research projects | `_data/projects.yml` |
+| Scholarships and awards | `_data/honors.yml` |
+| Degrees | `_data/education.yml` |
+| School and college logos next to the degrees | `_data/schools.yml` and `images/logos/` |
+| Academic service | `_data/activities.yml` |
+| Languages and skills | `_data/languages.yml`, `_data/skills.yml` |
+| Top navigation | `_data/navigation.yml` |
+| Photo and icons | `images/` |
 
-Working from a different OS, or just want to avoid installing dependencies? You can use the provided `Dockerfile` to build a container that will run the site for you if you have [Docker](https://www.docker.com/) installed.
+Typography, colors and spacing are defined in `_sass/_custom.scss` (its first lines say which conventions of academic
+CVs it follows); the templates that turn the data into HTML are in `_includes/`. The page itself,
+`_pages/about.md`, only lists the sections in order.
 
-Start by build the container:
+### Notes on a few parts of the page
 
-```bash
-docker build -t jekyll-site .
+- **Opening paragraphs.** They are short on purpose (about 100 words, readable in half a minute): who I am and the
+  pitch, the language advantage, one line of proof in numbers, and how to reach me. Everything else (GPA, orals,
+  projects, service, hobbies, what is under review) is in the sections below and is not repeated. The three
+  languages are written separately, each the way that language is written, and not translated from one another;
+  numbers, names and lists come from the data files. So when the content changes, check the sentences in all three
+  files. The Korean and Chinese wording of a role or of an achievement is kept next to the English one
+  (`role_ko`, `role_zh` in `projects.yml`; `hero_ko`, `hero_zh` in `skills.yml`).
+- **Colors.** One color, the crimson of Korea University (`$accent` at the top of `_sass/_custom.scss`, with a cream
+  from the crest for soft backgrounds), is used for links, the language shown, the badges and the thin rules; the rest
+  is gray. Only the conference badges in Publications are solid crimson (a journal badge is outlined, a paper under
+  review is cream, an oral presentation is in the text of the badge: "AAAI 2026 Oral"); the labels of all other
+  sections are cream boxes with crimson text. The CCF tags use the same crimson (A filled with cream, B outlined).
+  A different accent would need only `$accent` (a light one also `$link` and `$badge-ink`).
+- **Lists.** An entry that starts with a badge (publications, patents, projects, honors, activities) is a badge and a
+  `pub__body`; the badges stand in a column of their own, so that all titles of a list start at the same place.
+- **Language switch.** `_includes/hero.html` picks the language from the browser's language and remembers the
+  visitor's choice.
+- **Visitor globe.** `_includes/visitors.html` puts it under the profile card on wide screens and at the end of the
+  page on phones and tablets.
+- **Email.** It is plain text on purpose, so that it can be copied and no mail window opens. It is set in
+  `_config.yml`.
+- **Logos.** They are the official marks of the schools, used to show where the degrees come from.
+
+### Adding a paper
+
+Add an entry at the top of `_data/publications.yml`:
+
+```yaml
+- status: accepted
+  type: conference          # or journal
+  venue: ICML
+  year: 2027
+  venue_url: https://icml.cc/
+  title: "Paper title"
+  title_url: https://arxiv.org/abs/0000.00000   # leave out until a PDF exists
+  authors: ["J Cai", "A Author", "B Author*"]
+  oral: true                # shows the red (Oral) marker
+  ccf: "A"                  # A, B, C or none; leave out if unknown
 ```
 
-Next, run the container:
+## Local preview
+
+With Ruby and Bundler installed:
+
 ```bash
-docker run -p 4000:4000 --rm -v $(pwd):/usr/src/app jekyll-site
+bundle install
+bundle exec jekyll build                         # writes the site to _site/
+python3 -m http.server 4000 --directory _site    # then open http://127.0.0.1:4000
 ```
 
-# Maintenance
-
-Bug reports and feature requests to the template should be [submitted via GitHub](https://github.com/academicpages/academicpages.github.io/issues/new/choose). For questions concerning how to style the template, please feel free to start a [new discussion on GitHub](https://github.com/academicpages/academicpages.github.io/discussions).
-
-This repository was forked (then detached) by [Stuart Geiger](https://github.com/staeiou) from the [Minimal Mistakes Jekyll Theme](https://mmistakes.github.io/minimal-mistakes/), which is © 2016 Michael Rose and released under the MIT License (see LICENSE.md). It is currently being maintained by [Robert Zupko](https://github.com/rjzupkoii) and additional maintainers would be welcomed.
-
-## Bugfixes and enhancements
-
-If you have bugfixes and enhancements that you would like to submit as a pull request, you will need to [fork](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/working-with-forks/fork-a-repo) this repository as opposed to using it as a template. This will also allow you to [synchronize your copy](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/working-with-forks/syncing-a-fork) of template to your fork as well.
-
-Unfortunately, one logistical issue with a template theme like Academic Pages that makes it a little tricky to get bug fixes and updates to the core theme. If you use this template and customize it, you will probably get merge conflicts if you attempt to synchronize. If you want to save your various .yml configuration files and markdown files, you can delete the repository and fork it again. Or you can manually patch.
-
----
-<div align="center">
-    
-![pages-build-deployment](https://github.com/academicpages/academicpages.github.io/actions/workflows/pages/pages-build-deployment/badge.svg)
-[![GitHub contributors](https://img.shields.io/github/contributors/academicpages/academicpages.github.io.svg)](https://github.com/academicpages/academicpages.github.io/graphs/contributors)
-[![GitHub release](https://img.shields.io/github/v/release/academicpages/academicpages.github.io)](https://github.com/academicpages/academicpages.github.io/releases/latest)
-[![GitHub license](https://img.shields.io/github/license/academicpages/academicpages.github.io?color=blue)](https://github.com/academicpages/academicpages.github.io/blob/master/LICENSE)
-
-[![GitHub stars](https://img.shields.io/github/stars/academicpages/academicpages.github.io)](https://github.com/academicpages/academicpages.github.io)
-[![GitHub forks](https://img.shields.io/github/forks/academicpages/academicpages.github.io)](https://github.com/academicpages/academicpages.github.io/fork)
-</div>
+Re-run `bundle exec jekyll build` after editing. On Ruby 3.x the pinned Jekyll 3.9.0 crashes in `--watch`
+mode, which is why the build and a plain static server are used instead of `jekyll serve`.
