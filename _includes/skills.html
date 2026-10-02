@@ -1,5 +1,5 @@
-<ul class="pub-list pub-list--skills">
+<ul class="pub-list pub-list--grid pub-list--skills">
 {%- for s in site.data.skills %}
-<li><strong>{{ s.name }}</strong> {{ s.icon }}{% for t in s.tags %} <span class="pub-tag">{{ t }}</span>{% endfor %}{% if s.suffix %} {{ s.suffix }}{% endif %}{% if s.items %}<ul>{% for i in s.items %}<li>{{ i }}</li>{% endfor %}</ul>{% endif %}</li>
+<li><span class="pub-badge">{{ s.name }}</span><div class="pub__body">{% if s.tags %}{% for t in s.tags %}{% if forloop.last and s.suffix %}<span class="pub-nowrap"><span class="pub-tag pub-tag--honor">{{ t }}</span> {{ s.suffix }}</span>{% else %}<span class="pub-tag pub-tag--honor">{{ t }}</span> {% endif %}{% endfor %}{% endif %}{% for i in s.items %}<span class="pub__line">{{ i }}</span>{% endfor %}</div></li>
 {%- endfor %}
 </ul>

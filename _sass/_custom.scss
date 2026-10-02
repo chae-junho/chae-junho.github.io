@@ -6,10 +6,10 @@
 //      width of the column beside the profile card, so that its right end lines up with the rule under the section
 //      titles. Chinese and Korean use the serif fonts that go with Times in academic documents there (Songti /
 //      SimSun and Batang / Myeongjo).
-//   2. Near black text on white and ONE color, the crimson of Korea University, for links, the language shown, the
-//      badges and the thin rules, plus grays. Nothing else is colored and nothing is yellow. Only the conference
-//      badges are solid crimson; every other label (journals, patents, projects, honors, activities) and the CCF
-//      tags are thin outlines. No shadows or gradients.
+//   2. Near black text on white and ONE color, a deep navy (named once, in _variables.scss), for links, the language
+//      shown, the badges and the thin rules, plus grays. Nothing else is colored. Only the conference badges are
+//      solid; every other label (journals, patents, projects, honors, activities) and the CCF tags are thin
+//      outlines. No shadows or gradients.
 //   3. Section titles are bold capitals with some letter spacing, over a thin rule in the accent color.
 //   4. Entries that start with a badge (publications, patents, projects, honors, activities) keep the badges in a
 //      column of their own, so that all titles of a list start at the same place and the left edge stays straight.
@@ -26,11 +26,9 @@ $ink:     #151515; // text and titles
 $muted:   #555;    // secondary text
 $faint:   #8a8a8a; // captions
 $rule:    #cfcfcf; // thin lines
-$accent:    #8b0029; // Korea University crimson (the red of the crest): links, badges, the language shown, the rule under section titles
-$link:      $accent; // the color of link text (darker than the accent when the accent is a light color)
-$badge-ink: #fff;    // text on the accent badges (dark when the accent is a light color)
-$tint:    mix(#fff, $accent, 92%); // a pale rose, for hover backgrounds
-$tint-d:  mix(#fff, $accent, 80%); // a rose, for the text you select
+// $accent, $link and $badge-ink are set in _variables.scss (the color of the page is named there and only there)
+$tint:    mix(#fff, $accent, 92%); // a pale wash of the accent, for hover backgrounds
+$tint-d:  mix(#fff, $accent, 80%); // a stronger wash, for the text you select
 
 // Chinese and Korean text: serif fonts of the visitor's system, after Times New Roman for the Latin letters.
 $cjk-zh: "Songti SC", "STSong", "SimSun", "NSimSun", "Noto Serif CJK SC", "Noto Serif SC", "Source Han Serif SC";
@@ -122,12 +120,12 @@ b {
   }
 }
 
-// The theme draws its own bar under a link that is hovered; the crimson underline above replaces it.
+// The theme draws its own bar under a link that is hovered; the underline above replaces it.
 .greedy-nav .visible-links a:before {
   display: none;
 }
 
-// The menu that holds the links that do not fit (narrow windows): a pale rose under the pointer, not a green.
+// The menu that holds the links that do not fit (narrow windows): a pale wash of the accent under the pointer.
 .greedy-nav .hidden-links a:hover {
   color: $accent;
   background: $tint;
@@ -161,6 +159,14 @@ b {
 
 .sidebar .author__urls a:hover {
   color: $link;
+}
+
+// The theme paints each icon in the brand color of its service (a bright blue for LinkedIn, and so on). Here they
+// all follow the text: dark, and the accent when the pointer is over the link.
+.sidebar .author__urls .fa,
+.sidebar .author__urls .fab,
+.sidebar .author__urls .fas {
+  color: inherit;
 }
 
 @media (min-width: 57.8125em) {
@@ -229,10 +235,10 @@ a.pub-badge,
   }
 }
 
-// In Publications the badge says the kind in a single color: a conference is a solid crimson badge (only the
-// conferences are solid, so that they stand out), a journal an outlined one, and a paper under review a cream one.
-// An oral presentation says so in the text of the badge ("AAAI 2026 Oral"). The labels of the other sections
-// (patents, projects, honors, activities) are cream boxes with crimson text.
+// In Publications the badge says the kind in a single color: a conference is a solid badge (only the conferences
+// are solid, so that they stand out), a journal an outlined one, and a paper under review a gray outline. An oral
+// presentation says so in the text of the badge ("AAAI 2026 Oral"). The labels of the other sections (patents,
+// projects, honors, activities) are outlined in the accent.
 .pub-list--publications .pub-badge,
 .pub-list--publications a.pub-badge,
 .page__content .pub-list--publications a.pub-badge {
@@ -287,7 +293,7 @@ a.pub-badge,
   white-space: nowrap;
 }
 
-// CCF levels as outlines: A in crimson, B in dark gray, and "no CCF rank" as a dashed light gray outline.
+// CCF levels as outlines: A in the accent, B in dark gray, and "no CCF rank" as a dashed light gray outline.
 .pub-list .pub-tag--ccf-a {
   color: $accent;
   background-color: #fff;
@@ -306,10 +312,6 @@ a.pub-badge,
 .pub-list .pub-tag--ccf-none {
   color: #777;
   border: 1px dashed #aaa;
-}
-
-.pub-list .pub-tag--role {
-  font-weight: 700;
 }
 
 // Honor chips carry a whole sentence, so they are a little larger than other tags.
@@ -382,7 +384,9 @@ a.pub-badge,
 .pub-list--patents,
 .pub-list--projects,
 .pub-list--honors,
-.pub-list--activities {
+.pub-list--activities,
+.pub-list--languages,
+.pub-list--skills {
   grid-template-columns: 120px minmax(0, 1fr);
 }
 
@@ -427,9 +431,25 @@ a.pub-badge,
   }
 }
 
+// one line per item (the achievements under a skill)
+.pub__line {
+  display: block;
+}
+
 .pub-sub {
   color: $muted;
   font-size: 0.9em;
+}
+
+// what I do in a project, in the line with its term: text, not a box
+.pub-sub .pub-role {
+  color: $ink;
+  font-weight: 700;
+}
+
+// a short phrase that must not be split by a line break
+.pub-nowrap {
+  white-space: nowrap;
 }
 
 // Collapsed content (patents, lab note).

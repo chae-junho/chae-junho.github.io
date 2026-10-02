@@ -1,6 +1,6 @@
 <ul class="pub-list pub-list--grid pub-list--projects">
 {%- for p in site.data.projects %}
-<li><span class="pub-badge">{{ p.agency }}{% if p.badge_extra %} ({{ p.badge_extra }}){% endif %}</span><div class="pub__body"><span class="pub__title">{{ p.title }}</span> <span class="pub-sub">{{ p.from }} - {{ p.to }}{% if p.since %}, since {{ p.since }}{% endif %}</span>{% if p.role %} <span class="pub-tag pub-tag--role">{{ p.role }}</span>{% endif %}
-<span class="pub__meta">{{ p.title_ko }}{% if p.program %} <span class="pub-tag">{{ p.program }}</span>{% endif %}{% for t in p.topics %}<span class="pub-tag">{{ t }}</span>{% endfor %}</span></div></li>
+<li><span class="pub-badge">{{ p.agency }}{% if p.badge_extra %} ({{ p.badge_extra }}){% endif %}</span><div class="pub__body"><span class="pub__title">{{ p.title }}</span> <span class="pub-sub"><span class="pub-nowrap">{{ p.from }} - {{ p.to }}</span>{% if p.role %}, <span class="pub-nowrap"><span class="pub-role">{{ p.role }}</span>{% if p.since %} since {{ p.since }}{% endif %}</span>{% elsif p.since %}, <span class="pub-nowrap">since {{ p.since }}</span>{% endif %}</span>
+<span class="pub__meta">{{ p.title_ko }}{% if p.program %} <span class="pub-tag">{{ p.program }}</span>{% endif %}{% for t in p.topics %}{% unless p.title contains t %}<span class="pub-tag">{{ t }}</span>{% endunless %}{% endfor %}</span></div></li>
 {%- endfor %}
 </ul>

@@ -1,4 +1,5 @@
-# Academic service, newest first. year is the year you did it; venue is the badge text.
+# Academic service, newest first. venue is the badge text and says which edition it was. year is the year you did the
+# work; it is kept for the record and not shown, so that the page does not show two years in one row.
 
 - year: 2026
   venue: "AAAI 2027"

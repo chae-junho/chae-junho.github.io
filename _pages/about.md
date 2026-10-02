@@ -50,13 +50,11 @@ Funded projects I take part in at [RAIN Lab.](https://rain.korea.ac.kr/research/
 
 {% include activities.html %}
 
-# 🛠️ Languages and Skills {#skills}
-
-## Languages {#languages}
+# 🌍 Languages {#languages}
 
 {% include languages.html %}
 
-## Skills {#coding-skills}
+# 🛠️ Skills {#skills}
 
 {% include skills.html %}
 

@@ -1,17 +1,20 @@
 # Papers. Newest first. The page and the numbers at the top are generated from this file.
 #
 #   status:         accepted | review
-#   type:           conference | journal
+#   type:           conference | journal (a conference badge is solid, a journal badge is outlined; the badge says it,
+#                   so no tag repeats it)
 #   venue, year:    shown on the badge, e.g. NeurIPS 2026
 #   venue_url:      link on the badge
 #   title_url:      optional, shown as a small colored PDF link (DOI when the address is a doi.org one) next to the title;
 #                   leave it out until one exists
 #   authors:        a trailing * is kept as written; your own name (see "me" in _config.yml) is bolded
-#   oral:           true shows the red (Oral) marker
+#   oral:           true adds "Oral" to the badge, e.g. AAAI 2026 Oral
 #   ccf:            "A" | "B" | "C" | "none"; leave it out when unknown
 #   bk:             free text tag, e.g. "BK+ IF 4"
-#   impact_factor:  journal impact factor, e.g. 8.2
-#   scie:           true adds a SCIE tag
+#   impact_factor, scie:  one tag for the two, since both come from the same list: "SCIE, IF 8.2" (impact_factor: 8.2,
+#                   scie: true), or just "SCIE"
+#
+# One tag per rating system (SCIE with its impact factor, CCF, BK+); a tag never repeats what the badge says.
 #
 # A row with status: review and a count stands for several papers under review.
 

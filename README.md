@@ -48,12 +48,19 @@ CVs it follows); the templates that turn the data into HTML are in `_includes/`.
   numbers, names and lists come from the data files. So when the content changes, check the sentences in all three
   files. The Korean and Chinese wording of a role or of an achievement is kept next to the English one
   (`role_ko`, `role_zh` in `projects.yml`; `hero_ko`, `hero_zh` in `skills.yml`).
-- **Colors.** One color, the crimson of Korea University (`$accent` at the top of `_sass/_custom.scss`, with a cream
-  from the crest for soft backgrounds), is used for links, the language shown, the badges and the thin rules; the rest
-  is gray. Only the conference badges in Publications are solid crimson (a journal badge is outlined, a paper under
-  review is cream, an oral presentation is in the text of the badge: "AAAI 2026 Oral"); the labels of all other
-  sections are cream boxes with crimson text. The CCF tags use the same crimson (A filled with cream, B outlined).
-  A different accent would need only `$accent` (a light one also `$link` and `$badge-ink`).
+- **Colors.** One color, a deep navy, is used for links, the language shown, the badges and the thin rules; the rest
+  is gray (the icons in the profile card follow the text). Only the conference badges in Publications are solid (a
+  journal badge is outlined, a paper under review is a gray outline, an oral presentation is in the text of the
+  badge: "AAAI 2026 Oral"); the labels of all other sections are outlined in the same navy. CCF A is a navy outline,
+  CCF B and C are dark gray. The color is named once, as `$accent` in `_sass/_variables.scss`, and everything else
+  (the theme's own primary and link colors, the pale washes under the pointer) is derived from it. A different
+  accent needs only that line (a light one also `$link` and `$badge-ink` below it).
+- **Boxes.** A box carries one fact, and the same fact is not said twice. The badge in the left column names the entry
+  (venue and year, agency, degree, language) and its style says the kind: a conference badge is solid, a journal badge
+  is outlined, so no tag repeats the word "Journal". The small tags after the authors are ratings, one tag for each
+  rating system: CCF, BK+, and SCIE together with its impact factor (both come from the same list). What I do in a
+  project is bold text, a topic that the title already says is left out, and an Academic Activities entry shows its year
+  once, in the badge.
 - **Lists.** An entry that starts with a badge (publications, patents, projects, honors, activities) is a badge and a
   `pub__body`; the badges stand in a column of their own, so that all titles of a list start at the same place.
 - **Language switch.** `_includes/hero.html` picks the language from the browser's language and remembers the
@@ -77,7 +84,7 @@ Add an entry at the top of `_data/publications.yml`:
   title: "Paper title"
   title_url: https://arxiv.org/abs/0000.00000   # leave out until a PDF exists
   authors: ["J Cai", "A Author", "B Author*"]
-  oral: true                # shows the red (Oral) marker
+  oral: true                # adds "Oral" to the badge, e.g. AAAI 2026 Oral
   ccf: "A"                  # A, B, C or none; leave out if unknown
 ```
 

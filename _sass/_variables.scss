@@ -49,8 +49,15 @@ $type-size-8                : 0.625em;  // ~10px
    ========================================================================== */
 
 // One color and neutral grays: a plain gray for text and borders (the dark and light grays below are derived from it)
-// and the crimson of Korea University for everything the theme paints in its primary color (the top navigation, the
-// menu button, links). The theme's original greens are gone on purpose.
+// and the accent for everything else that is colored. The theme's original greens are gone on purpose.
+//
+// The accent is the only place that names the color of the page: links, badges, the language shown, the thin rules,
+// the top bar and the menu button. _custom.scss and the theme's primary and info colors below take it from here, so
+// changing the color of the page means changing the next three lines and nothing else.
+$accent                     : #00356b; // a deep navy
+$link                       : $accent;  // the color of link text (a little darker than the accent if the accent is a light color)
+$badge-ink                  : #fff;     // text on the solid accent badges (dark if the accent is a light color)
+
 $gray                       : #7a7a7a;
 $dark-gray                  : mix(#000, $gray, 40%);
 $darker-gray                : mix(#000, $gray, 60%);
@@ -64,11 +71,11 @@ $code-background-color-dark : $light-gray;
 $text-color                 : $dark-gray;
 $border-color               : $lighter-gray;
 
-$primary-color              : #8b0029;
+$primary-color              : $accent;
 $success-color              : #62c462;
 $warning-color              : #f89406;
 $danger-color               : #ee5f5b;
-$info-color                 : #8b0029;
+$info-color                 : $accent;
 // $info-color                 : #52adc8;
 
 /* brands */

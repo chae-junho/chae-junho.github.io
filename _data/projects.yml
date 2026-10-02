@@ -4,9 +4,10 @@
 #   badge_extra:  shown in brackets after the agency, e.g. ERC
 #   from, to:     the project term
 #   since:        when you joined, if different from the start of the term
-#   role:         your role, if any (role_ko and role_zh: the same in Korean and Chinese, for the opening text)
+#   role:         your role, if any, written in bold after the term, with "since ..." (role_ko and role_zh: the same in
+#                 Korean and Chinese, for the opening text)
 #   program:      umbrella program, shown as a tag
-#   topics:       what you work on inside the project, shown as tags
+#   topics:       what you work on inside the project, shown as tags (a topic that the title already says is left out)
 
 - agency: "NRF"
   title: "Development of Core Technologies for Multimodal Machine Unlearning"
