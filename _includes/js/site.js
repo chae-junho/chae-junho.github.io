@@ -16,8 +16,10 @@ class Site {
       sidebarSelector: '.sidebar',
       headingSelector: HEADING,
     }));
+    const tint = new GlobeTint({ landColor: Dom.token('globe-land') });
     this.attempt(() => this.startLanguageSwitch(reveal));
-    this.attempt(() => this.startVisitors());
+    this.attempt(() => this.startAccentPicker(tint));
+    this.attempt(() => this.startVisitors(tint));
     this.attempt(() => this.startNavigation(reveal));
     if (reveal) {
       this.attempt(() => reveal.start());
@@ -40,14 +42,21 @@ class Site {
     }
   }
 
-  startVisitors() {
+  startAccentPicker(tint) {
+    const group = document.querySelector('.accent-picker');
+    if (group) {
+      new AccentPicker(group, { onChange: () => tint.follow('globe-land', 900) }).start();
+    }
+  }
+
+  startVisitors(tint) {
     const column = document.querySelector('.sidebar');
     const sticky = column ? new StickyColumn(column, { wideQuery: LARGE_SCREEN, watched: '.profile_box' }) : null;
     const box = document.querySelector('.visitors');
     const globe = box && VisitorGlobe.create({
       wideQuery: LARGE_SCREEN,
       widgetUrl: box.getAttribute('data-widget'),
-      tint: new GlobeTint({ landColor: Dom.token('globe-land') }),
+      tint,
       onLayout: () => sticky && sticky.update(),
     });
     if (sticky) {

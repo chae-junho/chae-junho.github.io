@@ -1,4 +1,5 @@
 <section class="hero" data-lang="en">
+<div class="hero__tools">
 <div class="lang-switch">
 <span class="lang-switch__icon" aria-hidden="true">{% include icon.html name="language" %}</span>
 <div class="lang-switch__group" role="group" aria-label="Language">
@@ -6,6 +7,8 @@
 <button type="button" data-lang="ko" aria-pressed="false">한국어</button>
 <button type="button" data-lang="zh" aria-pressed="false">中文</button>
 </div>
+</div>
+{%- include accent-picker.html %}
 </div>
 <div class="hero__text i18n i18n--en" lang="en">
 {% include intro-en.html %}

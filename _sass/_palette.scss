@@ -1,0 +1,57 @@
+@function palette($base) {
+  $gray: mix($base, #7a7a7a, 12%);
+  @return (
+    "accent": $base,
+    "accent-lighten-8": lighten($base, 8%),
+    "accent-lighten-9": lighten($base, 9%),
+    "accent-darken-3": darken($base, 3%),
+    "accent-darken-8": darken($base, 8%),
+    "ink": mix($base, #0f0f0f, 10%),
+    "ink-2": mix($base, #3a3a3a, 12%),
+    "muted": mix($base, #666, 16%),
+    "faint": mix($base, #999, 16%),
+    "rule": mix($base, #dcdcdc, 8%),
+    "tag-line": mix($base, #c4c4c4, 10%),
+    "border-color": mix(#fff, $gray, 90%),
+    "tint-96": mix(#fff, $base, 96%),
+    "tint-94": mix(#fff, $base, 94%),
+    "tint-93": mix(#fff, $base, 93%),
+    "tint-92": mix(#fff, $base, 92%),
+    "tint-89": mix(#fff, $base, 89%),
+    "tint-80": mix(#fff, $base, 80%),
+    "globe-land": mix($base, #fff, 77.6%),
+    "globe-stroke": mix($base, #000, 80%),
+    "globe-hover": mix($base, #fff, 30%)
+  );
+}
+
+$default-base: nth(map-values($themes), 1);
+$palette-properties: ();
+
+@each $name, $value in palette($default-base) {
+  $palette-properties: append($palette-properties, unquote("--#{$name}"), comma);
+
+  @property --#{$name} {
+    syntax: "<color>";
+    inherits: true;
+    initial-value: #{$value};
+  }
+}
+
+:root {
+  @each $name, $value in palette($default-base) {
+    --#{$name}: #{$value};
+  }
+
+  transition-property: $palette-properties;
+  transition-duration: 0.55s;
+  transition-timing-function: $ease;
+}
+
+@each $id, $base in $themes {
+  html[data-accent="#{$id}"] {
+    @each $name, $value in palette($base) {
+      --#{$name}: #{$value};
+    }
+  }
+}

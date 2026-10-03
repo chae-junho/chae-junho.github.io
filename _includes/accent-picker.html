@@ -1,0 +1,5 @@
+<div class="accent-picker" role="radiogroup" aria-label="Accent color">
+{%- for theme in site.data.themes %}
+<button type="button" role="radio" aria-checked="false" tabindex="-1" aria-label="{{ theme.name }}" data-name="{{ theme.name }}" data-accent="{{ theme.id }}" style="--swatch: {{ theme.accent }}"></button>
+{%- endfor %}
+</div>

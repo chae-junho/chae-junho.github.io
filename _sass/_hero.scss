@@ -2,10 +2,17 @@
   margin: 0 0 1em;
 }
 
+.hero__tools {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.6em 1.3em;
+  margin: 0 0 0.9em;
+}
+
 .lang-switch {
   display: flex;
   align-items: center;
-  margin: 0 0 0.9em;
 
   .lang-switch__icon {
     margin-right: 0.55em;
@@ -19,11 +26,11 @@
   position: relative;
   display: flex;
   padding: 2px;
-  background: rgba(mix(#fff, $accent, 93%), 0.7);
+  background: fade($tint-93, 0.7);
   border-radius: 999px;
   box-shadow:
-    inset 0 1px 2px rgba($ink, 0.12),
-    inset 0 0 0 1px rgba($ink, 0.05),
+    inset 0 1px 2px fade($ink, 0.12),
+    inset 0 0 0 1px fade($ink, 0.05),
     0 1px 0 rgba(#fff, 0.9);
 
   button {
@@ -67,9 +74,9 @@
   left: 0;
   width: 0;
   height: 0;
-  background: linear-gradient(180deg, lighten($accent, 9%), $accent 75%);
+  background: linear-gradient(180deg, $accent-lighten-9, $accent 75%);
   border-radius: 999px;
-  box-shadow: inset 0 1px 0 rgba(#fff, 0.4), 0 1px 3px rgba($accent, 0.45), 0 4px 10px -3px rgba($accent, 0.35);
+  box-shadow: inset 0 1px 0 rgba(#fff, 0.4), 0 1px 3px fade($accent, 0.45), 0 4px 10px -3px fade($accent, 0.35);
   pointer-events: none;
   @include springy(
     "transform 0.45s #{$ease}, width 0.45s #{$ease}, height 0.45s #{$ease}",

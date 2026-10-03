@@ -11,7 +11,7 @@
     background: $glass-fill;
   }
   border-radius: 999px;
-  box-shadow: $glass-edge, 0 2px 6px rgba($ink, 0.05), 0 12px 32px -10px rgba($ink, 0.18);
+  box-shadow: $glass-edge, 0 2px 6px fade($ink, 0.05), 0 12px 32px -10px fade($ink, 0.18);
 
   @supports ((-webkit-backdrop-filter: blur(1px)) or (backdrop-filter: blur(1px))) {
     -webkit-backdrop-filter: blur(22px) saturate(190%);

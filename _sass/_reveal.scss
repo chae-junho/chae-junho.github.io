@@ -3,14 +3,6 @@ $reveal-targets: ".sidebar .author__avatar", ".sidebar .author__content > *", ".
   ".page__content > details", ".page__content .pub-list--grid > li > *",
   ".page__content .pub-list:not(.pub-list--grid) > li", ".page__content .school-block__logos";
 
-@function join-with-commas($list) {
-  $out: "";
-  @each $item in $list {
-    $out: if($out == "", $item, "#{$out}, #{$item}");
-  }
-  @return $out;
-}
-
 $reveal-selector: join-with-commas($reveal-targets);
 
 :root {

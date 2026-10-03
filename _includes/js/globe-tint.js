@@ -3,11 +3,9 @@ class GlobeTint {
     this.filterId = filterId;
     this.widgetColor = widgetColor;
     this.landColor = landColor;
-  }
-
-  static channels(hex) {
-    const value = parseInt(hex.replace('#', ''), 16);
-    return [(value >> 16) & 255, (value >> 8) & 255, value & 255].map((channel) => channel / 255);
+    this.range = 1 - GlobeTint.luminance(Dom.channels(widgetColor));
+    this.funcs = [];
+    this.frame = 0;
   }
 
   static luminance(channels) {
@@ -23,8 +21,10 @@ class GlobeTint {
     svg.setAttribute('focusable', 'false');
     svg.innerHTML = '<filter id="' + this.filterId + '" color-interpolation-filters="sRGB">'
       + '<feColorMatrix type="matrix" values="' + this.greyscaleMatrix() + '"/>'
-      + '<feComponentTransfer>' + this.transfers() + '</feComponentTransfer></filter>';
+      + '<feComponentTransfer><feFuncR type="linear"/><feFuncG type="linear"/><feFuncB type="linear"/></feComponentTransfer></filter>';
     parent.insertBefore(svg, parent.firstChild);
+    this.funcs = Array.from(svg.querySelectorAll('feComponentTransfer > *'));
+    this.apply();
   }
 
   greyscaleMatrix() {
@@ -32,12 +32,29 @@ class GlobeTint {
     return [row, row, row, '0 0 0 1 0'].join(' ');
   }
 
-  transfers() {
-    const range = 1 - GlobeTint.luminance(GlobeTint.channels(this.widgetColor));
-    const land = GlobeTint.channels(this.landColor);
-    return ['R', 'G', 'B'].map((name, index) => {
-      const slope = (1 - land[index]) / range;
-      return '<feFunc' + name + ' type="linear" slope="' + slope.toFixed(4) + '" intercept="' + (1 - slope).toFixed(4) + '"/>';
-    }).join('');
+  apply() {
+    const land = Dom.channels(this.landColor);
+    this.funcs.forEach((func, index) => {
+      const slope = (1 - land[index]) / this.range;
+      func.setAttribute('slope', slope.toFixed(4));
+      func.setAttribute('intercept', (1 - slope).toFixed(4));
+    });
+  }
+
+  retint(landColor) {
+    this.landColor = landColor;
+    this.apply();
+  }
+
+  follow(token, duration) {
+    cancelAnimationFrame(this.frame);
+    const end = performance.now() + duration;
+    const step = () => {
+      this.retint(Dom.token(token));
+      if (performance.now() < end) {
+        this.frame = requestAnimationFrame(step);
+      }
+    };
+    this.frame = requestAnimationFrame(step);
   }
 }

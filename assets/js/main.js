@@ -23,7 +23,9 @@ layout: null
 {% include js/fold.js %}
 {% include js/glass-refraction.js %}
 {% include js/phd-year.js %}
+{% include js/preference.js %}
 {% include js/language-switch.js %}
+{% include js/accent-picker.js %}
 {% include js/sticky-column.js %}
 {% include js/globe-tint.js %}
 {% include js/visitor-globe.js %}

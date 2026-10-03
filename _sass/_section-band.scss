@@ -18,7 +18,7 @@
     bottom: 0;
     left: 0;
     border-radius: inherit;
-    box-shadow: inset 0 0 0 1px rgba($accent, 0.16), inset 0 1px 0 rgba(#fff, 0.8);
+    box-shadow: inset 0 0 0 1px fade($accent, 0.16), inset 0 1px 0 rgba(#fff, 0.8);
     opacity: 0;
     transition: opacity 0.9s $ease 0.45s;
   }
@@ -41,9 +41,9 @@
 
 .section-glow__wave {
   position: absolute;
-  background: rgba(mix(#fff, $accent, 93%), 0.62);
+  background: fade($tint-93, 0.62);
   border-radius: 50%;
-  box-shadow: inset 0 0 36px rgba($accent, 0.14);
+  box-shadow: inset 0 0 36px fade($accent, 0.14);
   transform: scale(0);
 }
 

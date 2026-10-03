@@ -3,7 +3,7 @@ class LanguageSwitch {
     this.hero = hero;
     this.group = hero.querySelector('.lang-switch__group');
     this.buttons = Array.from(hero.querySelectorAll('.lang-switch button'));
-    this.storageKey = storageKey;
+    this.preference = new Preference(storageKey);
     this.codes = codes;
     this.onChange = onChange;
     this.thumb = document.createElement('span');
@@ -26,7 +26,7 @@ class LanguageSwitch {
   }
 
   initialCode() {
-    const saved = this.readSaved();
+    const saved = this.preference.read();
     if (this.codes.indexOf(saved) >= 0) {
       return saved;
     }
@@ -37,26 +37,10 @@ class LanguageSwitch {
     return browser.indexOf('zh') === 0 ? 'zh' : 'en';
   }
 
-  readSaved() {
-    try {
-      return window.localStorage.getItem(this.storageKey);
-    } catch (error) {
-      return null;
-    }
-  }
-
-  save(code) {
-    try {
-      window.localStorage.setItem(this.storageKey, code);
-    } catch (error) {
-      return;
-    }
-  }
-
   choose(code) {
     this.show(code);
     this.onChange(code);
-    this.save(code);
+    this.preference.write(code);
   }
 
   show(code) {

@@ -10,6 +10,15 @@
 <script>
   (function (root) {
     root.className = root.className.replace(/\bno-js\b/g, '') + ' js ';
+    var accent = null;
+    try {
+      accent = window.localStorage.getItem('accent');
+    } catch (error) {
+      accent = null;
+    }
+    if (accent && /^[a-z0-9-]{1,24}$/.test(accent)) {
+      root.setAttribute('data-accent', accent);
+    }
     var reduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     if (!('IntersectionObserver' in window) || reduced) {
       return;

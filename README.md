@@ -27,7 +27,7 @@ text (papers, patents, projects).
 | Name, bio, email, profile links | `_config.yml`, `_data/links.yml` |
 | Opening text | `_includes/intro-en.html`, `intro-ko.html`, `intro-zh.html` |
 | Photo | `images/profile-avatar.jpg` |
-| Color | `$accent` and `$link` in `_sass/_tokens.scss` |
+| Colors to choose from | `_data/themes.yml` (the first one is the default) |
 
 To add a paper, put an entry at the top of `_data/publications.yml`:
 
@@ -76,13 +76,13 @@ the Korean opening text.
 ## Code
 
 Styles: `assets/css/main.scss` lists the files of `_sass/` in order, one per part of the page (top bar, profile card,
-labels, lists, school emblems, opening text, visitor globe, entrance animation). Colors, curves and sizes are in
-`_tokens.scss`.
+labels, lists, school emblems, opening text, visitor globe, entrance animation). Colors are in `_palette.scss`,
+curves and sizes in `_tokens.scss`.
 
 Scripts: `assets/js/main.js` joins the files of `_includes/js/` into one script. Each file is one class with its own
 options: `NavBar` (the glass top bar, made of `NavGlass`, `NavLens`, `NavPager` and `OverflowMenu`), `ScrollSpy`,
 `InPageLinks`, `Reveal` with `SectionBand` and `SectionJump`, `Fold`, `GlassRefraction`, `LanguageSwitch`,
-`VisitorGlobe`, and `Site`, which creates and connects them. A class that is not needed can be left out of
+`AccentPicker`, `VisitorGlobe`, and `Site`, which creates and connects them. A class that is not needed can be left out of
 `main.js` and of `Site`.
 
 ## Icons

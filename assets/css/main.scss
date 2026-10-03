@@ -1,7 +1,11 @@
 ---
 ---
 
+$themes: ({% for theme in site.data.themes %}"{{ theme.id }}": {{ theme.accent }}{% unless forloop.last %}, {% endunless %}{% endfor %});
+
+@import "functions";
 @import "tokens";
+@import "palette";
 @import "mixins";
 @import "fonts";
 @import "base";
@@ -15,6 +19,7 @@
 @import "fold";
 @import "school-block";
 @import "hero";
+@import "accent-picker";
 @import "globe";
 @import "reveal";
 @import "section-band";

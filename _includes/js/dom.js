@@ -7,6 +7,17 @@ class Dom {
     return getComputedStyle(document.documentElement).getPropertyValue('--' + name).trim();
   }
 
+  static channels(color) {
+    if (!Dom.palette) {
+      Dom.palette = document.createElement('canvas').getContext('2d', { willReadFrequently: true });
+    }
+    Dom.palette.fillStyle = '#000';
+    Dom.palette.fillStyle = color;
+    Dom.palette.clearRect(0, 0, 1, 1);
+    Dom.palette.fillRect(0, 0, 1, 1);
+    return Array.from(Dom.palette.getImageData(0, 0, 1, 1).data).slice(0, 3).map((value) => value / 255);
+  }
+
   static translation(element) {
     const match = getComputedStyle(element).transform.match(/matrix\(([^)]+)\)/);
     const values = match ? match[1].split(',') : [];

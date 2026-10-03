@@ -1,0 +1,11 @@
+@function fade($color, $alpha) {
+  @return unquote("color-mix(in srgb, #{$color} #{percentage($alpha)}, transparent)");
+}
+
+@function join-with-commas($list) {
+  $out: "";
+  @each $item in $list {
+    $out: if($out == "", $item, "#{$out}, #{$item}");
+  }
+  @return $out;
+}

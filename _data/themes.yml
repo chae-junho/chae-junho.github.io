@@ -1,0 +1,23 @@
+- id: wine
+  name: Wine
+  accent: "#8b0029"
+
+- id: sienna
+  name: Sienna
+  accent: "#9a4a12"
+
+- id: forest
+  name: Forest
+  accent: "#1f5f3f"
+
+- id: navy
+  name: Navy
+  accent: "#00356b"
+
+- id: plum
+  name: Plum
+  accent: "#5b2a86"
+
+- id: graphite
+  name: Graphite
+  accent: "#2b2e36"

@@ -37,12 +37,12 @@ h1::before,
     color: $link;
     text-decoration-line: underline;
     text-decoration-thickness: 1px;
-    text-decoration-color: rgba($link, 0.4);
+    text-decoration-color: fade($link, 0.4);
     text-underline-offset: 0.14em;
     transition: color 0.3s $ease, text-decoration-color 0.3s $ease, opacity 0.2s $ease;
 
     &:hover {
-      color: darken($link, 8%);
+      color: $link-hover;
       text-decoration-color: currentColor;
 
       img {

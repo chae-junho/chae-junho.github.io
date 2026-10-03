@@ -224,10 +224,10 @@
     right: 0;
     margin-top: 15px;
     padding: 5px;
-    border: 1px solid rgba($ink, 0.08);
+    border: 1px solid fade($ink, 0.08);
     border-radius: 1.3rem;
     background: rgba(#fff, 0.9);
-    box-shadow: 0 12px 32px -10px rgba($ink, 0.22);
+    box-shadow: 0 12px 32px -10px fade($ink, 0.22);
     pointer-events: auto;
     transform-origin: top right;
 
@@ -375,7 +375,7 @@
 }
 
 .is-scrolled .nav-glass {
-  box-shadow: $glass-edge, 0 2px 6px rgba($ink, 0.07), 0 16px 36px -10px rgba($ink, 0.26);
+  box-shadow: $glass-edge, 0 2px 6px fade($ink, 0.07), 0 16px 36px -10px fade($ink, 0.26);
 }
 
 .nav-light {
@@ -398,7 +398,7 @@
   height: 0;
   background: rgba(#fff, 0.92);
   border-radius: 999px;
-  box-shadow: inset 0 1px 0 #fff, 0 0 0 0.5px rgba($ink, 0.08), 0 1px 3px rgba($ink, 0.18);
+  box-shadow: inset 0 1px 0 #fff, 0 0 0 0.5px fade($ink, 0.08), 0 1px 3px fade($ink, 0.18);
   opacity: 0;
   transform-origin: 50% 50%;
   @include springy(
@@ -407,7 +407,7 @@
   );
 
   &.is-charging {
-    box-shadow: inset 0 1px 0 #fff, 0 0 0 0.5px rgba($accent, 0.4), 0 0 0 4px rgba($accent, 0.12), 0 0 20px rgba($accent, 0.38);
+    box-shadow: inset 0 1px 0 #fff, 0 0 0 0.5px fade($accent, 0.4), 0 0 0 4px fade($accent, 0.12), 0 0 20px fade($accent, 0.38);
     scale: 0.95;
   }
 
@@ -442,12 +442,12 @@
 
 @keyframes lens-release {
   0% {
-    box-shadow: inset 0 1px 0 #fff, 0 0 0 0.5px rgba($accent, 0.4), 0 0 0 6px rgba($accent, 0.12), 0 0 22px rgba($accent, 0.3);
+    box-shadow: inset 0 1px 0 #fff, 0 0 0 0.5px fade($accent, 0.4), 0 0 0 6px fade($accent, 0.12), 0 0 22px fade($accent, 0.3);
     scale: 1.05;
   }
 
   100% {
-    box-shadow: inset 0 1px 0 #fff, 0 0 0 0.5px rgba($ink, 0.08), 0 1px 3px rgba($ink, 0.18);
+    box-shadow: inset 0 1px 0 #fff, 0 0 0 0.5px fade($ink, 0.08), 0 1px 3px fade($ink, 0.18);
     scale: 1;
   }
 }
