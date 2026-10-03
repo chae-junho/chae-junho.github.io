@@ -10,7 +10,7 @@
 
   <div class="author__content">
     <h3 class="author__name">{{ author.name }}</h3>
-    {% if author.bio %}<p class="author__bio">{{ author.bio }}</p>{% endif %}
+    {% if author.bio %}{% assign bio_parts = author.bio | split: ", " %}<p class="author__bio">{% for part in bio_parts %}<span class="author__bio-part">{{ part }}{% unless forloop.last %},{% endunless %}</span>{% unless forloop.last %}{{ " " }}{% endunless %}{% endfor %}</p>{% endif %}
   </div>
 
   <div class="author__urls-wrapper">

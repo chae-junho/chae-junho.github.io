@@ -188,6 +188,12 @@ b {
   line-height: 1.4;
 }
 
+// The parts of the line ("Ph.D. student of CSE," and "Korea University") are never split inside, so that in the
+// narrow card the second one moves down as a whole and a lone "University" is not left on its own line.
+.author__bio-part {
+  white-space: nowrap;
+}
+
 .sidebar .author__urls a {
   color: $ink;
   font-size: 0.88em;
@@ -835,9 +841,13 @@ a.pub-badge,
 // There is one widget on the page and it cannot be duplicated, so a small script (in _includes/visitors.html)
 // moves it: from the width where the theme turns the profile card into a column on the left (925px) it sits under
 // that card, and on narrower screens, where the card is a strip at the top, it sits at the end of the page.
-// The widget sizes itself from the width of the element that holds it, so the size is set here with a plain
-// width and the globe is drawn at its natural size. Some height is reserved so nothing jumps when it appears.
+// The widget measures the box that holds it once, when it draws, and never again, and it picks the size of its dots
+// from that measurement. So it is drawn in a box as wide as the column, where the dots come out small, and the
+// script then scales it down to the width it is shown at ($globe-width), and keeps it at that width when the page
+// changes size (browser zoom, a resized window, the move between the two places).
 // ---------------------------------------------------------------------------
+$globe-width: 7.5rem;
+
 .visitors {
   text-align: center;
 
@@ -846,18 +856,95 @@ a.pub-badge,
   }
 }
 
+// Tells the script how wide the globe is to be shown. It is never visible.
+.visitors__size {
+  display: block;
+  width: $globe-width;
+  height: 0;
+  margin: 0 auto;
+}
+
 .visitors .visitors__caption {
-  margin: 0.2em 0 0;
+  margin: 0.5em 0 0;
   color: $faint;
-  font-size: 0.8em;
-  letter-spacing: 0.04em;
+  font-size: 0.74em;
+  letter-spacing: 0.05em;
 }
 
 .globe-global-container {
-  width: 9.334rem;
-  max-width: 100%;
-  min-height: 10.2rem;
+  position: relative;
+  width: 100%;
+  min-width: 12rem; // the widget measures this box once, and it must not be tiny at that moment
+  height: $globe-width * 1.085; // kept free before the globe is drawn, the script then sets the exact height
   margin: 0 auto;
+
+  .mmvst_outer {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    transform-origin: 50% 0;
+  }
+}
+
+// The box that has the same size as the globe as it is shown. The label that appears next to a dot is placed in it.
+.globe-stage {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  pointer-events: none;
+
+  #tooltiper {
+    padding: 0.1em 0.5em;
+    color: $ink;
+    background: rgba(255, 255, 255, 0.94);
+    border: 1px solid $rule;
+    border-radius: 2px;
+    font-family: inherit;
+    font-size: 0.75rem;
+    letter-spacing: 0.02em;
+  }
+}
+
+// The globe is in the colors of the page: the land is the rose of the accent (the filter in _includes/visitors.html turns
+// the blue of the widget into it), the sea is white with a faint rose, and the dots are white with a dark ring of the
+// accent. The blue and green of the widget are loud next to the rest of the page. The shadow on the floor is made
+// quieter as well.
+.visitors__defs {
+  position: absolute;
+  width: 0;
+  height: 0;
+  overflow: hidden;
+}
+
+.globe-global-container {
+  .mmvst_map {
+    background: radial-gradient(circle at 36% 30%, #fff 0%, mix(#fff, $accent, 96%) 55%, mix(#fff, $accent, 89%) 100%);
+  }
+
+  .mmvst_map_f,
+  .mmvst_map_b {
+    filter: url(#globe-land);
+  }
+
+  .clstr_old,
+  .clstr_new {
+    fill: #fff;
+  }
+
+  .mmvstarker {
+    stroke: mix($accent, #000, 80%);
+    stroke-width: 1px;
+  }
+
+  .mmvstarker:hover {
+    fill: mix($accent, #fff, 30%);
+  }
+
+  .mmvst_bottom_shadow {
+    opacity: 0.3;
+  }
 }
 
 // At the end of the page (phones and tablets).
@@ -865,6 +952,11 @@ a.pub-badge,
   margin: 3em 0 0.5em;
   padding: 1.4em 0 1.2em;
   border-top: 1px solid $rule;
+
+  .globe-global-container {
+    width: 12.5rem;
+    max-width: 100%;
+  }
 }
 
 // Under the profile card (wide screens).
