@@ -1,9 +1,3 @@
-# Languages, shown in the Languages section.
-#
-#   level, detail:  the text on the page (detail is optional)
-#   short:          Native or Professional. The opening text says that the Native ones are spoken at a native level and
-#                   that the Professional ones are used at work.
-
 - name: "Chinese"
   short: "Native"
   level: "Native or bilingual proficiency"

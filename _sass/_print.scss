@@ -1,18 +1,19 @@
-/* ==========================================================================
-   PRINT STYLES
-   ========================================================================== */
-
-/*
-   Hide the following elements on print
-   ========================================================================== */
+@media print {
+  .masthead {
+    display: none;
+  }
+}
 
 @media print {
-  .masthead,
-  .toc,
-  .page__share,
-  .page__related,
-  .ads,
-  .page__footer {
-    display: none;
+  .js-reveal {
+    #{$reveal-selector} {
+      opacity: 1 !important;
+      transform: none !important;
+    }
+
+    .page__content > h1 {
+      border-bottom-color: $accent;
+      background: none;
+    }
   }
 }

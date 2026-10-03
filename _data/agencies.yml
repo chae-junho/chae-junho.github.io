@@ -1,7 +1,3 @@
-# The funding agencies named in projects.yml (field agency). The Korean opening text writes the Korean name first and the
-# abbreviation after it ("한국연구재단(NRF)"). ko_final says whether the Korean name ends in a consonant, which decides
-# between 과 and 와 when two or more agencies are listed (재단 and 원 end in ㄴ, so 과).
-
 - agency: "NRF"
   name_ko: "한국연구재단"
   ko_final: true

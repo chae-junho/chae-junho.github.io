@@ -1,0 +1,15 @@
+{%- for link in site.data.links -%}
+  {%- assign value = include.author[link.key] -%}
+  {%- if value and value != "" -%}
+    {%- if link.url -%}
+      {%- assign href = link.url | replace: "%s", value %}
+      {%- if include.icons_only %}
+<a href="{{ href }}">{% include icon.html name=link.icon %}</a>
+      {%- else %}
+<li><a href="{{ href }}">{% include icon.html name=link.icon %} {{ link.label }}</a></li>
+      {%- endif -%}
+    {%- elsif include.icons_only != true %}
+<li{% if link.class %} class="{{ link.class }}"{% endif %}>{% include icon.html name=link.icon %} {% if link.span %}<span>{{ value }}</span>{% else %}{{ value }}{% endif %}</li>
+    {%- endif -%}
+  {%- endif -%}
+{%- endfor -%}

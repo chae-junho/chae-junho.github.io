@@ -1,53 +1,51 @@
-/* ==========================================================================
-   MASTHEAD
-   ========================================================================== */
-
 .masthead {
   position: sticky;
   top: 0;
-  background-color: white;
-  border-bottom: 1px solid $border-color;
-  -webkit-animation: intro 0.3s both;
-          animation: intro 0.3s both;
-  -webkit-animation-delay: 0.15s;
-          animation-delay: 0.15s;
   z-index: 20;
+  background: transparent;
+  border-bottom: 0;
+  box-shadow: none;
+  animation: none;
+  pointer-events: none;
+}
 
-  &__inner-wrap {
-    @include container;
-    @include clearfix;
-    padding: .5em;
-    font-family: $sans-serif-narrow;
+.masthead__inner-wrap {
+  padding: 0.55rem 0.5em 0.4rem;
+  font-family: $serif;
+  font-size: 0.92em;
 
-    @include breakpoint($x-large) {
-      max-width: $x-large;
-    }
+  nav {
+    z-index: 10;
+  }
 
-    nav {
-      z-index: 10;
-    }
+  a {
+    text-decoration: none;
+  }
 
-    a {
-      text-decoration: none;
-    }
+  &::after {
+    clear: both;
+    content: "";
+    display: table;
+  }
+
+  @media (min-width: $wide-screen) {
+    padding-left: calc(#{clamp(1rem, 2.2vw, 12rem)} - 1rem);
+    padding-right: calc(#{clamp(1rem, 2.2vw, 12rem)} - 1rem);
   }
 }
 
-.masthead__menu {
-
-  ul {
-    margin: 0;
-    padding: 0;
-    clear: both;
-    list-style-type: none;
-  }
+.masthead__menu ul {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
 }
 
 .masthead__menu-home-item {
-  @include breakpoint($medium) {
+  display: none !important;
+
+  @media (min-width: 48em) {
     display: block !important;
   }
-  display: none !important;
 }
 
 .masthead__menu-item {
@@ -55,10 +53,401 @@
   list-style-type: none;
   white-space: nowrap;
 
-  &--lg {
-    padding-right: 2em;
-    font-weight: 700;
+  a {
+    color: $ink-2;
+    @include springy("color 0.3s #{$ease}, transform 0.3s #{$ease}", "color 0.3s #{$ease}, transform 0.7s #{$spring}");
+
+    &:hover,
+    &:focus-visible {
+      color: $ink;
+    }
+
+    &:active {
+      opacity: 1;
+      transform: scale(0.94);
+    }
+
+    &.is-current {
+      color: $accent;
+    }
   }
 }
 
+.masthead__menu-item--lg {
+  padding-right: 2em;
+  font-weight: 700;
 
+  a {
+    letter-spacing: 0.02em;
+  }
+}
+
+.masthead a:focus-visible,
+.masthead button:focus-visible {
+  border-radius: 999px;
+  outline-offset: 0.2rem;
+}
+
+.greedy-nav {
+  position: relative;
+  min-width: 250px;
+  background: transparent;
+
+  a {
+    display: block;
+    margin: 0 1rem;
+    padding: 0.5rem 0;
+    text-decoration: none;
+  }
+
+  .visible-links {
+    position: relative;
+    z-index: 2;
+    display: table;
+    padding: 0.28rem 1.5rem;
+    pointer-events: auto;
+    @include springy("opacity 0.3s #{$ease}, transform 0.4s #{$ease}", "opacity 0.3s #{$ease}, transform 0.8s #{$spring-soft}");
+
+    li {
+      display: table-cell;
+      vertical-align: middle;
+
+      &:first-child {
+        font-weight: bold;
+
+        a {
+          margin-left: 0;
+        }
+      }
+
+      &:last-child a {
+        margin-right: 0;
+      }
+    }
+  }
+
+  &.is-paged {
+    .visible-links {
+      visibility: hidden;
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .masthead__menu-home-item {
+      display: none !important;
+    }
+  }
+
+  .nav-page {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 2;
+    display: table;
+    margin: 0;
+    padding: 0.28rem 1.5rem;
+    list-style: none;
+    white-space: nowrap;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transform: translateX(1.6rem);
+    transition: opacity 0.3s $ease, transform 0.4s $ease, visibility 0s 0.4s;
+
+    li {
+      display: table-cell;
+      vertical-align: middle;
+
+      &:first-child a {
+        margin-left: 0;
+      }
+
+      &:last-child a {
+        margin-right: 0;
+      }
+    }
+
+    &.is-before {
+      transform: translateX(-1.6rem);
+    }
+
+    &.is-active {
+      opacity: 1;
+      visibility: visible;
+      pointer-events: auto;
+      transform: none;
+      @include springy("opacity 0.35s #{$ease} 0.08s, transform 0.4s #{$ease} 0.08s", "opacity 0.35s #{$ease} 0.08s, transform 0.8s #{$spring-soft} 0.08s");
+    }
+  }
+
+  .nav-probe {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transform: none;
+  }
+
+  button {
+    @include glass-surface(false);
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: 2;
+    width: 2.9rem;
+    height: 100%;
+    padding: 0;
+    border: 0;
+    outline: none;
+    color: #fff;
+    background-color: transparent;
+    cursor: pointer;
+    pointer-events: auto;
+
+    &:hover {
+      background-color: $tint;
+    }
+
+    .navicon,
+    .navicon::before,
+    .navicon::after {
+      background: $accent;
+    }
+
+    &.close .navicon {
+      background: transparent;
+    }
+  }
+
+  .hidden-links {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    margin-top: 15px;
+    padding: 5px;
+    border: 1px solid rgba($ink, 0.08);
+    border-radius: 1.3rem;
+    background: rgba(#fff, 0.9);
+    box-shadow: 0 12px 32px -10px rgba($ink, 0.22);
+    pointer-events: auto;
+    transform-origin: top right;
+
+    &::before,
+    &::after {
+      content: "";
+      position: absolute;
+      right: 10px;
+      display: block;
+      width: 0;
+      border-style: solid;
+      border-width: 0 10px 10px;
+    }
+
+    &::before {
+      top: -11px;
+      z-index: 0;
+      border-color: $border-color transparent;
+    }
+
+    &::after {
+      top: -10px;
+      z-index: 1;
+      border-color: #fff transparent;
+    }
+
+    li {
+      display: block;
+      border-bottom: 1px solid $border-color;
+
+      &:last-child {
+        border-bottom: none;
+      }
+    }
+
+    a {
+      margin: 0;
+      padding: 10px 20px;
+      font-size: 1em;
+      border-radius: 999px;
+      transition: color 0.3s $ease, background-color 0.3s $ease;
+
+      &:hover {
+        color: $accent;
+        background: $tint;
+      }
+
+      &.is-current {
+        color: $accent;
+        background: $tint;
+      }
+    }
+
+    &:not(.hidden) {
+      animation: menu-in 0.5s $ease both;
+
+      li {
+        animation: menu-item-in 0.5s $ease both;
+
+        @for $i from 1 through $menu-items {
+          &:nth-child(#{$i}) {
+            animation-delay: #{$i * 0.03s};
+          }
+        }
+      }
+    }
+  }
+}
+
+.navicon {
+  position: relative;
+  width: 18px;
+  height: 2px;
+  margin: auto;
+  background: #fff;
+  transition: 0.3s;
+
+  &::before,
+  &::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    width: 18px;
+    height: 2px;
+    background: #fff;
+    transition: 0.3s;
+  }
+
+  &::before {
+    top: -4px;
+  }
+
+  &::after {
+    bottom: -4px;
+  }
+}
+
+.close .navicon {
+  background: transparent;
+
+  &::before,
+  &::after {
+    top: 0;
+    width: 18px;
+    transform-origin: 50% 50%;
+  }
+
+  &::before {
+    transform: rotate3d(0, 0, 1, 45deg);
+  }
+
+  &::after {
+    transform: rotate3d(0, 0, 1, -45deg);
+  }
+}
+
+.nav-glass {
+  @include glass-surface;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 0;
+  width: 0;
+  height: 0;
+  overflow: hidden;
+  opacity: 0;
+  pointer-events: none;
+  @include springy(
+    "box-shadow 0.5s #{$ease}, opacity 0.4s #{$ease}, left 0.5s #{$ease}, width 0.5s #{$ease}",
+    "box-shadow 0.5s #{$ease}, opacity 0.4s #{$ease}, left 0.8s #{$spring-soft}, width 0.8s #{$spring-soft}"
+  );
+
+  &.is-placed {
+    opacity: 1;
+  }
+
+  &.is-refracting {
+    -webkit-backdrop-filter: url(#glass-refraction);
+    backdrop-filter: url(#glass-refraction);
+  }
+
+  &.is-lit .nav-light {
+    opacity: 1;
+  }
+}
+
+.is-scrolled .nav-glass {
+  box-shadow: $glass-edge, 0 2px 6px rgba($ink, 0.07), 0 16px 36px -10px rgba($ink, 0.26);
+}
+
+.nav-light {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: radial-gradient(11rem circle at var(--mx, 50%) var(--my, 50%), rgba(#fff, 0.85), rgba(#fff, 0) 70%);
+  opacity: 0;
+  transition: opacity 0.5s $ease;
+}
+
+.nav-indicator {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  width: 0;
+  height: 0;
+  background: rgba(#fff, 0.92);
+  border-radius: 999px;
+  box-shadow: inset 0 1px 0 #fff, 0 0 0 0.5px rgba($ink, 0.08), 0 1px 3px rgba($ink, 0.18);
+  opacity: 0;
+  transform-origin: 50% 50%;
+  @include springy(
+    "translate 0.5s #{$ease}, scale 0.4s #{$ease}, width 0.5s #{$ease}, height 0.5s #{$ease}, opacity 0.3s #{$ease}, box-shadow 0.4s #{$ease}",
+    "translate 0.8s #{$spring-soft}, scale 0.5s #{$spring}, width 0.8s #{$spring-soft}, height 0.8s #{$spring-soft}, opacity 0.3s #{$ease}, box-shadow 0.4s #{$ease}"
+  );
+
+  &.is-charging {
+    box-shadow: inset 0 1px 0 #fff, 0 0 0 0.5px rgba($accent, 0.4), 0 0 0 4px rgba($accent, 0.12), 0 0 20px rgba($accent, 0.38);
+    scale: 0.95;
+  }
+
+  &.is-released {
+    animation: lens-release 0.8s $ease both;
+  }
+}
+
+@keyframes menu-in {
+  from {
+    opacity: 0;
+    transform: translateY(-8px) scale(0.94);
+  }
+
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes menu-item-in {
+  from {
+    opacity: 0;
+    transform: translateY(-6px);
+  }
+
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes lens-release {
+  0% {
+    box-shadow: inset 0 1px 0 #fff, 0 0 0 0.5px rgba($accent, 0.4), 0 0 0 6px rgba($accent, 0.12), 0 0 22px rgba($accent, 0.3);
+    scale: 1.05;
+  }
+
+  100% {
+    box-shadow: inset 0 1px 0 #fff, 0 0 0 0.5px rgba($ink, 0.08), 0 1px 3px rgba($ink, 0.18);
+    scale: 1;
+  }
+}

@@ -15,13 +15,6 @@
 {%- unless forloop.last -%}，{%- endunless -%}
 {%- endfor -%}
 {%- endcapture -%}
-{%- comment -%}
-  Short on purpose (see intro-en.html). Written the way a Chinese speaker writes a personal introduction: 您好，我是 ...,
-  then who I am and where ("目前是 ... 的博士二年级学生"), with no city in front of the school, verbs instead of noun lists
-  (已发表, 另有, 参与了, 获得), and a space between Chinese text and Latin letters or numbers. It is not a translation
-  of the English version. The honors sentence reads "我 ...", so every honor in honors.yml is a verb phrase (hero_zh).
-  The paragraphs follow the order of intro-en.html.
-{%- endcomment -%}
 <p>您好，我是蔡俊豪，<a href="https://www.korea.ac.kr/sites/ko/index.do">高丽大学</a>{% if qs_rank > 0 %}（QS 排名第 {{ qs_rank }} 位）{% endif %}<a href="https://cs.korea.ac.kr/cs/index.do">计算机科学与工程系</a>{% if phd_zh %}博士<span class="phd-year" data-start="{{ phd_start }}" data-words="{{ phd_words_zh }}">{{ phd_zh }}</span>年级在读{% else %}博士在读{% endif %}，主要研究机器遗忘（让训练好的 AI 模型按需忘掉指定的数据）和 AI 应用。<strong>不管是做研究还是做项目，我都倾向于先做出一个端到端跑通的最小可行产品（MVP），再一步步迭代优化。</strong></p>
 <p>到目前为止，我有<strong>论文 {{ papers_n }} 篇</strong>被录用{% if ccf_a_n > 0 %}，其中 {{ ccf_a_n }} 篇被 {{ ccf_names }} 等顶会录用{% if ccf_a_oral_n > 0 %}，{{ oral_names }} 的论文还入选了 Oral{% endif %}{% endif %}；另有<strong>专利 {{ patents_n }} 项</strong>，并正在参与 {{ agency_names }} 资助的<strong>韩国国家级科研项目 {{ projects_n }} 项</strong>。</p>
 {%- assign has_gpa = false %}

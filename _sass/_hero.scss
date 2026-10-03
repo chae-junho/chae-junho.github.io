@@ -1,0 +1,150 @@
+.hero {
+  margin: 0 0 1em;
+}
+
+.lang-switch {
+  display: flex;
+  align-items: center;
+  margin: 0 0 0.9em;
+
+  .lang-switch__icon {
+    margin-right: 0.55em;
+    color: $faint;
+    font-size: 0.95em;
+    line-height: 1;
+  }
+}
+
+.lang-switch__group {
+  position: relative;
+  display: flex;
+  padding: 2px;
+  background: rgba(mix(#fff, $accent, 93%), 0.7);
+  border-radius: 999px;
+  box-shadow:
+    inset 0 1px 2px rgba($ink, 0.12),
+    inset 0 0 0 1px rgba($ink, 0.05),
+    0 1px 0 rgba(#fff, 0.9);
+
+  button {
+    position: relative;
+    z-index: 1;
+    margin: 0;
+    padding: 0 0.8em;
+    color: $ink-2;
+    background-color: transparent;
+    border: 0;
+    border-radius: 999px;
+    cursor: pointer;
+    font-family: "Times New Roman", "Tinos", Times, $cjk-zh, $cjk-ko, serif;
+    font-size: 0.78em;
+    font-weight: 400;
+    letter-spacing: 0.04em;
+    line-height: 1.75;
+    @include springy("color 0.25s #{$ease} 0.14s, transform 0.3s #{$ease}", "color 0.25s #{$ease} 0.14s, transform 0.7s #{$spring}");
+
+    &:hover {
+      color: $ink;
+    }
+
+    &:active {
+      opacity: 1;
+      transform: scale(0.93);
+    }
+
+    &[aria-pressed="true"] {
+      color: $badge-ink;
+      background-color: $accent;
+      font-weight: 700;
+      cursor: default;
+    }
+  }
+}
+
+.lang-switch__thumb {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 0;
+  background: linear-gradient(180deg, lighten($accent, 9%), $accent 75%);
+  border-radius: 999px;
+  box-shadow: inset 0 1px 0 rgba(#fff, 0.4), 0 1px 3px rgba($accent, 0.45), 0 4px 10px -3px rgba($accent, 0.35);
+  pointer-events: none;
+  @include springy(
+    "transform 0.45s #{$ease}, width 0.45s #{$ease}, height 0.45s #{$ease}",
+    "transform 0.8s #{$spring-soft}, width 0.8s #{$spring-soft}, height 0.8s #{$spring-soft}"
+  );
+}
+
+.lang-switch--slide button {
+  &[aria-pressed="true"] {
+    background-color: transparent;
+  }
+}
+
+.i18n {
+  display: none;
+}
+
+.hero[data-lang="en"] .i18n--en,
+.hero[data-lang="ko"] .i18n--ko,
+.hero[data-lang="zh"] .i18n--zh {
+  display: block;
+}
+
+.hero .hero__text p {
+  margin: 0 0 0.8em;
+  font-size: 1em;
+  line-height: 1.5;
+  break-inside: avoid;
+}
+
+.hero .hero__text {
+  column-width: 40rem;
+  column-gap: 3rem;
+}
+
+.hero .hero__text p,
+.more blockquote {
+  -webkit-hyphens: auto;
+  hyphens: auto;
+  text-wrap: pretty;
+}
+
+@media (min-width: $tablet) {
+  .hero .hero__text p,
+  .more blockquote {
+    text-align: justify;
+    text-justify: inter-word;
+  }
+}
+
+.hero .hero__text:lang(zh) p {
+  text-align: justify;
+  text-justify: auto;
+  text-justify: inter-character;
+}
+
+.hero .hero__text:lang(ko) p {
+  text-align: left;
+}
+
+@supports (text-justify: inter-character) {
+  .hero .hero__text:lang(ko) p {
+    text-align: justify;
+    text-justify: inter-character;
+  }
+}
+
+.hero .hero__text:lang(ko) {
+  font-family: "Times New Roman", "Tinos", Times, $cjk-ko, serif;
+
+  p {
+    word-break: keep-all;
+  }
+}
+
+.hero .hero__text:lang(zh) {
+  font-family: "Times New Roman", "Tinos", Times, $cjk-zh, serif;
+}

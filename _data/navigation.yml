@@ -1,5 +1,3 @@
-# Links in the top bar. Each url is the id of a section of the page (the headings in _pages/about.md). The names are
-# short on purpose, so that all of them fit on a laptop screen.
 main:
   - title: "About Me"
     url: "/#about-me"

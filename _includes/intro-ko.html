@@ -19,15 +19,6 @@
 {%- if forloop.last -%}{%- elsif forloop.rindex == 2 -%}{%- if info.ko_final -%}과{%- else -%}와{%- endif -%}{{ " " }}{%- else -%}, {% endif -%}
 {%- endfor -%}
 {%- endcapture -%}
-{%- comment -%}
-  Short on purpose (see intro-en.html). Written the way a Korean speaker introduces themselves on a homepage: a
-  greeting, then school, department, program and year in the order Koreans say them ("Korea University Computer
-  Science and Engineering 박사과정 2년차"), with no city in front of the school, and the name last. Polite, humble
-  endings (~하고 있습니다, ~하는 편입니다). Sentences end in fixed words and the lists are joined with commas, so that no
-  particle depends on an English word (only particles that never change, like 에서는) and the text stays correct when
-  the data changes. It is not a translation of the English version.
-  The paragraphs follow the order of intro-en.html.
-{%- endcomment -%}
 <p>안녕하세요, <a href="https://www.korea.ac.kr/sites/ko/index.do">고려대학교</a> <a href="https://cs.korea.ac.kr/cs/index.do">컴퓨터학과</a> 박사과정{% if phd_start %} <span class="phd-year" data-start="{{ phd_start }}">{{ phd_year }}</span>년차{% endif %} 채준호입니다. 머신 언러닝(이미 학습된 AI 모델이 특정 데이터를 잊도록 만드는 기술)과 AI 응용을 연구하고 있습니다. <strong>연구든 프로젝트든, 일단 처음부터 끝까지 한 번 돌아가는 최소 기능 제품(MVP)을 먼저 만들어 놓고 하나씩 다듬어 가는 편입니다.</strong></p>
 <p>지금까지 <strong>논문 {{ papers_n }}편</strong>을 냈{% if ccf_a_n > 0 %}고, 그중 {{ ccf_a_n }}편은 {{ ccf_names }} 같은 최상위 학회에 채택되었{% if ccf_a_oral_n > 0 %}으며 {{ oral_names }}에서는 Oral 발표로 선정되기도 했{% endif %}습니다{% else %}습니다{% endif %}. 특허도 <strong>{{ patents_n }}건</strong> 냈고, {{ agency_ko }}의 <strong>국가 연구과제 {{ projects_n }}건</strong>에도 참여하고 있습니다.</p>
 {%- assign has_gpa = false %}

@@ -1,123 +1,52 @@
-# Welcome to Jekyll!
-#
-# This config file is meant for settings that affect your entire site, values
-# which you are expected to set up once and rarely need to edit after that.
-# For technical reasons, this file is *NOT* reloaded automatically when you use
-# `jekyll serve`. If you change this file, please restart the server process.
+title: "Junhao Cai, 蔡俊豪, 채준호"
+tab_title: "Homepage"
+description: "Focusing on machine unlearning and AI applications. Native-level Chinese and Korean."
+url: https://chae-junho.github.io
+baseurl: ""
+me: "J Cai"
+visitor_globe_url: "//mapmyvisitors.com/globe.js?d=4zSjajbb3_Ic7lmO_NtdPgAowE3L4QJZqk6GfdWOQAI"
+google_analytics_id:
+google_site_verification:
+bing_site_verification:
+baidu_site_verification:
 
-# Site Settings
-title                    : "Junhao Cai, 蔡俊豪, 채준호"
-description              : "Focusing on machine unlearning and AI applications. Native-level Chinese and Korean."
-url                      : https://chae-junho.github.io # the base hostname and protocol for your site
-baseurl                  : "" # the subpath of your site, e.g. "/blog"
-repository               : "chae-junho/chae-junho.github.io"
-me                       : "J Cai" # your name as written in author lists; it is shown in bold
-
-# google analytics
-google_analytics_id      :  # get google_analytics_id from https://analytics.google.com/analytics/
-
-# SEO Related
-google_site_verification :  # get google_site_verification from https://search.google.com/search-console/about
-bing_site_verification   :  # get bing_site_verification from https://www.bing.com/webmasters/about
-baidu_site_verification  :  # get baidu_site_verification from https://ziyuan.baidu.com/login/index?u=/site/index
-
-# Site Author
 author:
-  name             : "Junhao Cai, 蔡俊豪, 채준호"
-  avatar           : "images/profile-avatar.jpg"
-  bio              : "Ph.D. student of CSE, Korea University"
-  location         : "Seoul, South Korea"
-  employer         :
-  pubmed           :
-  googlescholar    : "https://scholar.google.com/citations?user=6D4rBUIAAAAJ&hl=en"
-  email            : "junhochae@korea.ac.kr"
-  researchgate     :  # e.g., "https://www.researchgate.net/profile/yourprofile"
-  uri              :
-  bitbucket        :
-  codepen          :
-  dribbble         :
-  flickr           :
-  facebook         :
-  foursquare       :
-  github           : chae-junho
-  google_plus      :
-  keybase          :
-  instagram        :
-  impactstory      : # e.g., "https://profiles.impactstory.org/u/xxxx-xxxx-xxxx-xxxx"
-  lastfm           :
-  linkedin         : junhaocai01
-  csdn             : "https://blog.csdn.net/cjh0318"
-  dblp             : # e.g., "https://dblp.org/pid/xx/xxxx.html"
-  orcid            : # e.g., "https://orcid.org/xxxx"
-  pinterest        :
-  soundcloud       :
-  stackoverflow    : # http://stackoverflow.com/users/123456/username
-  steam            :
-  tumblr           :
-  twitter          :
-  vine             :
-  weibo            :
-  xing             :
-  youtube          :
-  wikipedia        :
+  name: "Junhao Cai, 蔡俊豪, 채준호"
+  avatar: "images/profile-avatar.jpg"
+  bio: "Ph.D. student of CSE, Korea University"
+  location: "Seoul, South Korea"
+  email: "junhochae@korea.ac.kr"
+  googlescholar: "https://scholar.google.com/citations?user=6D4rBUIAAAAJ&hl=en"
+  github: chae-junho
+  linkedin: junhaocai01
+  csdn: "https://blog.csdn.net/cjh0318"
+  researchgate:
+  uri:
+  facebook:
+  instagram:
+  dblp:
+  orcid:
+  twitter:
+  weibo:
+  youtube:
 
-
-# Reading Files
 include:
-  - .htaccess
   - _pages
-  - files
 exclude:
-  - "*.sublime-project"
-  - "*.sublime-workspace"
-  - .asset-cache
-  - .bundle
-  - .jekyll-assets-cache
-  - .sass-cache
-  - .github
-  - CHANGELOG
-  - Capfile
-  - Gemfile
-  - Gruntfile.js
+  - README.md
   - LICENSE
-  - README
-  - Rakefile
-  - config
-  - gulpfile.js
-  - log
+  - Gemfile
+  - Gemfile.lock
   - node_modules
-  - package.json
-  - tmp
   - vendor
-keep_files:
-  - .git
-  - .svn
-encoding: "utf-8"
-markdown_ext: "markdown,mkdown,mkdn,mkd,md"
 
-
-# Conversion
+encoding: utf-8
 markdown: kramdown
-highlighter: rouge
-lsi: false
-excerpt_separator: "\n\n"
-incremental: false
-
-
-# Markdown Processing
 kramdown:
   input: GFM
   hard_wrap: false
-  auto_ids: true
-  footnote_nr: 1
-  entity_output: as_char
-  toc_levels: 1..6
-  smart_quotes: lsquo,rsquo,ldquo,rdquo
-  enable_coderay: false
 
-# Defaults
 defaults:
-  # _pages
   - scope:
       path: ""
       type: pages
@@ -125,30 +54,12 @@ defaults:
       layout: default
       author_profile: true
 
-
-# Sass/SCSS
 sass:
   sass_dir: _sass
-  style: compressed # http://sass-lang.com/documentation/file.SASS_REFERENCE.html#output_style
+  style: compressed
 
+timezone: Asia/Seoul
 
-# Outputting
-permalink: /:categories/:title/
-timezone: Asia/Seoul # http://en.wikipedia.org/wiki/List_of_tz_database_time_zones
-
-
-# Plugins
 plugins:
-  - jekyll-paginate
   - jekyll-sitemap
-  - jekyll-gist
-  - jekyll-feed
   - jekyll-redirect-from
-# mimic GitHub Pages with --safe
-whitelist:
-  - jekyll-paginate
-  - jekyll-sitemap
-  - jekyll-gist
-  - jekyll-feed
-  - jemoji
-

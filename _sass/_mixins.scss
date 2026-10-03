@@ -1,53 +1,34 @@
-/* ==========================================================================
-   MIXINS
-   ========================================================================== */
+@mixin springy($plain, $on-a-spring) {
+  transition: #{$plain};
 
-%tab-focus {
-  /* Default*/
-  outline: thin dotted $warning-color;
-  /* Webkit*/
-  outline: 5px auto $warning-color;
-  outline-offset: -2px;
+  @supports (transition-timing-function: linear(0, 1)) {
+    transition: #{$on-a-spring};
+  }
 }
 
-/*
-   em function
-   ========================================================================== */
+@mixin glass-surface($fill: true) {
+  @if $fill {
+    background: $glass-fill;
+  }
+  border-radius: 999px;
+  box-shadow: $glass-edge, 0 2px 6px rgba($ink, 0.05), 0 12px 32px -10px rgba($ink, 0.18);
 
-@function em($target, $context: $doc-font-size) {
-  @return ($target / $context) * 1em;
-}
+  @supports ((-webkit-backdrop-filter: blur(1px)) or (backdrop-filter: blur(1px))) {
+    -webkit-backdrop-filter: blur(22px) saturate(190%);
+    backdrop-filter: blur(22px) saturate(190%);
+  }
 
+  @if $fill {
+    @supports not ((-webkit-backdrop-filter: blur(1px)) or (backdrop-filter: blur(1px))) {
+      background: #fff;
+    }
+  }
 
-/*
-   Bourbon clearfix
-   ========================================================================== */
-
-/*
-  * Provides an easy way to include a clearfix for containing floats.
-  * link http://cssmojo.com/latest_new_clearfix_so_far/
-  *
-  * example scss - Usage
-  *
-  * .element {
-  *   @include clearfix;
-  * }
-  *
-  * example css - CSS Output
-  *
-  * .element::after {
-  *   clear: both;
-  *   content: "";
-  *   display: table;
-  * }
-*/
-
-@mixin clearfix {
-  clear: both;
-
-  &::after {
-    clear: both;
-    content: "";
-    display: table;
+  @media (prefers-reduced-transparency: reduce) {
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+    @if $fill {
+      background: #fff;
+    }
   }
 }

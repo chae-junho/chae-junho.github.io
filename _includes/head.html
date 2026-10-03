@@ -1,30 +1,27 @@
 <meta charset="utf-8">
-
-{% include seo.html %}
-
-<meta name="HandheldFriendly" content="True">
-<meta name="MobileOptimized" content="320">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+{% include seo.html %}
+<link rel="apple-touch-icon" sizes="180x180" href="images/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16x16.png">
+<link rel="shortcut icon" href="images/favicon.ico">
+<link rel="manifest" href="images/site.webmanifest">
+<meta name="theme-color" content="#ffffff">
 <script>
-  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
-  // Parts of the page appear softly as they come into view (see scripts.html). The class that hides them is set only
-  // when the browser can show them again and the visitor has not asked for less motion, and it is taken off if the
-  // script that shows them has not run after three seconds.
-  if ('IntersectionObserver' in window && !(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches)) {
-    document.documentElement.className += ' js-reveal ';
+  (function (root) {
+    root.className = root.className.replace(/\bno-js\b/g, '') + ' js ';
+    var reduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (!('IntersectionObserver' in window) || reduced) {
+      return;
+    }
+    root.className += ' js-reveal ';
     setTimeout(function () {
-      if (!document.documentElement.getAttribute('data-reveal')) {
-        document.documentElement.className = document.documentElement.className.replace(/\bjs-reveal\b/g, '');
+      if (!root.getAttribute('data-reveal')) {
+        root.className = root.className.replace(/\bjs-reveal\b/g, '');
       }
     }, 3000);
-  }
+  }(document.documentElement));
 </script>
-
-<!-- For all browsers -->
 <link rel="stylesheet" href="assets/css/main.css?v={{ site.time | date: '%s' }}">
-
-<meta http-equiv="cleartype" content="on">
-<head>
-  <base target="_blank">
-</head>
+<script src="assets/js/main.js?v={{ site.time | date: '%s' }}" defer></script>
+<base target="_blank">

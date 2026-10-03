@@ -1,0 +1,15 @@
+- {key: location,      label: Location,       icon: map-marker-alt,  class: author__location}
+- {key: uri,           label: Website,        icon: link,            url: "%s"}
+- {key: email,         label: Email,          icon: envelope,        class: author__email, span: true}
+- {key: researchgate,  label: ResearchGate,   icon: researchgate,    url: "%s"}
+- {key: twitter,       label: Twitter,        icon: twitter-square,  url: "https://twitter.com/%s"}
+- {key: facebook,      label: Facebook,       icon: facebook-square, url: "https://www.facebook.com/%s"}
+- {key: linkedin,      label: LinkedIn,       icon: linkedin,        url: "https://www.linkedin.com/in/%s"}
+- {key: dblp,          label: DBLP,           icon: dblp,            url: "%s"}
+- {key: instagram,     label: Instagram,      icon: instagram,       url: "https://instagram.com/%s"}
+- {key: github,        label: Github,         icon: github,          url: "https://github.com/%s"}
+- {key: csdn,          label: CSDN,           icon: pencil-alt,      url: "%s"}
+- {key: youtube,       label: YouTube,        icon: youtube,         url: "https://www.youtube.com/user/%s"}
+- {key: weibo,         label: Weibo,          icon: weibo,           url: "https://www.weibo.com/%s"}
+- {key: googlescholar, label: Google Scholar, icon: graduation-cap,  url: "%s"}
+- {key: orcid,         label: ORCID,          icon: orcid-square,    url: "%s"}

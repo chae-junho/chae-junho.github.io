@@ -1,7 +1,3 @@
-{%- comment -%}
-  Every number shown at the top of the page and in the section summaries is computed here from _data/*.yml,
-  so it follows whatever is added to those files.
-{%- endcomment -%}
 {%- assign pubs = site.data.publications -%}
 {%- assign accepted = pubs | where: "status", "accepted" -%}
 {%- assign papers_n = accepted | size -%}
@@ -26,10 +22,6 @@
 {%- assign software_n = site.data.patents | where: "kind", "software" | size -%}
 {%- assign projects_n = site.data.projects | size -%}
 {%- assign agencies = site.data.projects | group_by: "agency" -%}
-{%- comment -%}
-  Grades for the opening text: the GPA of each degree (shown in the order Ph.D., M.S., B.E.) and the rank in the
-  major, which is the "Major Ranking: Top 3" among the highlights of the B.E. entry in education.yml.
-{%- endcomment -%}
 {%- assign edu_phd = site.data.education | where_exp: "e", "e.degree contains 'Ph.D.'" | first -%}
 {%- assign edu_ms = site.data.education | where_exp: "e", "e.degree contains 'M.S.'" | first -%}
 {%- assign edu_be = site.data.education | where_exp: "e", "e.degree contains 'B.E.'" | first -%}
@@ -37,11 +29,6 @@
 {%- for hl in edu_be.highlights -%}{%- if hl contains "Major Ranking" -%}{%- assign be_rank = hl | remove: "Major Ranking:" | remove: "Top" | strip | plus: 0 -%}{%- endif -%}{%- endfor -%}
 {%- assign natives = site.data.languages | where: "short", "Native" -%}
 {%- assign natives_n = natives | size -%}
-{%- comment -%}
-  The year of the Ph.D. that the opening text names ("second-year"): counted from the month the Ph.D. started, taken
-  from the entry in education.yml whose degree is a Ph.D. and whose period ends with Present, to the day the site is
-  built. A small script in scripts.html keeps it right between two builds. Without such an entry no year is named.
-{%- endcomment -%}
 {%- assign phd_year = 0 -%}
 {%- assign qs_rank = 0 -%}
 {%- assign phd_start = nil -%}

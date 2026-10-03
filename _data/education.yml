@@ -1,14 +1,3 @@
-# Degrees, newest first. Degrees of the same school are shown together, with the logos of that school
-# (the logos are set in schools.yml, under the same school name).
-#
-#   tag:        small chip after the school
-#   roles:      plain text after the GPA (roles such as RA and TA are in experience.yml)
-#   highlights: list of short facts shown in bold after the GPA
-#   advisor, advisor_url, lab, lab_url: shown as "Advisor: Prof. ... of ..."
-#
-# The opening text says which year of the Ph.D. you are in ("second-year"). It is counted from the start of the entry
-# whose degree is a Ph.D. and whose period ends with Present. Without such an entry no year is named.
-
 - period: "2025.09 - Present"
   degree: "Ph.D. in Computer Science"
   school: "Korea University"

@@ -1,0 +1,62 @@
+.section-glow {
+  position: absolute;
+  left: -0.9rem;
+  z-index: -1;
+  width: calc(100% + 1.8rem);
+  overflow: hidden;
+  border-radius: 1.1rem;
+  opacity: 0;
+  pointer-events: none;
+
+  transition: opacity 1.1s $ease;
+
+  &::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    border-radius: inherit;
+    box-shadow: inset 0 0 0 1px rgba($accent, 0.16), inset 0 1px 0 rgba(#fff, 0.8);
+    opacity: 0;
+    transition: opacity 0.9s $ease 0.45s;
+  }
+
+  &.is-on {
+    opacity: 1;
+    transition: opacity 0.4s $ease;
+
+    &::after {
+      opacity: 1;
+    }
+
+    .section-glow__wave {
+      transform: scale(1);
+      will-change: transform;
+      transition: transform 1.2s cubic-bezier(0.22, 0.61, 0.36, 1);
+    }
+  }
+}
+
+.section-glow__wave {
+  position: absolute;
+  background: rgba(mix(#fff, $accent, 93%), 0.62);
+  border-radius: 50%;
+  box-shadow: inset 0 0 36px rgba($accent, 0.14);
+  transform: scale(0);
+}
+
+.js-reveal .page__content > h1.is-locating {
+  animation: rule-draw 1s $ease both;
+}
+
+@keyframes rule-draw {
+  from {
+    background-size: 0 1px;
+  }
+
+  to {
+    background-size: 100% 1px;
+  }
+}

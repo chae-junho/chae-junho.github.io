@@ -1,14 +1,3 @@
-# Emblems shown at the left of the degrees of a school (see _includes/education.html).
-# `name` must be the same as `school` in education.yml. Schools are listed in the order of education.yml.
-#
-#   logos: emblems shown side by side
-#     src, alt, url   the image file, its description (also the tooltip), and the page it links to
-#     w, h            size of the file in pixels (keeps the page from jumping while it loads)
-#     round: true     for a round emblem, which is drawn a little smaller to look as big as the shields
-#
-# Only the emblems are shown, without any wordmark, because the name of the school is written in the text next to
-# them. They are the official emblems of the schools, used to show where the degrees come from.
-
 - name: "Korea University"
   logos:
     - src: "/images/logos/korea-university-emblem.png"

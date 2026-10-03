@@ -1,10 +1,3 @@
-# Patents and software copyrights. Newest first.
-#
-#   kind:    patent | software
-#   status:  review marks a row that stands for several filings under review (with count)
-#   url:     shown as a small colored PDF link next to the title
-#   authors: a trailing * means equal contribution and is shown as a superscript
-
 - kind: patent
   year: 2026
   title: "Device and Method for Retain-Orthogonal Updates Based Machine Unlearning for Continual Diffusion Concept Erasure"

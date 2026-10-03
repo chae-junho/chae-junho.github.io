@@ -1,0 +1,111 @@
+.pub-list em {
+  font-style: normal;
+  font-variant-numeric: tabular-nums lining-nums;
+}
+
+.pub-list {
+  margin: 0 0 1em;
+  padding: 0;
+  list-style: none;
+
+  > li {
+    margin: 0 0 0.7em;
+    line-height: 1.4;
+  }
+}
+
+.pub-list--grid {
+  display: grid;
+  grid-template-columns: max-content minmax(0, 1fr);
+  column-gap: 1em;
+  row-gap: 0.8em;
+  align-items: start;
+
+  > li {
+    display: contents;
+  }
+
+  .pub-badge {
+    justify-self: start;
+    margin: 0.1em 0 0;
+  }
+
+  .pub__body {
+    min-width: 0;
+    line-height: 1.4;
+  }
+}
+
+.pub-list--patents,
+.pub-list--projects,
+.pub-list--honors,
+.pub-list--activities,
+.pub-list--languages,
+.pub-list--skills {
+  grid-template-columns: $label-column minmax(0, 1fr);
+}
+
+@media (max-width: $phone) {
+  .pub-list--grid {
+    display: block;
+
+    > li {
+      display: block;
+      margin: 0 0 0.9em;
+    }
+
+    .pub-badge {
+      margin: 0 0 0.15em;
+    }
+  }
+}
+
+.pub__title {
+  color: $ink;
+  font-weight: 700;
+}
+
+.pub-link {
+  margin-left: 0.35em;
+  font-size: 0.78em;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+}
+
+.pub__meta {
+  display: block;
+  margin-top: 0.1em;
+  color: $ink-2;
+  font-size: 0.88em;
+  line-height: 1.4;
+
+  strong {
+    color: $ink;
+  }
+}
+
+.pub__line {
+  display: block;
+}
+
+.pub__line--lead {
+  font-weight: 700;
+}
+
+.pub-list--honors .pub__line {
+  margin-bottom: 0.15em;
+}
+
+.pub-sub {
+  color: $muted;
+  font-size: 0.9em;
+}
+
+.pub-sub .pub-role {
+  color: $ink;
+  font-weight: 700;
+}
+
+.pub-nowrap {
+  white-space: nowrap;
+}

@@ -1,0 +1,50 @@
+$reveal-targets: ".sidebar .author__avatar", ".sidebar .author__content > *", ".sidebar .author__urls > li", ".visitors",
+  ".hero .hero__text > p", ".page__content > h1", ".page__content > h2", ".page__content > p",
+  ".page__content > details", ".page__content .pub-list--grid > li > *",
+  ".page__content .pub-list:not(.pub-list--grid) > li", ".page__content .school-block__logos";
+
+@function join-with-commas($list) {
+  $out: "";
+  @each $item in $list {
+    $out: if($out == "", $item, "#{$out}, #{$item}");
+  }
+  @return $out;
+}
+
+$reveal-selector: join-with-commas($reveal-targets);
+
+:root {
+  --reveal-targets: #{$reveal-selector};
+}
+
+.js-reveal {
+
+  #main {
+    animation: none;
+  }
+
+  #{$reveal-selector} {
+    @include springy(
+      "opacity 0.8s #{$ease} var(--d, 0s), transform 0.8s #{$ease} var(--d, 0s)",
+      "opacity 0.8s #{$ease} var(--d, 0s), transform 1s #{$spring} var(--d, 0s)"
+    );
+
+    &:not(.is-in) {
+      opacity: 0;
+      transform: translateY(0.9rem);
+    }
+  }
+
+  .page__content > h1 {
+    border-bottom-color: transparent;
+    background: linear-gradient($accent, $accent) 0 100% / 0 1px no-repeat border-box;
+    @include springy(
+      "opacity 0.8s #{$ease} var(--d, 0s), transform 0.8s #{$ease} var(--d, 0s), background-size 1.2s #{$ease} calc(var(--d, 0s) + 0.15s)",
+      "opacity 0.8s #{$ease} var(--d, 0s), transform 1s #{$spring} var(--d, 0s), background-size 1.2s #{$ease} calc(var(--d, 0s) + 0.15s)"
+    );
+
+    &.is-in {
+      background-size: 100% 1px;
+    }
+  }
+}

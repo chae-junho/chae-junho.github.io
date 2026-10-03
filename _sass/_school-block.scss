@@ -1,0 +1,70 @@
+.school-block {
+  margin: 0 0 1.2em;
+
+  .pub-list {
+    margin-bottom: 0;
+
+    > li:last-child {
+      margin-bottom: 0;
+    }
+  }
+}
+
+.school-block__logos {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.6em 0.933rem;
+  margin: 0 0 0.7em;
+}
+
+.page__content .school-logo {
+  display: block;
+  line-height: 0;
+  text-decoration: none;
+
+  &:hover,
+  &:focus {
+    opacity: 0.85;
+  }
+
+  img {
+    display: block;
+    width: auto;
+    height: 3.467rem;
+  }
+}
+
+.page__content .school-logo--round img {
+  height: 3.067rem;
+}
+
+@media (min-width: $tablet) {
+  .school-block {
+    display: grid;
+    grid-template-columns: $label-column minmax(0, 1fr);
+    column-gap: 1em;
+    align-items: center;
+  }
+
+  .school-block--single {
+    align-items: end;
+    align-items: last baseline;
+  }
+
+  .school-block__logos {
+    justify-content: center;
+    margin: 0;
+  }
+}
+
+.school-block__items {
+  em {
+    color: $muted;
+    white-space: nowrap;
+  }
+
+  .pub__title {
+    white-space: nowrap;
+  }
+}

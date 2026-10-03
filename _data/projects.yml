@@ -1,14 +1,3 @@
-# Funded research projects, newest first. Taken from https://rain.korea.ac.kr/research/project
-#
-#   agency:       funding agency; projects with the same agency are counted together at the top of the page
-#   badge_extra:  shown in brackets after the agency, e.g. ERC
-#   from, to:     the project term
-#   since:        when you joined, if different from the start of the term
-#   role:         your role, if any, written in bold after the term, with "since ..." (role_ko and role_zh: the same in
-#                 Korean and Chinese, for the opening text)
-#   program:      umbrella program, shown as a tag
-#   topics:       what you work on inside the project, shown as tags (a topic that the title already says is left out)
-
 - agency: "NRF"
   title: "Development of Core Technologies for Multimodal Machine Unlearning"
   title_ko: "멀티모달 머신 언러닝 핵심기술 개발"

@@ -1,102 +1,101 @@
-/* ==========================================================================
-   SIDEBAR
-   ========================================================================== */
-
-/*
-   Default
-   ========================================================================== */
-
 .sidebar {
-  -webkit-transform: translate3d(0, 0 , 0);
-          transform: translate3d(0, 0 , 0);
+  transform: translate3d(0, 0, 0);
 
-  @include clearfix();
-  margin-bottom: 1em;
-
-  @include breakpoint($large) {
-    @include span(2 of 12);
-    opacity: 1;
-    -webkit-transition: opacity 0.2s ease-in-out;
-            transition: opacity 0.2s ease-in-out;
-
-    &:hover {
-      opacity: 1;
-    }
+  &::after {
+    clear: both;
+    content: "";
+    display: table;
   }
 
-
-  @include breakpoint($x-large) {
-    padding-right: 0;
-  }
-
-  h2, h3, h4, h5, h6 {
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
     margin-bottom: 0;
-    font-family: $sans-serif-narrow;
+    font-family: $serif;
   }
 
-  h3, h4 {
-    font-size: $type-size-5;
+  h3,
+  h4 {
+    font-size: 1em;
   }
 
-  p, li {
-    font-family: $sans-serif;
-    font-size: $type-size-6;
+  p,
+  li {
+    font-family: $serif;
+    font-size: 1em;
     line-height: 1.5;
   }
 
   img {
     width: 100%;
   }
+
+  @media (max-width: $below-wide-screen) {
+    margin-bottom: 0.5em;
+  }
+
+  @media (min-width: $wide-screen) {
+    position: sticky;
+    top: $sidebar-top;
+
+    &.sidebar--free {
+      position: static !important;
+    }
+
+    &.sidebar--fill {
+      display: flex;
+      flex-direction: column;
+      height: calc(100vh - #{$sidebar-top});
+
+      .profile_box {
+        flex: none;
+      }
+
+      #visitors-slot-side {
+        display: flex;
+        flex: 1 1 auto;
+        flex-direction: column;
+        min-height: 0;
+      }
+    }
+  }
 }
 
-.sidebar__right {
-  margin-bottom: 1em;
-
-  @include breakpoint($large) {
-    position: relative;
-    float: right;
-    width: $right-sidebar-width-narrow;
-    margin-left: span(0.5 of 12);
-    z-index: 10;
-  }
-
-  @include breakpoint($x-large) {
-    width: $right-sidebar-width;
-  }
+.sidebar--measuring,
+.sidebar--measuring * {
+  transition: none !important;
 }
 
-/*
-   Author profile and links
-   ========================================================================== */
-.profile_box{
-  @include breakpoint($large) {
-    display: block;
-  }
+.profile_box {
   display: flex;
   justify-content: flex-start;
   align-content: flex-start;
   align-items: center;
+
+  @media (min-width: $wide-screen) {
+    display: block;
+  }
 }
 
 .author__avatar {
   display: table-cell;
   vertical-align: top;
   width: 75px;
-  // set width only, for non-square avatars
-  // height: 36px;
-
-  @include breakpoint($large) {
-    display: block;
-    width: auto;
-    height: auto;
-  }
 
   img {
     max-width: 175px;
     min-width: 75px;
     border-radius: 50%;
+  }
 
-    @include breakpoint($large) {
+  @media (min-width: $wide-screen) {
+    display: block;
+    width: auto;
+    height: auto;
+
+    img {
       padding: 5px;
       border: 1px solid $border-color;
     }
@@ -108,10 +107,9 @@
   vertical-align: top;
   padding-left: 10px;
   min-width: 120px;
-  // padding-right: 25px;
   line-height: 1;
 
-  @include breakpoint($large) {
+  @media (min-width: $wide-screen) {
     display: block;
     width: 100%;
     padding-left: 0;
@@ -121,57 +119,57 @@
 
 .author__name {
   margin: 0;
+  word-break: keep-all;
 
-  @include breakpoint($large) {
+  @media (min-width: $wide-screen) {
     margin-top: 10px;
     margin-bottom: 10px;
   }
 }
 
 .sidebar .author__name {
-  @include breakpoint($medium) {
-    font-size: $type-size-3;
-  }
-  font-family: $sans-serif;
-  font-size: $type-size-4;
+  color: $ink;
+  font-family: "Times New Roman", "Tinos", Times, $cjk-zh, $cjk-ko, serif;
+  font-size: 1em;
+  font-weight: 700;
+  line-height: 1.2;
+  text-wrap: balance;
 }
 
 .author__bio {
   margin: 0;
 
-  @include breakpoint($large) {
+  @media (min-width: $wide-screen) {
     margin-top: 10px;
     margin-bottom: 20px;
   }
+}
+
+.sidebar .author__bio {
+  color: $muted;
+  font-size: 0.88em;
+  line-height: 1.4;
+}
+
+.author__bio-part {
+  white-space: nowrap;
 }
 
 .author__urls-wrapper {
   position: relative;
   display: table-cell;
   vertical-align: middle;
-  font-family: $sans-serif;
   z-index: 10;
-  position: relative;
   margin-left: auto;
+  font-family: $serif;
   cursor: pointer;
 
-  li:last-child {
-    a {
-      margin-bottom: 0;
-    }
-  }
-
-  @include breakpoint($large) {
-    display: block;
-  }
-
-  button {
+  li:last-child a {
     margin-bottom: 0;
-    width: 120px;
-    padding: 0.5em;
-    @include breakpoint($large) {
-      display: none;
-    }
+  }
+
+  @media (min-width: $wide-screen) {
+    display: block;
   }
 }
 
@@ -183,54 +181,33 @@
   padding: 10px;
   list-style-type: none;
   border: 1px solid $border-color;
-  border-radius: $border-radius;
+  border-radius: 4px;
   background: #fff;
   z-index: -1;
   box-shadow: 0 0 10px rgba(#000, 0.25);
   cursor: default;
 
-  @include breakpoint($large) {
-    display: block;
-    position: relative;
-    margin: 0;
-    padding: 0;
-    border: 0;
-    background: transparent;
-    box-shadow: none;
-  }
-
-  &:before {
+  &::before,
+  &::after {
     display: block;
     content: "";
     position: absolute;
+    left: calc(50% - 10px);
+    width: 0;
+    border-style: solid;
+    border-width: 0 10px 10px;
+  }
+
+  &::before {
     top: -11px;
-    left: calc(50% - 10px);
-    width: 0;
-    border-style: solid;
-    border-width: 0 10px 10px;
-    border-color: $border-color transparent;
     z-index: 0;
-
-    @include breakpoint($large) {
-      display: none;
-    }
+    border-color: $border-color transparent;
   }
 
-  &:after {
-    display: block;
-    content: "";
-    position: absolute;
+  &::after {
     top: -10px;
-    left: calc(50% - 10px);
-    width: 0;
-    border-style: solid;
-    border-width: 0 10px 10px;
-    border-color: #fff transparent;
     z-index: 1;
-
-    @include breakpoint($large) {
-      display: none;
-    }
+    border-color: #fff transparent;
   }
 
   li {
@@ -244,27 +221,144 @@
     padding-top: 2px;
     padding-bottom: 2px;
     color: inherit;
-    font-size: $type-size-5;
+    font-size: 1em;
     text-decoration: none;
 
     &:hover {
       text-decoration: underline;
+    }
+  }
+
+  @media (min-width: $wide-screen) {
+    display: block;
+    position: relative;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    box-shadow: none;
+
+    &::before,
+    &::after {
+      display: none;
     }
   }
 }
 
-.author__urls_sm{
-  padding: .25em;
+.author__urls_sm {
+  padding: 0.25em;
   font-size: 1.75em;
   display: block;
+
   a {
     color: inherit;
     text-decoration: none;
+
     &:hover {
       text-decoration: underline;
     }
   }
-  @include breakpoint($large) {
+
+  @media (min-width: $wide-screen) {
     display: none;
+  }
+}
+
+.sidebar .author__urls a {
+  color: $ink;
+  font-size: 0.88em;
+
+  &:hover {
+    color: $link;
+  }
+}
+
+.sidebar .author__location {
+  font-size: 0.88em;
+}
+
+.author__description {
+  white-space: normal;
+  margin-bottom: 1em;
+}
+
+.author__urls li.author__email {
+  white-space: normal;
+
+  span {
+    font-size: 0.93em;
+  }
+}
+
+.author__email span,
+.hero__email {
+  overflow-wrap: anywhere;
+  -webkit-user-select: all;
+  user-select: all;
+}
+
+.hero__email {
+  font-weight: 700;
+}
+
+@media (min-width: $wide-screen) {
+  .sidebar .author__avatar img {
+    max-width: 10rem;
+    border-color: $rule;
+  }
+
+  .sidebar .author__urls a {
+    margin-bottom: 1px;
+    padding-top: 1px;
+    padding-bottom: 1px;
+  }
+}
+
+@media (max-width: $below-wide-screen) {
+  .author__avatar {
+    flex: 0 0 auto;
+    width: auto;
+
+    img {
+      box-sizing: border-box;
+      width: 66px;
+      min-width: 0;
+      max-width: 66px;
+      padding: 3px;
+      border: 1px solid $rule;
+    }
+  }
+
+  .author__content {
+    padding-left: 14px;
+  }
+
+  .author__urls-wrapper {
+    padding-left: 10px;
+  }
+
+  .author__urls_sm {
+    display: grid;
+    grid-template-columns: repeat(2, 32px);
+    padding: 0;
+    font-size: 1em;
+
+    a {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 32px;
+      height: 32px;
+      color: $muted;
+
+      .glyph {
+        font-size: 1.1em;
+      }
+
+      &:hover {
+        color: $link;
+        text-decoration: none;
+      }
+    }
   }
 }

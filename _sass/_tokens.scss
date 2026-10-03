@@ -1,0 +1,43 @@
+$accent: #8b0029;
+$link: $accent;
+$badge-ink: #fff;
+
+$serif: "Times New Roman", "Tinos", Times, "Liberation Serif", serif;
+$cjk-zh: "Songti SC", "STSong", "SimSun", "NSimSun", "Noto Serif CJK SC", "Noto Serif SC", "Source Han Serif SC";
+$cjk-ko: "AppleMyungjo", "Batang", "BatangChe", "Nanum Myeongjo", "NanumMyeongjo", "Noto Serif CJK KR", "Noto Serif KR", "Source Han Serif K";
+
+$gray: mix($accent, #7a7a7a, 12%);
+$border-color: mix(#fff, $gray, 90%);
+$ink: mix($accent, #0f0f0f, 10%);
+$ink-2: mix($accent, #3a3a3a, 12%);
+$muted: mix($accent, #666, 16%);
+$faint: mix($accent, #999, 16%);
+$rule: mix($accent, #dcdcdc, 8%);
+$tag-line: mix($accent, #c4c4c4, 10%);
+$tint: mix(#fff, $accent, 92%);
+$tint-strong: mix(#fff, $accent, 80%);
+$globe-land: #a53a58;
+
+$ease: cubic-bezier(0.28, 0.11, 0.32, 1);
+$spring: linear(0, 0.04, 0.14, 0.274, 0.421, 0.565, 0.698, 0.812, 0.904, 0.975, 1.025, 1.058, 1.077, 1.083, 1.082, 1.074, 1.064, 1.052, 1.039, 1.028, 1.018, 1.01, 1.003, 0.999, 0.996, 0.994, 0.993, 0.993, 0.994, 0.994, 0.995, 0.996, 0.997, 0.998, 0.999, 1, 1);
+$spring-soft: linear(0, 0.042, 0.141, 0.267, 0.399, 0.526, 0.639, 0.735, 0.813, 0.875, 0.922, 0.957, 0.981, 0.997, 1.007, 1.012, 1.015, 1.015, 1.014, 1.012, 1.01, 1.008, 1.007, 1.005, 1.004, 1.002, 1.002, 1.001, 1.001, 1, 1, 1, 1);
+
+$glass-fill: rgba(mix(#fff, $accent, 94%), 0.58);
+$glass-edge: inset 0 1px 0 rgba(#fff, 0.95), inset 0 -1px 0 rgba(#fff, 0.45), inset 0 0 0 1px rgba(#fff, 0.5), 0 0 0 1px rgba($ink, 0.07);
+$chip-clear: linear-gradient(180deg, #fff, mix(#fff, $accent, 96%));
+$chip-solid: linear-gradient(180deg, lighten($accent, 8%), $accent 70%, darken($accent, 3%));
+
+$wide-screen: 57.8125em;
+$below-wide-screen: 57.8em;
+$phone: 37.4em;
+$tablet: 37.5em;
+$label-column: 9.5rem;
+$sidebar-top: 4.5em;
+$globe-width: 7.5rem;
+$menu-items: 12;
+
+:root {
+  --ease: #{$ease};
+  --spring: #{$spring};
+  --globe-land: #{$globe-land};
+}
