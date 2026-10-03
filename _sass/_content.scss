@@ -8,6 +8,12 @@ h1::before,
   width: 0;
   height: $scroll-offset;
   margin-top: -$scroll-offset;
+  pointer-events: none;
+}
+
+.anchor,
+.anchor-line {
+  pointer-events: none;
 }
 
 .page__content {

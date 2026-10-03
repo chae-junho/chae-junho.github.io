@@ -99,7 +99,7 @@ class Site {
   }
 
   createJump(reveal, bar, masthead, content) {
-    const band = new SectionBand({ content, masthead, headingSelector: HEADING, leadSelector: '.hero .lang-switch' });
+    const band = new SectionBand({ content, masthead, headingSelector: HEADING, leadSelector: '.hero .lang-switch', excludedSelector: '.visitors' });
     band.start();
     return new SectionJump({ reveal, band, lens: bar.lens });
   }

@@ -30,10 +30,10 @@ class OverflowMenu {
     return this.list.offsetWidth <= this.nav.getBoundingClientRect().width;
   }
 
-  keep(ids) {
-    const kept = this.items.filter((item) => item.matches(this.homeItem) || ids.indexOf(this.idOf(item)) >= 0);
-    this.arrange(this.list, kept);
-    this.arrange(this.panel, this.items.filter((item) => kept.indexOf(item) < 0));
+  collapse() {
+    const home = this.items.filter((item) => item.matches(this.homeItem));
+    this.arrange(this.list, home);
+    this.arrange(this.panel, this.items.filter((item) => home.indexOf(item) < 0));
   }
 
   arrange(parent, items) {

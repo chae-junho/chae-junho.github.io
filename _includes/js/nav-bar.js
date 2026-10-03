@@ -61,7 +61,7 @@ class NavBar {
       this.menu.showButton(false);
     } else {
       const pages = this.pager.build();
-      this.menu.keep(pages[0].ids);
+      this.menu.collapse();
       this.menu.showButton(pages.length > 1);
       this.pager.markCurrent(this.currentId);
     }

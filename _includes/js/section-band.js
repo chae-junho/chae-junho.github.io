@@ -1,9 +1,10 @@
 class SectionBand {
-  constructor({ content, masthead, headingSelector, leadSelector, above = 0.9, below = 0.8, inset = 0.9, awayDelay = 600 }) {
+  constructor({ content, masthead, headingSelector, leadSelector, excludedSelector = null, above = 0.9, below = 0.8, inset = 0.9, awayDelay = 600 }) {
     this.content = content;
     this.masthead = masthead;
     this.headingSelector = headingSelector;
     this.leadSelector = leadSelector;
+    this.excludedSelector = excludedSelector;
     this.above = above;
     this.below = below;
     this.inset = inset;
@@ -133,7 +134,7 @@ class SectionBand {
   }
 
   rangeOf(target, elements) {
-    const group = elements.slice();
+    const group = elements.filter((element) => !this.excludedSelector || !element.matches(this.excludedSelector));
     if (!target.matches(this.headingSelector)) {
       const lead = document.querySelector(this.leadSelector);
       if (lead) {
