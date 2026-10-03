@@ -2,27 +2,28 @@
 # (the logos are set in schools.yml, under the same school name).
 #
 #   tag:        small chip after the school
-#   roles:      plain text after the GPA
+#   roles:      plain text after the GPA (roles such as RA and TA are in experience.yml)
 #   highlights: list of short facts shown in bold after the GPA
 #   advisor, advisor_url, lab, lab_url: shown as "Advisor: Prof. ... of ..."
+#
+# The opening text says which year of the Ph.D. you are in ("second-year"). It is counted from the start of the entry
+# whose degree is a Ph.D. and whose period ends with Present. Without such an entry no year is named.
 
 - period: "2025.09 - Present"
   degree: "Ph.D. in Computer Science"
   school: "Korea University"
   tag: "QS Ranking: 52nd"
   gpa: "100/100"
-  roles: "Research Assistant (RA), Teaching Assistant (TA)"
 
 - period: "2023.09 - 2025.08"
   degree: "M.S. in Computer Science"
   school: "Korea University"
   tag: "QS Ranking: 52nd"
   gpa: "97.1/100"
-  roles: "Research Assistant (RA), Teaching Assistant (TA)"
 
 - period: "2019.09 - 2023.06"
   degree: "B.E. in Computer Science"
   school: "Yanbian University"
   tag: "211 Project"
   gpa: "90.29/100"
-  highlights: ["Major Ranking: Top 3, Innovation Class Student", "Major Representative"]
+  highlights: ["Major Ranking: Top 3"]

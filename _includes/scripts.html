@@ -31,4 +31,24 @@
 })();
 </script>
 
+<script>
+// "second-year" in the opening text is counted when the site is built. This counts it again when the page is opened, so
+// that it is right even if the site has not been rebuilt since September. data-start is the month the Ph.D. started
+// (from _data/education.yml); data-words lists the words for year 1, 2, 3 ... (the Korean text uses the number itself).
+(function () {
+  var spans = document.querySelectorAll('.phd-year');
+  var now = new Date();
+  for (var i = 0; i < spans.length; i++) {
+    var start = (spans[i].getAttribute('data-start') || '').split('-');
+    if (start.length < 2) { continue; }
+    var months = (now.getFullYear() - Number(start[0])) * 12 + (now.getMonth() + 1 - Number(start[1]));
+    var year = Math.floor(months / 12) + 1;
+    if (!(year >= 1)) { continue; }
+    var words = spans[i].getAttribute('data-words');
+    var text = words ? words.split('|')[year - 1] : String(year);
+    if (text) { spans[i].textContent = text; }
+  }
+})();
+</script>
+
 {% include analytics.html %}

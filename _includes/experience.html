@@ -1,0 +1,6 @@
+{%- assign groups = site.data.experience | group_by: "degree" -%}
+<ul class="pub-list pub-list--grid pub-list--experience">
+{%- for g in groups %}
+<li><span class="pub-badge pub-badge--degree">{{ g.name }}</span><div class="pub__body">{% for e in g.items %}<span class="pub__line"><strong>{{ e.role }}</strong>{% if e.place %}, {{ e.place }}{% endif %}</span>{% endfor %}</div></li>
+{%- endfor %}
+</ul>

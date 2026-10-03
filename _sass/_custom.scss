@@ -397,6 +397,7 @@ a.pub-badge,
 .pub-list--patents,
 .pub-list--projects,
 .pub-list--honors,
+.pub-list--experience,
 .pub-list--activities,
 .pub-list--languages,
 .pub-list--skills {
@@ -579,34 +580,44 @@ a.pub-badge,
   margin: 0 0 1em;
 }
 
-// A row of three plain buttons with thin outlines in the accent color; the language shown is filled.
+// One small segmented control: the three languages in one thin outline, the one shown is filled. It is small on
+// purpose, a quiet tool and not a banner (about 25px high), and the same on a phone.
 .lang-switch {
   display: flex;
-  flex-wrap: wrap;
   align-items: center;
-  gap: 0.4em 0.5em;
-  margin: 0 0 1em;
+  margin: 0 0 0.9em;
 
   .lang-switch__icon {
-    margin-right: 0.15em;
-    color: $accent;
-    font-size: 1.35em;
+    margin-right: 0.55em;
+    color: $faint;
+    font-size: 0.95em;
     line-height: 1;
   }
 
   button {
-    margin: 0;
-    padding: 0.1em 0.8em;
+    position: relative;
+    margin: 0 0 0 -1px; // neighbouring outlines share one line
+    padding: 0 0.75em;
     color: $accent;
     background-color: #fff;
     border: 1px solid $accent;
-    border-radius: 2px;
+    border-radius: 0;
     cursor: pointer;
-    font-family: inherit;
-    font-size: 0.95em;
-    font-weight: 700;
-    line-height: 1.5;
+    font-family: "Times New Roman", "Tinos", Times, $cjk-zh, $cjk-ko, serif;
+    font-size: 0.78em;
+    font-weight: 400;
+    letter-spacing: 0.04em;
+    line-height: 1.75;
     transition: background-color 0.12s ease, color 0.12s ease;
+
+    &:first-of-type {
+      margin-left: 0;
+      border-radius: 2px 0 0 2px;
+    }
+
+    &:last-of-type {
+      border-radius: 0 2px 2px 0;
+    }
 
     &:hover {
       background-color: $tint;
@@ -614,8 +625,10 @@ a.pub-badge,
 
     // the language on the page now
     &[aria-pressed="true"] {
+      z-index: 1;
       color: $badge-ink;
       background-color: $accent;
+      font-weight: 700;
       cursor: default;
     }
   }

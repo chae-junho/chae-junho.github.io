@@ -18,6 +18,7 @@ text (papers, patents, projects). Each file starts with a short comment that exp
 | Research projects | `_data/projects.yml` |
 | Honors and awards | `_data/honors.yml` |
 | Education | `_data/education.yml` (logos: `_data/schools.yml` and `images/logos/`) |
+| Experience (RA, TA, positions) | `_data/experience.yml` |
 | Academic activities | `_data/activities.yml` |
 | Languages | `_data/languages.yml` |
 | Skills | `_data/skills.yml` |

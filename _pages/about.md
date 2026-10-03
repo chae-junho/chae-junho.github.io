@@ -46,6 +46,10 @@ Funded projects I take part in at [RAIN Lab.](https://rain.korea.ac.kr/research/
 
 {% include education.html %}
 
+# 💼 Experience {#experience}
+
+{% include experience.html %}
+
 # 🎓 Academic Activities {#academic-activities}
 
 {% include activities.html %}

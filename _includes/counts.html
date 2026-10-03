@@ -10,6 +10,9 @@
 {%- assign ccf_a = accepted | where: "ccf", "A" -%}
 {%- assign ccf_a_n = ccf_a | size -%}
 {%- assign ccf_a_venues = ccf_a | group_by: "venue" -%}
+{%- assign ccf_a_orals = ccf_a | where: "oral", true -%}
+{%- assign ccf_a_oral_n = ccf_a_orals | size -%}
+{%- assign ccf_a_oral_venues = ccf_a_orals | group_by: "venue" -%}
 {%- assign if_papers = accepted | where_exp: "p", "p.impact_factor" -%}
 {%- assign if_n = if_papers | size -%}
 {%- assign max_if = 0 -%}
@@ -25,3 +28,29 @@
 {%- assign agencies = site.data.projects | group_by: "agency" -%}
 {%- assign natives = site.data.languages | where: "short", "Native" -%}
 {%- assign natives_n = natives | size -%}
+{%- comment -%}
+  The year of the Ph.D. that the opening text names ("second-year"): counted from the month the Ph.D. started, taken
+  from the entry in education.yml whose degree is a Ph.D. and whose period ends with Present, to the day the site is
+  built. A small script in scripts.html keeps it right between two builds. Without such an entry no year is named.
+{%- endcomment -%}
+{%- assign phd_year = 0 -%}
+{%- assign phd_start = nil -%}
+{%- assign phd_en = nil -%}
+{%- assign phd_zh = nil -%}
+{%- assign phd_words_en = "a first-year|a second-year|a third-year|a fourth-year|a fifth-year|a sixth-year|a seventh-year|an eighth-year|a ninth-year|a tenth-year" -%}
+{%- assign phd_words_zh = "一|二|三|四|五|六|七|八|九|十" -%}
+{%- assign phd = site.data.education | where_exp: "e", "e.degree contains 'Ph.D.'" | first -%}
+{%- if phd and phd.period contains "Present" -%}
+  {%- assign phd_start = phd.period | slice: 0, 7 | replace: ".", "-" -%}
+  {%- assign sy = phd.period | slice: 0, 4 | plus: 0 -%}
+  {%- assign sm = phd.period | slice: 5, 2 | plus: 0 -%}
+  {%- assign cy = site.time | date: "%Y" | plus: 0 -%}
+  {%- assign cm = site.time | date: "%m" | plus: 0 -%}
+  {%- assign phd_months = cy | minus: sy | times: 12 | plus: cm | minus: sm -%}
+  {%- assign phd_year = phd_months | divided_by: 12 | plus: 1 -%}
+  {%- if phd_year > 0 -%}
+    {%- assign phd_index = phd_year | minus: 1 -%}
+    {%- assign phd_en = phd_words_en | split: "|" | slice: phd_index | first -%}
+    {%- assign phd_zh = phd_words_zh | split: "|" | slice: phd_index | first -%}
+  {%- endif -%}
+{%- endif -%}

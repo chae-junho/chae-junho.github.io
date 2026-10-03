@@ -1,15 +1,27 @@
 {%- include counts.html -%}
 {%- assign hero_honors = site.data.honors | where_exp: "h", "h.hero" | sort: "hero" -%}
-{%- assign top_honor = hero_honors | first -%}
 {%- capture ccf_names -%}{%- for g in ccf_a_venues -%}{{ g.name }}{%- unless forloop.last -%}, {% endunless -%}{%- endfor -%}{%- endcapture -%}
+{%- capture oral_names -%}{%- for g in ccf_a_oral_venues -%}{{ g.name }}{%- unless forloop.last -%}, {% endunless -%}{%- endfor -%}{%- endcapture -%}
 {%- capture agency_names -%}{%- for g in agencies -%}{{ g.name }}{%- unless forloop.last -%}, {% endunless -%}{%- endfor -%}{%- endcapture -%}
+{%- capture honors_ko -%}
+{%- for h in hero_honors -%}
+{%- assign rank_val = h.rank | replace: "Top ", "" -%}
+{%- capture name_tag -%}<strong>{{ h.name }}</strong>{%- endcapture -%}
+{%- if h.hero_ko -%}{%- assign phrase = h.hero_ko | replace: "{name}", name_tag | replace: "{times}", h.times | replace: "{rank}", rank_val -%}{{ phrase }}{%- else -%}{{ name_tag }}{% if h.times %} {{ h.times }}회{% endif %}{% if h.rank %}(상위 {{ rank_val }}){% endif %}{%- endif -%}
+{%- unless forloop.last -%}, {% endunless -%}
+{%- endfor -%}
+{%- endcapture -%}
 {%- comment -%}
-  Short on purpose (see intro-en.html). Written the way a Korean speaker would introduce themselves on a homepage: a
-  greeting and the name first, polite endings, and particles that never depend on an English word (lists are joined
-  with commas, and every sentence ends in a fixed word), so that the text stays correct when the data changes.
-  It is not a translation of the English version.
+  Short on purpose (see intro-en.html). Written the way a Korean speaker introduces themselves on a homepage: a greeting,
+  then school, department, program and year in the order Koreans say them ("Korea University Computer Science and
+  Engineering 박사과정 2년차"), with no city in front of the school, and the name last. Sentences end in fixed words
+  and the lists are joined with commas, so that no particle depends on an English word and the text stays correct
+  when the data changes. It is not a translation of the English version.
 {%- endcomment -%}
-<p>안녕하세요, 저는 서울 <a href="https://www.korea.ac.kr/sites/ko/index.do">Korea University</a>의 <a href="https://cs.korea.ac.kr/cs/index.do">Computer Science and Engineering</a> 박사과정에 재학 중인 채준호입니다. <strong>도전 과제를 주시면 직접 분석하고, 이를 해결하는 AI를 만들겠습니다.</strong></p>
-<p><strong>중국어와 한국어는 모두 제 모국어</strong>이고(TOPIK 6급), 영어로도 업무가 가능합니다.</p>
-<p>머신 언러닝(학습을 마친 AI 모델이 특정 데이터를 필요에 따라 잊게 만드는 기술)과 AI 응용을 연구합니다. 성과로는 <strong>논문 {{ papers_n }}편</strong>{% if ccf_a_n > 0 %}(그중 {{ ccf_a_n }}편은 {{ ccf_names }} 등 최상위 AI 학회){% endif %}, <strong>특허 {{ patents_n }}건</strong>, <strong>국가 연구과제 {{ projects_n }}건</strong>({{ agency_names }}){% if top_honor %}, <strong>{{ top_honor.name }}{% if top_honor.times %} {{ top_honor.times }}회{% endif %}</strong>{% if top_honor.rank %}(상위 {{ top_honor.rank | replace: "Top ", "" }}){% endif %}{% endif %} 등이 있습니다.</p>
+<p>안녕하세요, <a href="https://www.korea.ac.kr/sites/ko/index.do">Korea University</a> <a href="https://cs.korea.ac.kr/cs/index.do">Computer Science and Engineering</a> 박사과정 {% if phd_start %}<span class="phd-year" data-start="{{ phd_start }}">{{ phd_year }}</span>년차 {% endif %}채준호입니다. <strong>도전 과제를 맡겨 주세요. 잘게 나누어 분석한 뒤, 이를 해결하는 AI 시스템을 만들어 내겠습니다.</strong></p>
+<p><strong>중국어와 한국어가 모두 모국어</strong>입니다(TOPIK 6급). 영어로도 업무가 가능합니다.</p>
+<p>머신 언러닝(학습을 마친 AI 모델이 특정 데이터를 필요에 따라 잊게 만드는 기술)과 AI 응용을 연구합니다. 성과로는 <strong>논문 {{ papers_n }}편</strong>{% if ccf_a_n > 0 %}({{ ccf_names }} 등 최상위 AI 학회 {{ ccf_a_n }}편 포함{% if ccf_a_oral_n > 0 %}, {{ oral_names }} Oral 발표 선정{% endif %}){% endif %}, <strong>특허 {{ patents_n }}건</strong>, <strong>국가 연구과제 {{ projects_n }}건</strong>({{ agency_names }})이 있습니다.</p>
+{%- if hero_honors.size > 0 %}
+<p>수상 경력으로는 {{ honors_ko }} 등이 있습니다.</p>
+{%- endif %}
 <p>연락은 <span class="hero__email">{{ site.author.email }}</span> 또는 <a href="https://www.linkedin.com/in/{{ site.author.linkedin }}">LinkedIn</a>으로 편하게 주세요.</p>
