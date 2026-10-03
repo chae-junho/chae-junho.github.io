@@ -34,6 +34,7 @@
   built. A small script in scripts.html keeps it right between two builds. Without such an entry no year is named.
 {%- endcomment -%}
 {%- assign phd_year = 0 -%}
+{%- assign qs_rank = 0 -%}
 {%- assign phd_start = nil -%}
 {%- assign phd_en = nil -%}
 {%- assign phd_zh = nil -%}
@@ -48,6 +49,7 @@
   {%- assign cm = site.time | date: "%m" | plus: 0 -%}
   {%- assign phd_months = cy | minus: sy | times: 12 | plus: cm | minus: sm -%}
   {%- assign phd_year = phd_months | divided_by: 12 | plus: 1 -%}
+  {%- if phd.tag contains "QS" -%}{%- assign qs_rank = phd.tag | remove: "QS Ranking:" | strip | plus: 0 -%}{%- endif -%}
   {%- if phd_year > 0 -%}
     {%- assign phd_index = phd_year | minus: 1 -%}
     {%- assign phd_en = phd_words_en | split: "|" | slice: phd_index | first -%}

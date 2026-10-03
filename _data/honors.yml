@@ -20,8 +20,8 @@
   bold: true
   hero: 2
   hero_en: "the {name} from Korea University"
-  hero_ko: "Korea University {name}"
-  hero_zh: "获得过 Korea University 颁发的 {name}"
+  hero_ko: "고려대학교 {name}"
+  hero_zh: "获得过高丽大学颁发的 {name}"
 
 - degree: "M.S."
   name: "Global Leader Scholarship"
