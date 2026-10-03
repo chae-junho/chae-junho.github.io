@@ -64,6 +64,22 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+// On a phone the text is 16px instead of 18px (the usual size to read on a small screen). Every other size on the page
+// is in em, so the whole page keeps its proportions.
+@media (max-width: 37.4em) {
+  body {
+    font-size: 1.07em;
+  }
+
+  .page__content > h1 {
+    letter-spacing: 0.06em;
+  }
+
+  .lang-switch button {
+    font-size: 0.85em;
+  }
+}
+
 ::selection {
   background: $tint-d;
 }
@@ -188,6 +204,81 @@ b {
 @media (min-width: 57.8125em) {
   .sidebar .author__avatar img {
     border-color: $rule;
+  }
+}
+
+// ---------------------------------------------------------------------------
+// The profile strip on tablets and phones (below 925px the card is a row above the text): a small portrait in a thin
+// ring, and small quiet icons, instead of a bare photo and four heavy black icons. The menu button is three thin lines.
+// ---------------------------------------------------------------------------
+@media (max-width: 57.8em) {
+  .sidebar {
+    margin-bottom: 0.5em;
+  }
+
+  .author__avatar {
+    flex: 0 0 auto;
+    width: auto;
+
+    img {
+      box-sizing: border-box;
+      width: 66px;
+      min-width: 0;
+      max-width: 66px;
+      padding: 3px;
+      border: 1px solid $rule;
+    }
+  }
+
+  .author__content {
+    padding-left: 14px;
+  }
+
+  .author__urls-wrapper {
+    padding-left: 10px;
+  }
+
+  .author__urls_sm {
+    display: grid;
+    grid-template-columns: repeat(2, 32px);
+    padding: 0;
+    font-size: 1em;
+
+    a {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 32px;
+      height: 32px;
+      color: $muted;
+
+      i {
+        font-size: 1.1em;
+      }
+
+      &:hover {
+        color: $link;
+        text-decoration: none;
+      }
+    }
+  }
+}
+
+.greedy-nav button {
+  background-color: transparent;
+
+  &:hover {
+    background-color: $tint;
+  }
+
+  .navicon,
+  .navicon:before,
+  .navicon:after {
+    background: $accent;
+  }
+
+  &.close .navicon {
+    background: transparent;
   }
 }
 
@@ -649,6 +740,17 @@ a.pub-badge,
   margin: 0 0 0.8em;
   font-size: 1em;
   line-height: 1.5;
+}
+
+// On screens wide enough for it the paragraphs are set flush on both sides, so that their right edge is straight, like the
+// rule under the section titles. On a phone the lines are too short for that (the gaps between words would grow), so
+// the text stays ragged there.
+@media (min-width: 37.5em) {
+  .hero .hero__text p,
+  .more blockquote {
+    text-align: justify;
+    text-wrap: pretty;
+  }
 }
 
 .hero .hero__text:lang(ko) {
