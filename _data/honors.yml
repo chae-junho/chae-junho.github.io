@@ -2,7 +2,7 @@
 #
 #   degree: Ph.D. | M.S. | B.E. (rows appear in the order each degree first shows up)
 #   name, times ("x N" is added when present), rank (e.g. "Top 1%")
-#   bold:   true makes the chip stand out
+#   bold:   true sets the honor in bold (the ones the row is about)
 #   hero:   a number; the entry with the lowest number is named in the short opening text at the top of the page
 
 - degree: "Ph.D."

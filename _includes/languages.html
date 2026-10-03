@@ -1,6 +1,6 @@
 <ul class="pub-list pub-list--grid pub-list--languages">
 {%- for l in site.data.languages %}
-<li><span class="pub-badge">{{ l.name }}</span><div class="pub__body"><span class="pub__title">{{ l.level }}</span>{% if l.detail %}
+<li><span class="pub-badge">{{ l.name }}</span><div class="pub__body">{{ l.level }}{% if l.detail %}
 <span class="pub__meta">{{ l.detail }}</span>{% endif %}</div></li>
 {%- endfor %}
 </ul>

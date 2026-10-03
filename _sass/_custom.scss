@@ -6,14 +6,19 @@
 //      width of the column beside the profile card, so that its right end lines up with the rule under the section
 //      titles. Chinese and Korean use the serif fonts that go with Times in academic documents there (Songti /
 //      SimSun and Batang / Myeongjo).
-//   2. Near black text on white and ONE color, a deep navy (named once, in _variables.scss), for links, the language
-//      shown, the badges and the thin rules, plus grays. Nothing else is colored. Only the conference badges are
-//      solid; every other label (journals, patents, projects, honors, activities) and the CCF tags are thin
-//      outlines. No shadows or gradients.
+//   2. Near black text on white and ONE color, a deep ink navy (named once, in _variables.scss, with a lighter step of
+//      the same blue for link text), for the badges, the language shown, the thin rules and the links, plus grays that
+//      carry a few percent of the same blue. Nothing else is colored. Only the conference badges are solid; every
+//      other label (journals, patents, projects, honors, activities) and the CCF tags are thin outlines. No shadows
+//      or gradients.
 //   3. Section titles are bold capitals with some letter spacing, over a thin rule in the accent color.
 //   4. Entries that start with a badge (publications, patents, projects, honors, activities) keep the badges in a
 //      column of their own, so that all titles of a list start at the same place and the left edge stays straight.
-//   5. Titles of papers are bold, the author's own name is bold, the rest is regular. Spacing is even and modest.
+//   5. Bold goes to what a row is about: the title of a paper, a patent or a project, a honor, a degree. The label in
+//      front of it is a quiet outline, the line under it is smaller and gray, and the tags at its end are the smallest
+//      and lightest thing in the row. Where the label is the subject (the language, the skill, the conference
+//      served) the label is bold and the text beside it is regular. The author's own name is bold.
+//      Spacing is even and modest.
 //      Sizes follow one scale, counted from the text (1em, about 18px): 0.75em tags, 0.8em badges and captions,
 //      0.88em secondary lines (authors, GPA, the profile card), 1em text, titles, the name and the opening
 //      paragraphs (nothing in the introduction is made larger on purpose), 1.15em the section titles. The top bar is
@@ -23,10 +28,14 @@
 // ---------------------------------------------------------------------------
 // Palette and type
 // ---------------------------------------------------------------------------
-$ink:     #151515; // text and titles
-$muted:   #555;    // secondary text
-$faint:   #8a8a8a; // captions
-$rule:    #cfcfcf; // thin lines
+// The grays take a few percent of the accent, so that black, gray and accent look like one palette and not like a
+// plain gray page with a blue on it.
+$ink:      mix($accent, #0f0f0f, 10%); // text and titles
+$ink-2:    mix($accent, #3a3a3a, 12%); // secondary text that stays easy to read: authors, the top bar
+$muted:    mix($accent, #666, 16%);    // quiet text: dates, small tags
+$faint:    mix($accent, #999, 16%);    // captions
+$rule:     mix($accent, #dcdcdc, 8%);  // thin lines
+$tag-line: mix($accent, #c4c4c4, 10%); // outline of a small tag
 // $accent, $link and $badge-ink are set in _variables.scss (the color of the page is named there and only there)
 $tint:    mix(#fff, $accent, 92%); // a pale wash of the accent, for hover backgrounds
 $tint-d:  mix(#fff, $accent, 80%); // a stronger wash, for the text you select
@@ -89,6 +98,11 @@ b {
   font-variant-numeric: tabular-nums lining-nums;
 }
 
+// In Education the period is quiet and the degree is the headline.
+.edu-school__degrees em {
+  color: $muted;
+}
+
 // ---------------------------------------------------------------------------
 // Top bar. A section's link is underlined in the accent color when it is hovered, and while you read that section
 // (a small script in _includes/scripts.html sets .is-current).
@@ -104,7 +118,7 @@ b {
 }
 
 .masthead__menu-item a {
-  color: #333;
+  color: $ink-2;
   transition: box-shadow 0.15s ease, color 0.15s ease;
 }
 
@@ -155,7 +169,7 @@ b {
 }
 
 .sidebar .author__urls a {
-  color: #222;
+  color: $ink;
   font-size: 0.88em;
 }
 
@@ -216,12 +230,21 @@ b {
   box-shadow: inset 0 0 0 1px $accent;
   border-radius: 2px;
   font-size: 0.8em;
-  font-weight: 700;
   letter-spacing: 0.03em;
   line-height: 1.5;
   text-decoration: none;
   white-space: nowrap;
   vertical-align: 0.04em;
+}
+
+// Bold goes to what a row is about. In patents, projects and honors that is the title or the honor, so the label in
+// front of it stays quiet (regular). Where the label is the subject (the venue of a paper, the language, the skill,
+// the conference served) it is bold.
+.pub-list--publications .pub-badge,
+.pub-list--languages .pub-badge,
+.pub-list--skills .pub-badge,
+.pub-list--activities .pub-badge {
+  font-weight: 700;
 }
 
 a.pub-badge,
@@ -271,18 +294,21 @@ a.pub-badge,
 }
 
 .pub-list .pub-badge--review {
-  color: #555;
+  color: $muted;
   background-color: #fff;
-  box-shadow: inset 0 0 0 1px #9a9a9a;
+  box-shadow: inset 0 0 0 1px $faint;
+  font-weight: 400;
 }
 
-// Tags are gray everywhere, so that the badges are the only colored things in a list.
+// Tags are the smallest and lightest thing in a row, gray everywhere, so that the badges are the only colored things
+// in a list and a tag never reads as a second label.
 .pub-tag {
   display: inline-block;
   margin-left: 0.3em;
   padding: 0 0.4em;
-  color: #4a4a4a;
-  border: 1px solid #b9b9b9;
+  color: $muted;
+  font-weight: 400;
+  border: 1px solid $tag-line;
   border-radius: 2px;
   font-size: 0.75em;
   font-variant-numeric: lining-nums;
@@ -305,30 +331,15 @@ a.pub-badge,
 
 .pub-list .pub-tag--ccf-b,
 .pub-list .pub-tag--ccf-c {
-  color: #444;
+  color: $ink-2;
   background-color: #fff;
-  border-color: #777;
+  border-color: $muted;
   font-weight: 700;
 }
 
 .pub-list .pub-tag--ccf-none {
-  color: #777;
-  border: 1px dashed #aaa;
-}
-
-// Honor chips carry a whole sentence, so they are a little larger than other tags.
-.pub-tag--honor {
-  margin: 0 0.2em 0.25em 0;
-  padding: 0.02em 0.5em;
-  font-size: 0.88em;
-  line-height: 1.5;
-}
-
-.pub-list--honors .pub-tag--honor.is-bold {
-  color: $accent;
-  background-color: #fff;
-  border-color: $accent;
-  font-weight: 700;
+  color: $muted;
+  border: 1px dashed $faint;
 }
 
 // ---------------------------------------------------------------------------
@@ -424,7 +435,7 @@ a.pub-badge,
 .pub__meta {
   display: block;
   margin-top: 0.1em;
-  color: #444;
+  color: $ink-2;
   font-size: 0.88em;
   line-height: 1.4;
 
@@ -433,9 +444,17 @@ a.pub-badge,
   }
 }
 
-// one line per item (the achievements under a skill)
+// one line per item (the honors of a degree, the achievements under a skill); a line the row is about is bold
 .pub__line {
   display: block;
+}
+
+.pub__line--lead {
+  font-weight: 700;
+}
+
+.pub-list--honors .pub__line {
+  margin-bottom: 0.15em;
 }
 
 .pub-sub {
@@ -570,7 +589,7 @@ a.pub-badge,
 
   .lang-switch__icon {
     margin-right: 0.15em;
-    color: $link;
+    color: $accent;
     font-size: 1.35em;
     line-height: 1;
   }
@@ -578,7 +597,7 @@ a.pub-badge,
   button {
     margin: 0;
     padding: 0.1em 0.8em;
-    color: $link;
+    color: $accent;
     background-color: #fff;
     border: 1px solid $accent;
     border-radius: 2px;

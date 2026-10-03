@@ -1,6 +1,6 @@
 {%- assign groups = site.data.honors | group_by: "degree" -%}
 <ul class="pub-list pub-list--grid pub-list--honors">
 {%- for g in groups %}
-<li><span class="pub-badge pub-badge--degree">{{ g.name }}</span><div class="pub__body">{% for h in g.items %}<span class="pub-tag pub-tag--honor{% if h.bold %} is-bold{% endif %}">{{ h.name }}{% if h.times %} <span class="pub-nowrap">×{{ h.times }}{% if h.rank %}, {{ h.rank }}{% endif %}</span>{% elsif h.rank %}, <span class="pub-nowrap">{{ h.rank }}</span>{% endif %}</span> {% endfor %}</div></li>
+<li><span class="pub-badge pub-badge--degree">{{ g.name }}</span><div class="pub__body">{% for h in g.items %}<span class="pub__line{% if h.bold %} pub__line--lead{% endif %}">{{ h.name }}{% if h.times %} <span class="pub-nowrap">×{{ h.times }}</span>{% endif %}{% if h.rank %} <span class="pub-tag">{{ h.rank }}</span>{% endif %}</span>{% endfor %}</div></li>
 {%- endfor %}
 </ul>

@@ -25,7 +25,7 @@ text (papers, patents, projects). Each file starts with a short comment that exp
 | Name, bio, links, email | `_config.yml` |
 | Opening text | `_includes/intro-en.html`, `intro-ko.html`, `intro-zh.html` |
 | Photo | `images/profile-avatar.jpg` |
-| Color | `$accent` in `_sass/_variables.scss` |
+| Color | `$accent` and `$link` in `_sass/_variables.scss` |
 
 To add a paper, put an entry at the top of `_data/publications.yml`:
 
