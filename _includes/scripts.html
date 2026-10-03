@@ -61,7 +61,10 @@
     e.stopImmediatePropagation();
     var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     target.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'start' });
-    if (history.pushState && location.hash !== url.hash) { history.pushState(null, '', url.hash); }
+    if (history.pushState && location.hash !== url.hash) {
+      // inside a frame (the page at junhaocai.github.io) the back button belongs to the outer page, so the address is replaced, not added
+      if (window.top !== window.self) { history.replaceState(null, '', url.hash); } else { history.pushState(null, '', url.hash); }
+    }
     var id = url.hash.slice(1);
     if (links[id]) { locked = true; setCurrent(id); }
     // a link in the menu of a narrow window: close the menu
