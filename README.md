@@ -19,7 +19,7 @@ text (papers, patents, projects).
 | Honors and awards | `_data/honors.yml` |
 | Education | `_data/education.yml` |
 | Experience (RA, TA, positions) | `_data/experience.yml` |
-| School emblems | `_data/schools.yml` and `images/logos/` |
+| School emblems | `_data/schools.yml` (an optional `url` makes an emblem a link) and `images/logos/` |
 | Academic activities | `_data/activities.yml` |
 | Languages | `_data/languages.yml` |
 | Skills | `_data/skills.yml` |

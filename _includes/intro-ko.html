@@ -24,7 +24,7 @@
 {%- assign has_gpa = false %}
 {%- if edu_phd.gpa and edu_ms.gpa and edu_be.gpa %}{% assign has_gpa = true %}{% endif %}
 {%- if has_gpa or hero_honors.size > 0 %}
-<p>{% if has_gpa %}고려대학교 학점은 박사과정 <strong>{{ edu_phd.gpa }}</strong>, 석사과정 <strong>{{ edu_ms.gpa }}</strong>입니다. 학부는 중국 <a href="https://www.ybu.edu.cn/">Yanbian University</a>의 혁신반(Innovation Class)에서 공부했고{% if be_rank > 0 %}, 학점 <strong>{{ edu_be.gpa }}</strong>으로 전공 {{ be_rank }}등 안에 들었습니다{% else %}, 학점은 <strong>{{ edu_be.gpa }}</strong>였습니다{% endif %}.{% endif %}{% if hero_honors.size > 0 %} {{ honors_ko }}{% endif %}</p>
+<p>{% if has_gpa %}고려대학교 학점은 박사과정 <strong>{{ edu_phd.gpa }}</strong>, 석사과정 <strong>{{ edu_ms.gpa }}</strong>입니다. 학부는 중국 Yanbian University의 혁신반(Innovation Class)에서 공부했고{% if be_rank > 0 %}, 학점 <strong>{{ edu_be.gpa }}</strong>으로 전공 {{ be_rank }}등 안에 들었습니다{% else %}, 학점은 <strong>{{ edu_be.gpa }}</strong>였습니다{% endif %}.{% endif %}{% if hero_honors.size > 0 %} {{ honors_ko }}{% endif %}</p>
 {%- endif %}
 <p>연구실 밖에서는 피아노를 치거나 배드민턴을 치면서 머리를 식힙니다.</p>
 <p><strong>중국어와 한국어를 모두 원어민 수준으로 구사</strong>하고(한국어는 TOPIK 6급) 영어로도 일할 수 있으니, 편하신 언어로 이메일(<span class="hero__email">{{ site.author.email }}</span>)이나 <a href="https://www.linkedin.com/in/{{ site.author.linkedin }}">LinkedIn</a>을 통해 연락 주세요.</p>

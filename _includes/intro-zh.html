@@ -20,7 +20,7 @@
 {%- assign has_gpa = false %}
 {%- if edu_phd.gpa and edu_ms.gpa and edu_be.gpa %}{% assign has_gpa = true %}{% endif %}
 {%- if has_gpa or hero_honors.size > 0 %}
-<p>{% if has_gpa %}成绩方面，我在高丽大学的博士 GPA 是 <strong>{{ edu_phd.gpa }}</strong>，硕士是 <strong>{{ edu_ms.gpa }}</strong>；本科就读于<a href="https://www.ybu.edu.cn/">延边大学</a>创新班，GPA <strong>{{ edu_be.gpa }}</strong>{% if be_rank > 0 %}，专业排名前 {{ be_rank }}{% endif %}。{% endif %}{% if hero_honors.size > 0 %}荣誉方面，我{{ honors_zh }}。{% endif %}</p>
+<p>{% if has_gpa %}成绩方面，我在高丽大学的博士 GPA 是 <strong>{{ edu_phd.gpa }}</strong>，硕士是 <strong>{{ edu_ms.gpa }}</strong>；本科就读于延边大学创新班，GPA <strong>{{ edu_be.gpa }}</strong>{% if be_rank > 0 %}，专业排名前 {{ be_rank }}{% endif %}。{% endif %}{% if hero_honors.size > 0 %}荣誉方面，我{{ honors_zh }}。{% endif %}</p>
 {%- endif %}
 <p>科研和工作之余，我喜欢弹钢琴和打羽毛球。</p>
 <p><strong>中文和韩语我都能以母语水平交流</strong>（韩语有 TOPIK 6 级），英语也可以作为工作语言，无论您习惯哪种语言，都欢迎通过邮箱 <span class="hero__email">{{ site.author.email }}</span> 或 <a href="https://www.linkedin.com/in/{{ site.author.linkedin }}">LinkedIn</a> 联系我。</p>

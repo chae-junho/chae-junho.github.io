@@ -15,13 +15,11 @@
   logos:
     - src: "/images/logos/yanbian-university-emblem.png"
       alt: "Yanbian University"
-      url: "https://www.ybu.edu.cn/"
       w: 316
       h: 316
       round: true
     - src: "/images/logos/college-of-engineering-emblem.png"
       alt: "College of Engineering, Yanbian University"
-      url: "https://gxy.ybu.edu.cn/"
       w: 220
       h: 220
       round: true
