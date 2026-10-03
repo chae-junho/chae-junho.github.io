@@ -66,5 +66,9 @@
 
   .pub__title {
     white-space: nowrap;
+
+    @media (max-width: 21em) {
+      white-space: normal;
+    }
   }
 }

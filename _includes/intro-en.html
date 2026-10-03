@@ -23,7 +23,7 @@
 {%- assign has_gpa = false %}
 {%- if edu_phd.gpa and edu_ms.gpa and edu_be.gpa %}{% assign has_gpa = true %}{% endif %}
 {%- if has_gpa or hero_honors.size > 0 %}
-<p>{% if has_gpa %}My GPA is <strong>{{ edu_phd.gpa }}</strong> in the Ph.D. and <strong>{{ edu_ms.gpa }}</strong> in the M.S. at Korea University, and I graduated from Yanbian University as an Innovation Class student with a B.E. (<strong>{{ edu_be.gpa }}</strong>){% if be_rank > 0 %}, in the top {{ be_rank }} of my major{% endif %}.{% endif %}{% if hero_honors.size > 0 %} My honors include {{ honors_en }}.{% endif %}</p>
+<p>{% if has_gpa %}My GPA is <strong>{{ edu_phd.gpa }}</strong> in the Ph.D. and <strong>{{ edu_ms.gpa }}</strong> in the M.S. I graduated from Yanbian University as an Engineering Innovation Class student with a B.E. in Computer Science and Technology (<strong>{{ edu_be.gpa }}</strong>){% if be_rank > 0 %}, in the top {{ be_rank }} of my major{% endif %}.{% endif %}{% if hero_honors.size > 0 %} My honors include {{ honors_en }}.{% endif %}</p>
 {%- endif %}
 {%- if natives_n > 0 %}
 <p>Outside of research and work, I enjoy playing the piano and badminton.</p>
