@@ -6,8 +6,13 @@
 #   hero:   a number. The honors that have one are named in the short opening text at the top of the page, in this order.
 #           Their wording there is made from name, times and rank ("the Samsung Electronic Scholarship (twice, top 1%)").
 #   hero_en, hero_ko, hero_zh:  the wording to use instead, when that is not enough. Filled in from the entry: {name},
-#           {rank} (without "Top "), {times} (the number), {times_word} (twice, 两次, 2회) and {number} (the number as a
-#           word: eight, 八). The Chinese wording is written as a verb phrase, because the Chinese text reads "我 ...".
+#           {rank} (without "Top "), {times} (the number), {times_word} (twice, 两次) and {number} (the number as a word:
+#           eight). The three languages are written separately, each the way that language says it.
+#           English: a noun phrase ("My honors include ...").
+#           Chinese: a verb phrase ("荣誉方面，我 ..."), joined by commas.
+#           Korean: a clause of its own that ends in "받았{c}" or "수상했{c}"; {c} becomes the ending that fits the place of
+#           the clause (고, 으며, or 습니다 for the last one), and the particles (를, 을, 은, 도) are written here, so
+#           check them when a name changes.
 
 - degree: "Ph.D."
   name: "Global Leader Scholarship"
@@ -18,10 +23,10 @@
 - degree: "Ph.D."
   name: "Outstanding Paper Award"
   bold: true
-  hero: 2
+  hero: 1
   hero_en: "the {name} from Korea University"
-  hero_ko: "고려대학교 {name}"
-  hero_zh: "获得过高丽大学颁发的 {name}"
+  hero_ko: "고려대학교에서는 {name}를 받았{c}"
+  hero_zh: "博士期间获得了高丽大学的 {name}"
 
 - degree: "M.S."
   name: "Global Leader Scholarship"
@@ -44,18 +49,18 @@
   times: 2
   rank: "Top 1%"
   bold: true
-  hero: 1
+  hero: 2
   hero_en: "the {name} ({times_word}, top {rank})"
-  hero_ko: "{name} {times}회(상위 {rank})"
-  hero_zh: "{times_word}获得 {name}（前 {rank}）"
+  hero_ko: "학부 시절에는 {name}을 {times}회(상위 {rank}) 수상했{c}"
+  hero_zh: "本科期间{times_word}获得 {name}（前 {rank}）"
 
 - degree: "B.E."
   name: "National Inspirational Scholarship"
   rank: "Top 1%"
   hero: 3
-  hero_en: "the {name} (a national-level award, top {rank})"
-  hero_ko: "국가급 {name}(상위 {rank})"
-  hero_zh: "还拿到了国家级奖学金 {name}（前 {rank}）"
+  hero_en: "the {name} (a national-level award in China, top {rank})"
+  hero_ko: "중국 국가급 장학금인 {name}(상위 {rank})도 받았{c}"
+  hero_zh: "还获得了国家励志奖学金 {name}（前 {rank}）"
 
 - degree: "B.E."
   name: "Excellent Student Scholarship"
@@ -63,5 +68,5 @@
   rank: "Top 1-5%"
   hero: 4
   hero_en: "the {name} in all {number} undergraduate semesters"
-  hero_ko: "학부 {times}학기 연속 {name}"
-  hero_zh: "本科四年每学期都获得 {name}（共 {times} 次）"
+  hero_ko: "{name}은 {times}학기 내내 빠짐없이 받았{c}"
+  hero_zh: "{name} 则 {times} 个学期一次都没落下"

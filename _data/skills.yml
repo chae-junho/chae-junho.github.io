@@ -1,27 +1,15 @@
 # Skills. tags become small boxes after the name; items are shown one per line.
-# An entry with "hero" is also mentioned in the opening paragraphs at the top of the page
-# (name_ko and name_zh are the names, and hero_ko and hero_zh the achievements, used in the Korean and Chinese versions).
 
 - name: "Coding"
   tags: ["Python", "PyTorch", "scikit-learn", "CompressAI"]
   suffix: "etc."
 
 - name: "Piano"
-  name_ko: "피아노"
-  name_zh: "钢琴"
-  hero: "First Prize, National Piano Competition, China"
-  hero_ko: "중국 전국 피아노 대회 1등상"
-  hero_zh: "全国钢琴比赛一等奖"
   items:
     - "First Prize, National Piano Competition (China)"
     - "National-Level Special Talent Student (China)"
     - "First Prize, Jilin Province Piano Competition (China)"
 
 - name: "Badminton"
-  name_ko: "배드민턴"
-  name_zh: "羽毛球"
-  hero: "Special Talent Student, China"
-  hero_ko: "중국 특기생"
-  hero_zh: "特长生"
   items:
     - "Special Talent Student (China)"

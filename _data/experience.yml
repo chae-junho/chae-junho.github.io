@@ -1,29 +1,11 @@
-# Roles and positions, grouped by degree (the label in front of each group).
-#
-#   degree: Ph.D. | M.S. | B.E. (the groups appear in the order each degree first shows up)
-#   role:   what you did, in bold
-#   place:  where, in regular text after it
-
 - degree: "Ph.D."
-  role: "Research Assistant (RA)"
-  place: "RAIN Lab, Korea University"
-
-- degree: "Ph.D."
-  role: "Teaching Assistant (TA)"
-  place: "Korea University"
+  school: "Korea University"
+  roles: ["Research Assistant (RA)", "Teaching Assistant (TA)"]
 
 - degree: "M.S."
-  role: "Research Assistant (RA)"
-  place: "RAIN Lab, Korea University"
-
-- degree: "M.S."
-  role: "Teaching Assistant (TA)"
-  place: "Korea University"
+  school: "Korea University"
+  roles: ["Research Assistant (RA)", "Teaching Assistant (TA)"]
 
 - degree: "B.E."
-  role: "Major Representative"
-  place: "Yanbian University"
-
-- degree: "B.E."
-  role: "Innovation Class Student"
-  place: "Yanbian University"
+  school: "Yanbian University"
+  roles: ["Major Representative", "Undergraduate Research Assistant"]

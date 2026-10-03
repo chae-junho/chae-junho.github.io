@@ -7,9 +7,7 @@
 {% endcomment %}
 <svg class="visitors__defs" width="0" height="0" aria-hidden="true" focusable="false"><filter id="globe-land" color-interpolation-filters="sRGB"><feColorMatrix type="matrix" values="0.2126 0.7152 0.0722 0 0 0.2126 0.7152 0.0722 0 0 0.2126 0.7152 0.0722 0 0 0 0 0 1 0"/><feComponentTransfer><feFuncR type="linear" slope="1.0428" intercept="-0.0428"/><feFuncG type="linear" slope="2.2827" intercept="-1.2827"/><feFuncB type="linear" slope="1.9351" intercept="-0.9351"/></feComponentTransfer></filter></svg>
 <span class="visitors__size" aria-hidden="true"></span>
-<div class="globe-global-container">
-<script type="text/javascript" id="mmvst_globe" src="//mapmyvisitors.com/globe.js?d=4zSjajbb3_Ic7lmO_NtdPgAowE3L4QJZqk6GfdWOQAI"></script>
-</div>
+<div class="globe-global-container"></div>
 <p class="visitors__caption">Where visitors come from</p>
 </div>
 </div>
@@ -47,6 +45,7 @@
   function fitGlobe() {
     var outer = holder.querySelector('.mmvst_outer');
     if (!outer) { return; }
+    if (box.style.display === 'none') { box.style.display = ''; }
     if (!outer.getAttribute('data-drawn-width')) {
       if (!parseFloat(outer.style.width)) { return; }
       outer.setAttribute('data-drawn-width', parseFloat(outer.style.width));
@@ -84,6 +83,23 @@
   else if (wide.addListener) { wide.addListener(place); }
   window.addEventListener('resize', fit);
   window.addEventListener('load', fit);
+
+  // The widget script is added from here and not written into the page as a script tag. A script tag in the page stops
+  // the browser from going on until the script has come from the server of the widget, and with it everything that
+  // comes after it (the opening text appears late, and out of order). A script that is added like this loads on the
+  // side, and the page still waits for it before it counts as loaded, which is what the widget needs. The widget
+  // finds itself by the id and puts the globe next to its script tag.
+  var widget = document.createElement('script');
+  widget.type = 'text/javascript';
+  widget.id = 'mmvst_globe';
+  widget.async = true;
+  widget.src = '//mapmyvisitors.com/globe.js?d=4zSjajbb3_Ic7lmO_NtdPgAowE3L4QJZqk6GfdWOQAI';
+  holder.insertBefore(widget, holder.firstChild);
+  // Where the server of the widget cannot be reached (some networks block it), there would be a caption under nothing.
+  // The block is hidden then, and shown again if the globe does arrive late.
+  function hideGlobe() { box.style.display = 'none'; fit(); }
+  widget.onerror = hideGlobe;
+  setTimeout(function () { if (!holder.querySelector('.mmvst_outer')) { hideGlobe(); } }, 10000);
 
   // the widget adds the globe to the holder after the page is parsed
   if (window.MutationObserver) { new MutationObserver(fitGlobe).observe(holder, { childList: true }); }

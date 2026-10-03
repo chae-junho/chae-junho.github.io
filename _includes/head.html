@@ -8,10 +8,21 @@
 
 <script>
   document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+  // Parts of the page appear softly as they come into view (see scripts.html). The class that hides them is set only
+  // when the browser can show them again and the visitor has not asked for less motion, and it is taken off if the
+  // script that shows them has not run after three seconds.
+  if ('IntersectionObserver' in window && !(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches)) {
+    document.documentElement.className += ' js-reveal ';
+    setTimeout(function () {
+      if (!document.documentElement.getAttribute('data-reveal')) {
+        document.documentElement.className = document.documentElement.className.replace(/\bjs-reveal\b/g, '');
+      }
+    }, 3000);
+  }
 </script>
 
 <!-- For all browsers -->
-<link rel="stylesheet" href="assets/css/main.css">
+<link rel="stylesheet" href="assets/css/main.css?v={{ site.time | date: '%s' }}">
 
 <meta http-equiv="cleartype" content="on">
 <head>

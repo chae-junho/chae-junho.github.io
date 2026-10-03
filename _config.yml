@@ -7,7 +7,7 @@
 
 # Site Settings
 title                    : "Junhao Cai, 蔡俊豪, 채준호"
-description              : "Focusing on machine unlearning and AI applications. Native speaker of Chinese and Korean."
+description              : "Focusing on machine unlearning and AI applications. Native-level Chinese and Korean."
 url                      : https://chae-junho.github.io # the base hostname and protocol for your site
 baseurl                  : "" # the subpath of your site, e.g. "/blog"
 repository               : "chae-junho/chae-junho.github.io"

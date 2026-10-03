@@ -26,6 +26,15 @@
 {%- assign software_n = site.data.patents | where: "kind", "software" | size -%}
 {%- assign projects_n = site.data.projects | size -%}
 {%- assign agencies = site.data.projects | group_by: "agency" -%}
+{%- comment -%}
+  Grades for the opening text: the GPA of each degree (shown in the order Ph.D., M.S., B.E.) and the rank in the
+  major, which is the "Major Ranking: Top 3" among the highlights of the B.E. entry in education.yml.
+{%- endcomment -%}
+{%- assign edu_phd = site.data.education | where_exp: "e", "e.degree contains 'Ph.D.'" | first -%}
+{%- assign edu_ms = site.data.education | where_exp: "e", "e.degree contains 'M.S.'" | first -%}
+{%- assign edu_be = site.data.education | where_exp: "e", "e.degree contains 'B.E.'" | first -%}
+{%- assign be_rank = 0 -%}
+{%- for hl in edu_be.highlights -%}{%- if hl contains "Major Ranking" -%}{%- assign be_rank = hl | remove: "Major Ranking:" | remove: "Top" | strip | plus: 0 -%}{%- endif -%}{%- endfor -%}
 {%- assign natives = site.data.languages | where: "short", "Native" -%}
 {%- assign natives_n = natives | size -%}
 {%- comment -%}

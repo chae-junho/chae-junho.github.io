@@ -1,6 +1,17 @@
-{%- assign groups = site.data.experience | group_by: "degree" -%}
-<ul class="pub-list pub-list--grid pub-list--experience">
-{%- for g in groups %}
-<li><span class="pub-badge pub-badge--degree">{{ g.name }}</span><div class="pub__body">{% for e in g.items %}<span class="pub__line"><strong>{{ e.role }}</strong>{% if e.place %}, {{ e.place | replace: ' University', '&nbsp;University' }}{% endif %}</span>{% endfor %}</div></li>
+{%- assign schools = site.data.experience | group_by: "school" -%}
+{%- for g in schools %}
+<div class="school-block">
+{%- include school-logos.html school=g.name limit=1 %}
+<ul class="pub-list school-block__items">
+{%- for e in g.items %}
+{%- assign period = e.period -%}
+{%- unless period -%}
+  {%- for stage in site.data.education -%}
+    {%- if stage.degree contains e.degree and stage.school == e.school -%}{%- assign period = stage.period -%}{%- break -%}{%- endif -%}
+  {%- endfor -%}
+{%- endunless %}
+<li>{% for role in e.roles %}<span class="pub__title">{{ role }}</span>{% unless forloop.last %}{% if forloop.rindex == 2 %}{% if e.roles.size > 2 %},{% endif %} and {% else %}, {% endif %}{% endunless %}{% endfor %}, {{ e.school | replace: ' University', '&nbsp;University' }}{% if period %}, <em>{{ period }}</em>{% endif %}</li>
 {%- endfor %}
 </ul>
+</div>
+{%- endfor %}

@@ -23,6 +23,13 @@
 //      paragraphs (nothing in the introduction is made larger on purpose), 1.15em the section titles. The top bar is
 //      0.92em.
 //   6. Everything wraps with flexbox or grid, so it reflows from a phone to a wide desktop.
+//   7. Movement says where you are or what changed, and nothing else: the line under the current link of the top bar
+//      slides to the next one, sections rise a little and appear once as they come into view, a fold opens and closes
+//      with its height, and the language switch slides. One curve for all of it ($ease), 0.3 to 0.9 seconds, and none
+//      of it for those whose system asks for less motion. Things have weight: they move on a spring (a small overshoot
+//      and a settling, $spring) and give a little when pressed. The top bar and the language switch are glass, after
+//      Apple's Liquid Glass: blurred, with a bright edge, lifted by a soft shadow (the only shadows on the page, and the
+//      only gradients besides the globe). The page has no fixed width, it follows the window.
 
 // ---------------------------------------------------------------------------
 // Palette and type
@@ -39,6 +46,25 @@ $tag-line: mix($accent, #c4c4c4, 10%); // outline of a small tag
 $tint:    mix(#fff, $accent, 92%); // a pale wash of the accent, for hover backgrounds
 $tint-d:  mix(#fff, $accent, 80%); // a stronger wash, for the text you select
 
+// The curve of every movement on the page (the one apple.com uses): quick at the start, long and soft at the end.
+$ease: cubic-bezier(0.28, 0.11, 0.32, 1);
+
+// The spring: a damped spring (period 0.52 s, damping 0.62) that settles in about half a second after an overshoot of 8%,
+// written as a linear() curve for a transition that lasts 0.9 s. A browser that does not know linear() keeps the plain curve.
+$spring: linear(0, 0.04, 0.14, 0.274, 0.421, 0.565, 0.698, 0.812, 0.904, 0.975, 1.025, 1.058, 1.077, 1.083, 1.082, 1.074, 1.064, 1.052, 1.039, 1.028, 1.018, 1.01, 1.003, 0.999, 0.996, 0.994, 0.993, 0.993, 0.994, 0.994, 0.995, 0.996, 0.997, 0.998, 0.999, 1, 1);
+
+// The same with less give (damping 0.8, an overshoot of about 2%), for a highlight that slides along a track: the lens
+// of the top bar and the drop of the language switch, which should not leave the glass they sit in.
+$spring-soft: linear(0, 0.042, 0.141, 0.267, 0.399, 0.526, 0.639, 0.735, 0.813, 0.875, 0.922, 0.957, 0.981, 0.997, 1.007, 1.012, 1.015, 1.015, 1.014, 1.012, 1.01, 1.008, 1.007, 1.005, 1.004, 1.002, 1.002, 1.001, 1.001, 1, 1, 1, 1);
+
+@mixin springy($plain, $on-a-spring) {
+  transition: #{$plain};
+
+  @supports (transition-timing-function: linear(0, 1)) {
+    transition: #{$on-a-spring};
+  }
+}
+
 // Chinese and Korean text: serif fonts of the visitor's system, after Times New Roman for the Latin letters.
 $cjk-zh: "Songti SC", "STSong", "SimSun", "NSimSun", "Noto Serif CJK SC", "Noto Serif SC", "Source Han Serif SC";
 $cjk-ko: "AppleMyungjo", "Batang", "BatangChe", "Nanum Myeongjo", "NanumMyeongjo", "Noto Serif CJK KR", "Noto Serif KR", "Source Han Serif K";
@@ -49,7 +75,7 @@ html {
 
 // The top bar stays at the top of the window, so a section title that a menu link scrolls to is left below it.
 .page__content > h1 {
-  scroll-margin-top: 5.2rem;
+  scroll-margin-top: 5.8rem;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -93,11 +119,27 @@ body {
   color: $link;
   text-decoration-line: underline;
   text-decoration-thickness: 1px;
+  text-decoration-color: rgba($link, 0.4);
   text-underline-offset: 0.14em;
+  transition: color 0.3s $ease, text-decoration-color 0.3s $ease, opacity 0.2s $ease;
 
   &:hover {
     color: darken($link, 8%);
+    text-decoration-color: currentColor;
   }
+}
+
+// A press dims what is pressed a little, and a tap on a phone does not flash a gray box.
+a:active,
+button:active,
+summary:active {
+  opacity: 0.7;
+}
+
+a,
+button,
+summary {
+  -webkit-tap-highlight-color: transparent;
 }
 
 a:focus-visible,
@@ -105,6 +147,23 @@ button:focus-visible,
 summary:focus-visible {
   outline: 2px solid rgba($link, 0.6);
   outline-offset: 2px;
+}
+
+// In the bar the ring of the keyboard follows the round shape of the glass, and there is none after the pointer has been used
+// (the script sets .using-pointer on the page at a press of the mouse or the finger, and takes it off at a key).
+.masthead a:focus-visible,
+.masthead button:focus-visible {
+  border-radius: 999px;
+  outline-offset: 0.2rem;
+}
+
+.using-pointer {
+  .masthead a:focus,
+  .masthead button:focus,
+  .lang-switch button:focus,
+  .more > summary:focus {
+    outline: none;
+  }
 }
 
 strong,
@@ -118,49 +177,313 @@ b {
   font-variant-numeric: tabular-nums lining-nums;
 }
 
-// In Education the period is quiet and the degree is the headline.
-.edu-school__degrees em {
-  color: $muted;
+// In Education and Experience the period is quiet and the degree or the role is the headline.
+.school-block__items {
+  em {
+    color: $muted;
+    white-space: nowrap;
+  }
+
+  .pub__title {
+    white-space: nowrap;
+  }
 }
 
 // ---------------------------------------------------------------------------
-// Top bar. A section's link is underlined in the accent color when it is hovered, and while you read that section
-// (a small script in _includes/scripts.html sets .is-current).
+// Top bar: a pane of glass that floats at the top of the window, in the manner of Apple's Liquid Glass. The pane is only as
+// wide as the links (it ends at the last link and does not run to the edge of the window), and it is a layer of its own
+// (.nav-glass, made and placed by a small script in _includes/scripts.html over the list of links, which stays above it
+// and carries only the text; the theme's own menu script counts the items of that list, so nothing else may go into it).
+// What passes under the glass shows through, blurred and more saturated; its edge catches the light (a bright line along
+// the top, a faint one along the bottom) and a soft shadow lifts it from the page. The link of the section you read
+// (.is-current) sits in a lens of clearer glass (.nav-indicator) that slides from one link to the next on the spring, and a
+// soft light follows the pointer over the glass (.nav-light, --mx and --my). Where the browser cannot blur, or the visitor
+// asks for less transparency, the pane is plain white; in Chromium browsers the script also bends what lies behind the rim
+// of the glass (.is-refracting).
 // ---------------------------------------------------------------------------
+$glass-fill: rgba(mix(#fff, $accent, 94%), 0.58);
+$glass-edge: inset 0 1px 0 rgba(#fff, 0.95), inset 0 -1px 0 rgba(#fff, 0.45), inset 0 0 0 1px rgba(#fff, 0.5), 0 0 0 1px rgba($ink, 0.07);
+
+@mixin glass-surface {
+  background: $glass-fill;
+  border-radius: 999px;
+  box-shadow: $glass-edge, 0 2px 6px rgba($ink, 0.05), 0 12px 32px -10px rgba($ink, 0.18);
+
+  @supports ((-webkit-backdrop-filter: blur(1px)) or (backdrop-filter: blur(1px))) {
+    -webkit-backdrop-filter: blur(22px) saturate(190%);
+    backdrop-filter: blur(22px) saturate(190%);
+  }
+
+  @supports not ((-webkit-backdrop-filter: blur(1px)) or (backdrop-filter: blur(1px))) {
+    background: #fff;
+  }
+
+  @media (prefers-reduced-transparency: reduce) {
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+    background: #fff;
+  }
+}
+
 .masthead {
-  border-bottom: 1px solid $rule;
+  background: transparent;
+  border-bottom: 0;
   box-shadow: none;
+  // The theme fades the bar in with an animation of its opacity. An element with an opacity animation (even a finished one
+  // that keeps its last value) is cut off from what is behind it as far as a backdrop filter is concerned, so the glass
+  // would show the page through it sharp instead of blurred and bent. The bar needs none.
+  animation: none;
+  pointer-events: none; // the strip around the glass lets clicks through to the page
 }
 
 .masthead__inner-wrap {
+  padding-top: 0.55rem;
+  padding-bottom: 0.4rem;
   font-family: $serif;
   font-size: 0.92em;
 }
 
+.greedy-nav {
+  background: transparent;
+
+  // The links stand on the glass, with room at both ends so that the first and the last keep clear of the curve, and with
+  // the same room above and below as the lens leaves between itself and the rim.
+  .visible-links {
+    position: relative;
+    z-index: 2;
+    padding: 0.28rem 1.5rem;
+    pointer-events: auto;
+    @include springy("opacity 0.3s #{$ease}, transform 0.4s #{$ease}", "opacity 0.3s #{$ease}, transform 0.8s #{$spring-soft}");
+  }
+
+  // The rows of the paged bar (made by the script): all the links, split into rows that fit beside the button. One row is shown,
+  // the one that holds the section you read; the rows before it wait at the left and the rows after it at the right, and a row
+  // comes in from the side where it waits. The first row of the theme is hidden while the bar turns pages.
+  &.is-paged .visible-links {
+    visibility: hidden;
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  .nav-page {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 2;
+    display: table;
+    margin: 0;
+    padding: 0.28rem 1.5rem;
+    list-style: none;
+    white-space: nowrap;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transform: translateX(1.6rem);
+    transition: opacity 0.3s $ease, transform 0.4s $ease, visibility 0s 0.4s;
+
+    li {
+      display: table-cell;
+      vertical-align: middle;
+
+      &:first-child a {
+        margin-left: 0;
+      }
+
+      &:last-child a {
+        margin-right: 0;
+      }
+    }
+
+    &.is-before {
+      transform: translateX(-1.6rem);
+    }
+
+    &.is-active {
+      opacity: 1;
+      visibility: visible;
+      pointer-events: auto;
+      transform: none;
+      @include springy("opacity 0.35s #{$ease} 0.08s, transform 0.4s #{$ease} 0.08s", "opacity 0.35s #{$ease} 0.08s, transform 0.8s #{$spring-soft} 0.08s");
+    }
+  }
+
+  // the row that is used to measure the links: never shown
+  .nav-probe {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transform: none;
+  }
+
+
+  // the menu button of the narrow window is a round pane of glass of its own, as high as the pane of the links
+  button {
+    @include glass-surface;
+    top: 0;
+    z-index: 2;
+    height: 100%;
+    width: 2.9rem;
+    padding: 0;
+    pointer-events: auto;
+  }
+}
+
+.nav-glass {
+  @include glass-surface;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 0;
+  width: 0;
+  height: 0;
+  overflow: hidden; // cuts off what would leave the glass (the light, the shadow of the lens)
+  opacity: 0; // until the script has placed it over the links
+  pointer-events: none;
+  @include springy(
+    "box-shadow 0.5s #{$ease}, opacity 0.4s #{$ease}, left 0.5s #{$ease}, width 0.5s #{$ease}",
+    "box-shadow 0.5s #{$ease}, opacity 0.4s #{$ease}, left 0.8s #{$spring-soft}, width 0.8s #{$spring-soft}"
+  );
+
+  &.is-placed {
+    opacity: 1;
+  }
+}
+
+// once the page has moved, the glass is lifted a little higher
+.is-scrolled .nav-glass {
+  box-shadow: $glass-edge, 0 2px 6px rgba($ink, 0.07), 0 16px 36px -10px rgba($ink, 0.26);
+}
+
+// Where the script has drawn the map of the refraction (Chromium browsers), the view behind the glass is bent first and
+// blurred after (the blur and the saturation are in the filter itself, in the script), a milder blur than the plain
+// frosted glass needs, so that the bend can be seen.
+.nav-glass.is-refracting {
+  -webkit-backdrop-filter: url(#glass-refraction);
+  backdrop-filter: url(#glass-refraction);
+}
+
+// the light that follows the pointer
+.nav-light {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: radial-gradient(11rem circle at var(--mx, 50%) var(--my, 50%), rgba(#fff, 0.85), rgba(#fff, 0) 70%);
+  opacity: 0;
+  transition: opacity 0.5s $ease;
+}
+
+.nav-glass.is-lit .nav-light {
+  opacity: 1;
+}
+
 .masthead__menu-item a {
   color: $ink-2;
-  transition: box-shadow 0.15s ease, color 0.15s ease;
+  @include springy("color 0.3s #{$ease}, transform 0.3s #{$ease}", "color 0.3s #{$ease}, transform 0.7s #{$spring}");
+
+  &:hover,
+  &:focus-visible {
+    color: $ink;
+  }
+
+  &:active {
+    opacity: 1;
+    transform: scale(0.94);
+  }
+
+  &.is-current {
+    color: $accent;
+  }
 }
 
 .masthead__menu-item--lg a {
   letter-spacing: 0.02em;
 }
 
-.masthead__menu-item:not(.masthead__menu-home-item) a {
-  &:hover,
-  &:focus-visible,
-  &.is-current {
-    color: $ink;
-    box-shadow: inset 0 -2px 0 $accent;
-  }
+// The lens is as high as the link and a pill, so that its curve runs inside the curve of the glass at the same distance
+// all round.
+.nav-indicator {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1; // above the glass, under the links and the button
+  width: 0;
+  height: 0;
+  background: rgba(#fff, 0.92);
+  border-radius: 999px;
+  box-shadow: inset 0 1px 0 #fff, 0 0 0 0.5px rgba($ink, 0.08), 0 1px 3px rgba($ink, 0.18);
+  opacity: 0;
+  @include springy(
+    "translate 0.5s #{$ease}, scale 0.4s #{$ease}, width 0.5s #{$ease}, height 0.5s #{$ease}, opacity 0.3s #{$ease}, box-shadow 0.4s #{$ease}",
+    "translate 0.8s #{$spring-soft}, scale 0.5s #{$spring}, width 0.8s #{$spring-soft}, height 0.8s #{$spring-soft}, opacity 0.3s #{$ease}, box-shadow 0.4s #{$ease}"
+  );
 }
 
-// The theme draws its own bar under a link that is hovered; the underline above replaces it.
+// The theme draws its own bar under a link that is hovered; the lens replaces it.
 .greedy-nav .visible-links a:before {
   display: none;
 }
 
 // The menu that holds the links that do not fit (narrow windows): a pale wash of the accent under the pointer.
+.greedy-nav .hidden-links {
+  background: rgba(#fff, 0.9);
+  border-color: rgba($ink, 0.08);
+  border-radius: 1.3rem;
+  box-shadow: 0 12px 32px -10px rgba($ink, 0.22);
+  transform-origin: top right;
+
+  // it grows out of the button, and its links follow one after another
+  &:not(.hidden) {
+    animation: menu-in 0.5s $ease both;
+  }
+
+  &:not(.hidden) li {
+    animation: menu-item-in 0.5s $ease both;
+
+    @for $i from 1 through 12 {
+      &:nth-child(#{$i}) {
+        animation-delay: #{$i * 0.03s};
+      }
+    }
+  }
+
+  // the link of the section you read: accent colored, on a pale pill
+  a {
+    border-radius: 999px;
+    transition: color 0.3s $ease, background-color 0.3s $ease;
+
+    &.is-current {
+      color: $accent;
+      background: $tint;
+    }
+  }
+}
+
+@keyframes menu-in {
+  from {
+    opacity: 0;
+    transform: translateY(-8px) scale(0.94);
+  }
+
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes menu-item-in {
+  from {
+    opacity: 0;
+    transform: translateY(-6px);
+  }
+
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
 .greedy-nav .hidden-links a:hover {
   color: $accent;
   background: $tint;
@@ -299,19 +622,26 @@ b {
 // ---------------------------------------------------------------------------
 // Zoom and screen width. Zooming the browser changes the width of the window in CSS pixels (200% on a 1440px screen is a
 // 720px window, 50% is a 2880px window), so the layout has to hold at every width, not only at the usual ones.
-//  - From 925px up the page is two columns, the profile card and the text. The card keeps a width that fits the portrait
-//    and the e-mail address (the theme gave it 15% of a container fixed at 925px, which was 136px and broke the address
-//    over two lines), and the gap between the columns follows the window.
+//  - The page has no width of its own: from 925px up it is two columns, the profile card and the text, and the two
+//    together take the whole window less a margin of about 2% on each side. The card has a width that fits the
+//    portrait and the e-mail address (the theme gave it 15% of a container fixed at 925px, which was 136px and broke
+//    the address over two lines), the text takes everything else, and the gap between them follows the window.
 //  - From 1440px up the whole page grows with the window (everything is in rem), at half the rate of the window.
 //    Zooming out still makes the page smaller, but it no longer turns into a small block in a large white window.
+//  - On a wide window the opening text would run in lines of 150 characters or more, which cannot be read. It is set in
+//    columns instead (column-width): one column while the text is narrower than about 80 characters per line plus
+//    another, two when there is room for them, and so on, so that the width of a line stays the same and the text still
+//    follows the window.
 // ---------------------------------------------------------------------------
 @media (min-width: 57.8125em) {
   #main {
     display: grid;
-    grid-template-columns: minmax(12.5rem, 15%) minmax(0, 1fr);
+    grid-template-columns: 12.5rem minmax(0, 1fr);
     column-gap: clamp(1.5rem, 5vw, 4.9rem);
     align-items: start;
-    max-width: 85.34rem;
+    max-width: none;
+    padding-left: clamp(1rem, 2.2vw, 12rem);
+    padding-right: clamp(1rem, 2.2vw, 12rem);
 
     &:before,
     &:after {
@@ -327,8 +657,11 @@ b {
     }
   }
 
+  // the links of the bar start where the card starts (the links have a margin of 1rem of their own)
   .masthead__inner-wrap {
-    max-width: 85.34rem;
+    max-width: none;
+    padding-left: calc(#{clamp(1rem, 2.2vw, 12rem)} - 1rem);
+    padding-right: calc(#{clamp(1rem, 2.2vw, 12rem)} - 1rem);
   }
 }
 
@@ -363,25 +696,34 @@ b {
 }
 
 // ---------------------------------------------------------------------------
-// Badges and tags
-//   .pub-badge   solid label in front of an entry (venue, patent, degree, ...)
-//   .pub-tag     small outlined label (rank, topic, level, ...)
+// Badges and tags: one family of pills, in the same glass as the top bar and the language switch.
+//   .pub-badge   label in front of an entry (venue, patent, degree, ...)
+//   .pub-tag     small label (rank, topic, level, ...)
 //   .pub__title  the entry's title; .pub__meta the line under it
+// A conference is a drop of the accent colored glass (a bright edge along the top, a soft shadow), every other label is
+// an outline in the accent on clear glass, a paper under review a gray one, and the tags are the smallest and lightest
+// thing in a row, gray, so that a tag never reads as a second label. The curve is a full half circle at both ends, and
+// the padding is wider than it was for the square corners so that the text keeps clear of the curve.
 // ---------------------------------------------------------------------------
+$label-column: 9.5rem;
+$chip-clear: linear-gradient(180deg, #fff, mix(#fff, $accent, 96%));
+$chip-solid: linear-gradient(180deg, lighten($accent, 8%), $accent 70%, darken($accent, 3%));
+
 .pub-badge {
   display: inline-block;
   margin-right: 0.25em;
-  padding: 0 0.5em;
+  padding: 0 0.7em;
   color: $accent;
-  background-color: #fff;
-  box-shadow: inset 0 0 0 1px $accent;
-  border-radius: 2px;
-  font-size: 0.8em;
+  background: $chip-clear;
+  box-shadow: inset 0 0 0 1px rgba($accent, 0.85), inset 0 1px 0 rgba(#fff, 0.9);
+  border-radius: 999px;
+  font-size: 0.88em;
   letter-spacing: 0.03em;
   line-height: 1.5;
   text-decoration: none;
   white-space: nowrap;
   vertical-align: 0.04em;
+  transition: filter 0.3s $ease, background 0.3s $ease;
 }
 
 // Bold goes to what a row is about. In patents, projects and honors that is the title or the honor, so the label in
@@ -402,48 +744,34 @@ a.pub-badge,
   &:hover,
   &:focus {
     color: $accent;
-    background-color: $tint;
+    background: $tint;
     text-decoration: none;
   }
 }
 
-// In Publications the badge says the kind in a single color: a conference is a solid badge (only the conferences
-// are solid, so that they stand out), a journal an outlined one, and a paper under review a gray outline. An oral
+// In Publications every venue, a conference or a journal, is the same solid badge (the two kinds are not told apart by
+// the look of the badge, so that neither seems to count for less), and a paper under review is a gray outline. An oral
 // presentation says so in the text of the badge ("AAAI 2026 Oral"). The labels of the other sections (patents,
 // projects, honors, activities) are outlined in the accent.
 .pub-list--publications .pub-badge,
 .pub-list--publications a.pub-badge,
 .page__content .pub-list--publications a.pub-badge {
   color: #fff;
-  background-color: $accent;
-  box-shadow: none;
+  background: $chip-solid;
+  box-shadow: inset 0 1px 0 rgba(#fff, 0.38), inset 0 -1px 0 rgba(#000, 0.12), 0 1px 2px rgba($accent, 0.35);
 
   &:hover,
   &:focus {
     color: #fff;
-    background-color: $accent;
-    filter: brightness(1.15);
-  }
-}
-
-.pub-list .pub-badge--journal,
-.page__content .pub-list a.pub-badge--journal {
-  color: $accent;
-  background-color: #fff;
-  box-shadow: inset 0 0 0 1px $accent;
-
-  &:hover,
-  &:focus {
-    color: $accent;
-    background-color: $tint;
-    filter: none;
+    background: $chip-solid;
+    filter: brightness(1.12);
   }
 }
 
 .pub-list .pub-badge--review {
   color: $muted;
-  background-color: #fff;
-  box-shadow: inset 0 0 0 1px $faint;
+  background: $chip-clear;
+  box-shadow: inset 0 0 0 1px $faint, inset 0 1px 0 rgba(#fff, 0.9);
   font-weight: 400;
 }
 
@@ -452,11 +780,13 @@ a.pub-badge,
 .pub-tag {
   display: inline-block;
   margin-left: 0.3em;
-  padding: 0 0.4em;
+  padding: 0 0.55em;
   color: $muted;
   font-weight: 400;
-  border: 1px solid $tag-line;
-  border-radius: 2px;
+  background: rgba(#fff, 0.85);
+  border: 0;
+  box-shadow: inset 0 0 0 1px $tag-line;
+  border-radius: 999px;
   font-size: 0.75em;
   font-variant-numeric: lining-nums;
   line-height: 1.45;
@@ -471,21 +801,22 @@ a.pub-badge,
 // CCF levels as outlines: A in the accent, B in dark gray, and "no CCF rank" as a dashed light gray outline.
 .pub-list .pub-tag--ccf-a {
   color: $accent;
-  background-color: #fff;
-  border-color: $accent;
+  background: #fff;
+  box-shadow: inset 0 0 0 1px $accent;
   font-weight: 700;
 }
 
 .pub-list .pub-tag--ccf-b,
 .pub-list .pub-tag--ccf-c {
   color: $ink-2;
-  background-color: #fff;
-  border-color: $muted;
+  background: #fff;
+  box-shadow: inset 0 0 0 1px $muted;
   font-weight: 700;
 }
 
 .pub-list .pub-tag--ccf-none {
   color: $muted;
+  box-shadow: none;
   border: 1px dashed $faint;
 }
 
@@ -538,17 +869,16 @@ a.pub-badge,
   }
 }
 
-// Patents, projects, honors, activities and education share one narrower label column (the venue names of the
+// Patents, projects, honors, activities, languages, skills, education and experience share one narrower label column (the venue names of the
 // publications need a wider one), so that the text of these five sections starts at the same place. The patents are
 // in two lists (the first three, and the rest) that must line up with each other, so a fixed width is needed anyway.
 .pub-list--patents,
 .pub-list--projects,
 .pub-list--honors,
-.pub-list--experience,
 .pub-list--activities,
 .pub-list--languages,
 .pub-list--skills {
-  grid-template-columns: 8rem minmax(0, 1fr);
+  grid-template-columns: $label-column minmax(0, 1fr);
 }
 
 // On a phone the badge stands above its body instead.
@@ -629,12 +959,34 @@ a.pub-badge,
     color: $link;
     cursor: pointer;
     font-weight: 700;
+    list-style: none;
+
+    &::-webkit-details-marker {
+      display: none;
+    }
+
+    // a chevron that turns when the fold opens, in place of the browser's triangle
+    &::before {
+      content: "";
+      display: inline-block;
+      width: 0.4em;
+      height: 0.4em;
+      margin: 0 0.65em 0.12em 0.2em;
+      border-right: 2px solid currentColor;
+      border-bottom: 2px solid currentColor;
+      transform: rotate(-45deg);
+      @include springy("transform 0.4s #{$ease}", "transform 0.8s #{$spring}");
+    }
 
     p {
       display: inline;
       margin: 0;
       font-size: inherit;
     }
+  }
+
+  &[open] > summary::before {
+    transform: rotate(45deg);
   }
 
   &[open] > summary {
@@ -650,10 +1002,10 @@ a.pub-badge,
 }
 
 // ---------------------------------------------------------------------------
-// Education: the emblems of a school stand at the left of its degrees (above them on phones). Only the emblems are
-// drawn; the name of the school is in the text next to them.
+// Education and Experience: the emblems of a school stand at the left of its lines (above them on phones). Only the
+// emblems are drawn; the name of the school is in the text next to them.
 // ---------------------------------------------------------------------------
-.edu-school {
+.school-block {
   margin: 0 0 1.2em;
 
   .pub-list {
@@ -665,7 +1017,7 @@ a.pub-badge,
   }
 }
 
-.edu-school__logos {
+.school-block__logos {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
@@ -674,7 +1026,7 @@ a.pub-badge,
 }
 
 // (.page__content in front, so that these win over the link style above)
-.page__content .edu-logo {
+.page__content .school-logo {
   display: block;
   line-height: 0;
   text-decoration: none;
@@ -692,29 +1044,29 @@ a.pub-badge,
 }
 
 // a round emblem looks larger than a shield of the same height
-.page__content .edu-logo--round img {
+.page__content .school-logo--round img {
   height: 3.067rem;
 }
 
-// Next to the degrees the emblems stand in the same label column as the badges of the other sections and are centered in it, so
-// that a single emblem (Yanbian) sits right under the middle of the pair above it. A school with several degrees has
-// its emblems centered on the whole block of degrees, so that the gap between two degrees is level with the middle
-// of the emblems. A school with one degree has the bottom edge of its emblem on the last line of that degree (the
-// second declaration, where it is understood; otherwise the bottom of the text).
+// Next to the lines the emblems stand in the same label column as the badges of the other sections and are centered in it,
+// so that a single emblem (Yanbian) sits right under the middle of the pair above it. A school with several lines has its
+// emblems centered on the whole block, so that the gap between two lines is level with the middle of the emblems. A school
+// with one line has the bottom edge of its emblem on the last line (the second declaration, where it is understood;
+// otherwise the bottom of the text).
 @media (min-width: 37.5em) {
-  .edu-school {
+  .school-block {
     display: grid;
-    grid-template-columns: 8rem minmax(0, 1fr);
+    grid-template-columns: $label-column minmax(0, 1fr);
     column-gap: 1em;
     align-items: center;
   }
 
-  .edu-school--single {
+  .school-block--single {
     align-items: end;
     align-items: last baseline;
   }
 
-  .edu-school__logos {
+  .school-block__logos {
     justify-content: center;
     margin: 0;
   }
@@ -727,8 +1079,10 @@ a.pub-badge,
   margin: 0 0 1em;
 }
 
-// One small segmented control: the three languages in one thin outline, the one shown is filled. It is small on
-// purpose, a quiet tool and not a banner (about 25px high), and the same on a phone.
+// One small control: the three languages in a glass capsule (pressed into the page, a groove with a bright lower edge),
+// and the language shown is a drop of the accent colored glass that slides to the next one on the spring
+// (.lang-switch__thumb, made by the script in _includes/hero.html). It is small on purpose, a quiet tool and not a
+// banner (about 25px high), and the same on a phone. Without the script the language shown is filled in the accent.
 .lang-switch {
   display: flex;
   align-items: center;
@@ -740,44 +1094,74 @@ a.pub-badge,
     font-size: 0.95em;
     line-height: 1;
   }
+}
+
+.lang-switch__group {
+  position: relative;
+  display: flex;
+  padding: 2px;
+  background: rgba(mix(#fff, $accent, 93%), 0.7);
+  border-radius: 999px;
+  box-shadow:
+    inset 0 1px 2px rgba($ink, 0.12),
+    inset 0 0 0 1px rgba($ink, 0.05),
+    0 1px 0 rgba(#fff, 0.9);
 
   button {
     position: relative;
-    margin: 0 0 0 -1px; // neighbouring outlines share one line
-    padding: 0 0.75em;
-    color: $accent;
-    background-color: #fff;
-    border: 1px solid $accent;
-    border-radius: 0;
+    z-index: 1;
+    margin: 0;
+    padding: 0 0.8em;
+    color: $ink-2;
+    background-color: transparent;
+    border: 0;
+    border-radius: 999px;
     cursor: pointer;
     font-family: "Times New Roman", "Tinos", Times, $cjk-zh, $cjk-ko, serif;
     font-size: 0.78em;
     font-weight: 400;
     letter-spacing: 0.04em;
     line-height: 1.75;
-    transition: background-color 0.12s ease, color 0.12s ease;
-
-    &:first-of-type {
-      margin-left: 0;
-      border-radius: 2px 0 0 2px;
-    }
-
-    &:last-of-type {
-      border-radius: 0 2px 2px 0;
-    }
+    @include springy("color 0.25s #{$ease} 0.14s, transform 0.3s #{$ease}", "color 0.25s #{$ease} 0.14s, transform 0.7s #{$spring}");
 
     &:hover {
-      background-color: $tint;
+      color: $ink;
+    }
+
+    &:active {
+      opacity: 1;
+      transform: scale(0.93);
     }
 
     // the language on the page now
     &[aria-pressed="true"] {
-      z-index: 1;
       color: $badge-ink;
       background-color: $accent;
       font-weight: 700;
       cursor: default;
     }
+  }
+}
+
+.lang-switch__thumb {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 0;
+  background: linear-gradient(180deg, lighten($accent, 9%), $accent 75%);
+  border-radius: 999px;
+  box-shadow: inset 0 1px 0 rgba(#fff, 0.4), 0 1px 3px rgba($accent, 0.45), 0 4px 10px -3px rgba($accent, 0.35);
+  pointer-events: none;
+  @include springy(
+    "transform 0.45s #{$ease}, width 0.45s #{$ease}, height 0.45s #{$ease}",
+    "transform 0.8s #{$spring-soft}, width 0.8s #{$spring-soft}, height 0.8s #{$spring-soft}"
+  );
+}
+
+.lang-switch--slide button {
+  &[aria-pressed="true"] {
+    background-color: transparent;
   }
 }
 
@@ -796,6 +1180,14 @@ a.pub-badge,
   margin: 0 0 0.8em;
   font-size: 1em;
   line-height: 1.5;
+  break-inside: avoid; // a paragraph is not split between two columns
+}
+
+// One column while the text is narrow (every phone, tablet and laptop), more when the window is wide enough for each
+// column to keep a readable line (see Zoom and screen width).
+.hero .hero__text {
+  column-width: 40rem;
+  column-gap: 3rem;
 }
 
 // Natural line endings. Long words are hyphenated where the language allows it (the text blocks carry a lang
@@ -807,10 +1199,11 @@ a.pub-badge,
   text-wrap: pretty;
 }
 
-// Flush on both sides only where it looks natural. From 600px up the lines are long, so the gaps between words stay
-// small and the right edge is straight, like the rule under the section titles. On a phone the lines are short and
-// forcing them flush stretches the spaces, so the text stays ragged there. Chinese is the exception: its characters
-// all have the same width, so it is flush everywhere without stretching anything.
+// Flush on both sides only where it can be done without gaps. English: from 600px up the lines are long and hyphenated, so
+// the gaps between words stay small; on a phone the text stays ragged. Chinese has almost no spaces, so the slack is
+// shared between the characters (inter-character), as in Chinese print, and it is flush everywhere. Korean has few
+// spaces too (words are long and are not broken), so it is flush only where the browser can share the slack between the
+// syllables; elsewhere it stays ragged, which is how Korean pages are usually set.
 @media (min-width: 37.5em) {
   .hero .hero__text p,
   .more blockquote {
@@ -821,6 +1214,19 @@ a.pub-badge,
 
 .hero .hero__text:lang(zh) p {
   text-align: justify;
+  text-justify: auto;
+  text-justify: inter-character;
+}
+
+.hero .hero__text:lang(ko) p {
+  text-align: left;
+}
+
+@supports (text-justify: inter-character) {
+  .hero .hero__text:lang(ko) p {
+    text-align: justify;
+    text-justify: inter-character;
+  }
 }
 
 .hero .hero__text:lang(ko) {
@@ -921,6 +1327,23 @@ $globe-width: 7.5rem;
 .globe-global-container {
   .mmvst_map {
     background: radial-gradient(circle at 36% 30%, #fff 0%, mix(#fff, $accent, 96%) 55%, mix(#fff, $accent, 89%) 100%);
+    box-shadow: inset 0 0 0 1px rgba(#fff, 0.7), inset 0 -10px 22px rgba($accent, 0.1);
+
+    // the glass: a bright reflection at the upper left and light along the rim, over the map and under the dots
+    &::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      z-index: 999;
+      background:
+        radial-gradient(circle at 30% 22%, rgba(#fff, 0.7) 0, rgba(#fff, 0.2) 20%, rgba(#fff, 0) 44%),
+        radial-gradient(circle at 50% 50%, rgba(#fff, 0) 64%, rgba(#fff, 0.38) 100%);
+      border-radius: 50%;
+      pointer-events: none;
+    }
   }
 
   .mmvst_map_f,
@@ -1010,5 +1433,192 @@ $globe-width: 7.5rem;
 
   .sidebar.sticky.sidebar--free {
     position: static !important;
+  }
+}
+
+// ---------------------------------------------------------------------------
+// Parts of the page appear softly when they come into view: they rise a little and fade in, once, one after another
+// when several come together, and the rule under a section title is drawn from left to right. The class that hides
+// them (.js-reveal on the page) is set only by a browser that can show them again, and is taken off if the script
+// that does so (_includes/scripts.html) does not run. The script reads the list of what to show from --reveal-targets
+// below, so that the list is written in one place. Nothing of this is used when the system asks for less motion, and
+// nothing is hidden on paper.
+// ---------------------------------------------------------------------------
+// (The rows of the grid lists have display: contents, so they have no box of their own and cannot be shown or hidden;
+// what appears is each cell of a row, the badge and the text, which share one delay in the script.)
+$reveal-targets: ".sidebar .author__avatar", ".sidebar .author__content > *", ".sidebar .author__urls > li", ".sidebar .visitors",
+  ".hero .hero__text > p", ".page__content > h1", ".page__content > h2", ".page__content > p",
+  ".page__content > details", ".page__content .pub-list--grid > li > *",
+  ".page__content .pub-list:not(.pub-list--grid) > li", ".page__content .school-block__logos";
+
+@function join-with-commas($list) {
+  $out: "";
+  @each $item in $list {
+    $out: if($out == "", $item, "#{$out}, #{$item}");
+  }
+  @return $out;
+}
+
+$reveal-selector: join-with-commas($reveal-targets);
+
+:root {
+  --reveal-targets: #{$reveal-selector};
+}
+
+.js-reveal {
+  // The theme fades the whole page in after a third of a second. With the parts appearing one by one that would be a
+  // second fade in front of them, and an empty page for a moment.
+  #main {
+    animation: none;
+  }
+
+  #{$reveal-selector} {
+    @include springy(
+      "opacity 0.8s #{$ease} var(--d, 0s), transform 0.8s #{$ease} var(--d, 0s)",
+      "opacity 0.8s #{$ease} var(--d, 0s), transform 1s #{$spring} var(--d, 0s)"
+    );
+
+    &:not(.is-in) {
+      opacity: 0;
+      transform: translateY(0.9rem);
+    }
+  }
+
+  .page__content > h1 {
+    border-bottom-color: transparent;
+    background: linear-gradient($accent, $accent) 0 100% / 0 1px no-repeat border-box;
+    @include springy(
+      "opacity 0.8s #{$ease} var(--d, 0s), transform 0.8s #{$ease} var(--d, 0s), background-size 1.2s #{$ease} calc(var(--d, 0s) + 0.15s)",
+      "opacity 0.8s #{$ease} var(--d, 0s), transform 1s #{$spring} var(--d, 0s), background-size 1.2s #{$ease} calc(var(--d, 0s) + 0.15s)"
+    );
+
+    &.is-in {
+      background-size: 100% 1px;
+    }
+  }
+}
+
+// The range of a section. After a click on its link in the top bar a pane of the faintest accent glass appears behind
+// the section, with a thin bright edge, from the top of its title to the bottom of its last row, and fades again, and the
+// rule under the title is drawn once more. What is on the page stays where it is.
+.page__content {
+  position: relative;
+  isolation: isolate;
+}
+
+.section-glow {
+  position: absolute;
+  left: -0.9rem;
+  z-index: -1;
+  width: calc(100% + 1.8rem);
+  overflow: hidden; // the wave is cut off by the band
+  border-radius: 1.1rem;
+  opacity: 0;
+  pointer-events: none;
+  // going away: it fades slowly
+  transition: opacity 1.1s $ease;
+
+  // its edge is drawn a moment after the wave has started, so that the band does not show its whole outline before it is filled
+  &::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    border-radius: inherit;
+    box-shadow: inset 0 0 0 1px rgba($accent, 0.16), inset 0 1px 0 rgba(#fff, 0.8);
+    opacity: 0;
+    transition: opacity 0.9s $ease 0.45s;
+  }
+
+  &.is-on {
+    opacity: 1;
+    transition: opacity 0.4s $ease;
+
+    &::after {
+      opacity: 1;
+    }
+
+    .section-glow__wave {
+      transform: scale(1);
+      will-change: transform;
+      transition: transform 1.2s cubic-bezier(0.22, 0.61, 0.36, 1);
+    }
+  }
+}
+
+// The wave: a circle round the link that was clicked, which grows from nothing. Only its size changes (transform), so the
+// graphics processor moves it by itself; the edge of the circle is a little brighter, like the front of a wave.
+.section-glow__wave {
+  position: absolute;
+  background: rgba(mix(#fff, $accent, 93%), 0.62);
+  border-radius: 50%;
+  box-shadow: inset 0 0 36px rgba($accent, 0.14);
+  transform: scale(0);
+}
+
+// the lens of the bar, charged with the click while the page is on its way, and the swell when it gives the click out
+.nav-indicator {
+  transform-origin: 50% 50%;
+
+  &.is-charging {
+    box-shadow: inset 0 1px 0 #fff, 0 0 0 0.5px rgba($accent, 0.4), 0 0 0 4px rgba($accent, 0.12), 0 0 20px rgba($accent, 0.38);
+    scale: 0.95;
+  }
+
+  &.is-released {
+    animation: lens-release 0.8s $ease both;
+  }
+}
+
+@keyframes lens-release {
+  0% {
+    box-shadow: inset 0 1px 0 #fff, 0 0 0 0.5px rgba($accent, 0.4), 0 0 0 6px rgba($accent, 0.12), 0 0 22px rgba($accent, 0.3);
+    scale: 1.05;
+  }
+
+  100% {
+    box-shadow: inset 0 1px 0 #fff, 0 0 0 0.5px rgba($ink, 0.08), 0 1px 3px rgba($ink, 0.18);
+    scale: 1;
+  }
+}
+
+.js-reveal .page__content > h1.is-locating {
+  animation: rule-draw 1s $ease both;
+}
+
+@keyframes rule-draw {
+  from {
+    background-size: 0 1px;
+  }
+
+  to {
+    background-size: 100% 1px;
+  }
+}
+
+@media print {
+  .js-reveal {
+    #{$reveal-selector} {
+      opacity: 1 !important;
+      transform: none !important;
+    }
+
+    .page__content > h1 {
+      border-bottom-color: $accent;
+      background: none;
+    }
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    transition-duration: 0.01ms !important;
+    transition-delay: 0s !important;
+    animation-duration: 0.01ms !important;
+    animation-delay: 0s !important;
   }
 }

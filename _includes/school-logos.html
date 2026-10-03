@@ -1,0 +1,8 @@
+{%- assign info = site.data.schools | where: "name", include.school | first -%}
+{%- if info.logos -%}
+<div class="school-block__logos">
+{%- for l in info.logos limit: include.limit %}
+<a class="school-logo{% if l.round %} school-logo--round{% endif %}" href="{{ l.url }}" title="{{ l.alt }}"><img src="{{ l.src | relative_url }}" alt="{{ l.alt }}"{% if l.w %} width="{{ l.w }}" height="{{ l.h }}"{% endif %} loading="lazy"></a>
+{%- endfor %}
+</div>
+{%- endif -%}

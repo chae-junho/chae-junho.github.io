@@ -2,7 +2,7 @@
 permalink: /
 title: ""
 excerpt: ""
-description: "Junhao Cai (蔡俊豪, 채준호), Ph.D. student at Korea University and native speaker of Chinese and Korean. Analyzes real challenges and builds AI solutions for them. Research core: machine unlearning."
+description: "Junhao Cai (蔡俊豪, 채준호), Ph.D. student at Korea University who works at a native level in Chinese and Korean. Analyzes real challenges and builds AI solutions for them. Research core: machine unlearning."
 author_profile: true
 redirect_from: 
   - /about/
