@@ -16,6 +16,10 @@ class NavPager {
     return this.pages[index].element;
   }
 
+  idsAt(index) {
+    return this.pages[index].ids;
+  }
+
   build() {
     const links = this.menu.links();
     const probe = this.createRow(links.map((link) => link.item), 'nav-page nav-probe');

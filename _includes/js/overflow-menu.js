@@ -6,6 +6,7 @@ class OverflowMenu {
     this.list = nav.querySelector('.visible-links');
     this.panel = nav.querySelector('.hidden-links');
     this.items = Array.from(this.list.children);
+    this.entries = [];
     this.button.addEventListener('click', () => this.toggle());
   }
 
@@ -20,9 +21,11 @@ class OverflowMenu {
   }
 
   restore() {
-    if (this.panel.children.length) {
+    if (this.panel.children.length || this.list.children.length !== this.items.length) {
       this.items.forEach((item) => this.list.appendChild(item));
+      Array.from(this.panel.children).forEach((child) => this.panel.removeChild(child));
     }
+    this.entries = [];
   }
 
   fitsWithoutButton() {
@@ -30,17 +33,35 @@ class OverflowMenu {
     return this.list.offsetWidth <= this.nav.getBoundingClientRect().width;
   }
 
-  collapse() {
-    const home = this.items.filter((item) => item.matches(this.homeItem));
-    this.arrange(this.list, home);
-    this.arrange(this.panel, this.items.filter((item) => home.indexOf(item) < 0));
+  keep(ids) {
+    const kept = this.items.filter((item) => item.matches(this.homeItem) || ids.indexOf(this.idOf(item)) >= 0);
+    this.arrange(this.list, kept);
+    this.entries = this.items
+      .filter((item) => !item.matches(this.homeItem))
+      .map((item) => ({ id: this.idOf(item), element: kept.indexOf(item) >= 0 ? this.copyOf(item) : item }));
+  }
+
+  showMissing(visibleIds) {
+    this.arrange(this.panel, this.entries.filter((entry) => visibleIds.indexOf(entry.id) < 0).map((entry) => entry.element));
+  }
+
+  copyOf(item) {
+    const copy = item.cloneNode(true);
+    copy.querySelector('a').classList.remove('is-current');
+    return copy;
   }
 
   arrange(parent, items) {
     const unchanged = parent.children.length === items.length && items.every((item, index) => parent.children[index] === item);
-    if (!unchanged) {
-      items.forEach((item) => parent.appendChild(item));
+    if (unchanged) {
+      return;
     }
+    Array.from(parent.children).forEach((child) => {
+      if (items.indexOf(child) < 0) {
+        parent.removeChild(child);
+      }
+    });
+    items.forEach((item) => parent.appendChild(item));
   }
 
   idOf(item) {

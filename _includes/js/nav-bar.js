@@ -61,7 +61,7 @@ class NavBar {
       this.menu.showButton(false);
     } else {
       const pages = this.pager.build();
-      this.menu.collapse();
+      this.menu.keep(pages[0].ids);
       this.menu.showButton(pages.length > 1);
       this.pager.markCurrent(this.currentId);
     }
@@ -73,6 +73,9 @@ class NavBar {
     const paged = this.pager.enabled;
     const index = paged ? this.pager.activate(this.currentId) : -1;
     this.nav.classList.toggle('is-paged', paged);
+    if (paged) {
+      this.menu.showMissing(this.pager.idsAt(index));
+    }
     const row = paged ? this.pager.rowAt(index) : this.list;
     const shift = Dom.translation(row).x;
     const rowBox = row.getBoundingClientRect();

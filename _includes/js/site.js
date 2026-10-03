@@ -88,8 +88,8 @@ class Site {
         if (jump) {
           jump.arrive(target, origin);
         }
-        select(id);
         bar.menu.closeAfterChoosing(anchor);
+        select(id);
       },
     }).start();
     new SectionClicks({ content, firstId: links.ids[0], onSelect: select }).start();

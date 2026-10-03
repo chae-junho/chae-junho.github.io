@@ -226,10 +226,16 @@
     padding: 5px;
     border: 1px solid fade($ink, 0.08);
     border-radius: 1.3rem;
-    background: rgba(#fff, 0.9);
+    background: rgba(#fff, 0.96);
     box-shadow: 0 12px 32px -10px fade($ink, 0.22);
     pointer-events: auto;
     transform-origin: top right;
+
+    @supports ((-webkit-backdrop-filter: blur(1px)) or (backdrop-filter: blur(1px))) {
+      background: rgba(#fff, 0.9);
+      -webkit-backdrop-filter: blur(20px) saturate(180%);
+      backdrop-filter: blur(20px) saturate(180%);
+    }
 
     &::before,
     &::after {
