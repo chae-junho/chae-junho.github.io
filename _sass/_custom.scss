@@ -742,16 +742,29 @@ a.pub-badge,
   line-height: 1.5;
 }
 
-// The paragraphs are set flush on both sides, so that their right edge is straight, like the rule under the section
-// titles. On a narrow screen the lines are short, so words are hyphenated where the language allows it (the text
-// blocks carry a lang attribute) and the last line is kept from being a single short word.
+// Natural line endings. Long words are hyphenated where the language allows it (the text blocks carry a lang
+// attribute) and the last line is kept from being a single short word.
 .hero .hero__text p,
 .more blockquote {
-  text-align: justify;
-  text-justify: inter-word;
   -webkit-hyphens: auto;
   hyphens: auto;
   text-wrap: pretty;
+}
+
+// Flush on both sides only where it looks natural. From 600px up the lines are long, so the gaps between words stay
+// small and the right edge is straight, like the rule under the section titles. On a phone the lines are short and
+// forcing them flush stretches the spaces, so the text stays ragged there. Chinese is the exception: its characters
+// all have the same width, so it is flush everywhere without stretching anything.
+@media (min-width: 37.5em) {
+  .hero .hero__text p,
+  .more blockquote {
+    text-align: justify;
+    text-justify: inter-word;
+  }
+}
+
+.hero .hero__text:lang(zh) p {
+  text-align: justify;
 }
 
 .hero .hero__text:lang(ko) {
