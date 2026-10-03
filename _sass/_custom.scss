@@ -291,6 +291,48 @@ b {
 }
 
 // ---------------------------------------------------------------------------
+// Zoom and screen width. Zooming the browser changes the width of the window in CSS pixels (200% on a 1440px screen is a
+// 720px window, 50% is a 2880px window), so the layout has to hold at every width, not only at the usual ones.
+//  - From 925px up the page is two columns, the profile card and the text. The card keeps a width that fits the portrait
+//    and the e-mail address (the theme gave it 15% of a container fixed at 925px, which was 136px and broke the address
+//    over two lines), and the gap between the columns follows the window.
+//  - From 1440px up the whole page grows with the window (everything is in rem), at half the rate of the window.
+//    Zooming out still makes the page smaller, but it no longer turns into a small block in a large white window.
+// ---------------------------------------------------------------------------
+@media (min-width: 57.8125em) {
+  #main {
+    display: grid;
+    grid-template-columns: minmax(12.5rem, 15%) minmax(0, 1fr);
+    column-gap: clamp(1.5rem, 5vw, 4.9rem);
+    align-items: start;
+    max-width: 85.34rem;
+
+    &:before,
+    &:after {
+      content: none;
+    }
+
+    > .sidebar,
+    > .page {
+      float: none;
+      width: auto;
+      margin: 0;
+      padding: 0;
+    }
+  }
+
+  .masthead__inner-wrap {
+    max-width: 85.34rem;
+  }
+}
+
+@media (min-width: 90em) {
+  html {
+    font-size: calc(15px + (100vw - 1440px) / 192);
+  }
+}
+
+// ---------------------------------------------------------------------------
 // Section titles: bold capitals with letter spacing, over a thin rule.
 // ---------------------------------------------------------------------------
 .page__content > h1 {
@@ -500,7 +542,7 @@ a.pub-badge,
 .pub-list--activities,
 .pub-list--languages,
 .pub-list--skills {
-  grid-template-columns: 120px minmax(0, 1fr);
+  grid-template-columns: 8rem minmax(0, 1fr);
 }
 
 // On a phone the badge stands above its body instead.
@@ -621,7 +663,7 @@ a.pub-badge,
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  gap: 0.6em 14px;
+  gap: 0.6em 0.933rem;
   margin: 0 0 0.7em;
 }
 
@@ -639,13 +681,13 @@ a.pub-badge,
   img {
     display: block;
     width: auto;
-    height: 52px;
+    height: 3.467rem;
   }
 }
 
 // a round emblem looks larger than a shield of the same height
 .page__content .edu-logo--round img {
-  height: 46px;
+  height: 3.067rem;
 }
 
 // Next to the degrees the emblems stand in the same label column as the badges of the other sections and are centered in it, so
@@ -656,7 +698,7 @@ a.pub-badge,
 @media (min-width: 37.5em) {
   .edu-school {
     display: grid;
-    grid-template-columns: 120px minmax(0, 1fr);
+    grid-template-columns: 8rem minmax(0, 1fr);
     column-gap: 1em;
     align-items: center;
   }
@@ -812,9 +854,9 @@ a.pub-badge,
 }
 
 .globe-global-container {
-  width: 140px;
+  width: 9.334rem;
   max-width: 100%;
-  min-height: 153px;
+  min-height: 10.2rem;
   margin: 0 auto;
 }
 
@@ -859,7 +901,7 @@ a.pub-badge,
 // .sidebar--free, the column then scrolls with the page, and the globe comes into view as you scroll.
 @media (min-width: 57.8125em) {
   .sidebar .author__avatar img {
-    max-width: 150px;
+    max-width: 10rem;
   }
 
   .sidebar .author__urls a {
