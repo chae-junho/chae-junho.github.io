@@ -15,8 +15,9 @@
 //      column of their own, so that all titles of a list start at the same place and the left edge stays straight.
 //   5. Titles of papers are bold, the author's own name is bold, the rest is regular. Spacing is even and modest.
 //      Sizes follow one scale, counted from the text (1em, about 18px): 0.75em tags, 0.8em badges and captions,
-//      0.88em secondary lines (authors, GPA, the profile card), 1em text and titles, 1.15em the opening paragraph
-//      and the section titles, 1.45em the name. The top bar is 0.92em.
+//      0.88em secondary lines (authors, GPA, the profile card), 1em text, titles, the name and the opening
+//      paragraphs (nothing in the introduction is made larger on purpose), 1.15em the section titles. The top bar is
+//      0.92em.
 //   6. Everything wraps with flexbox or grid, so it reflows from a phone to a wide desktop.
 
 // ---------------------------------------------------------------------------
@@ -141,9 +142,10 @@ b {
 .sidebar .author__name {
   color: $ink;
   font-family: "Times New Roman", "Tinos", Times, $cjk-zh, $cjk-ko, serif;
-  font-size: 1.45em;
+  font-size: 1em;
   font-weight: 700;
   line-height: 1.2;
+  text-wrap: balance; // when the name wraps, split it evenly ("Junhao Cai," above the Chinese and Korean names)
 }
 
 .sidebar .author__bio {
@@ -615,12 +617,6 @@ a.pub-badge,
   margin: 0 0 0.8em;
   font-size: 1em;
   line-height: 1.5;
-}
-
-// The first paragraph (who I am and what I offer) is one step larger than the rest.
-.hero .hero__text .hero__lead {
-  font-size: 1.15em;
-  line-height: 1.45;
 }
 
 .hero .hero__text:lang(ko) {
