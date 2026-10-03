@@ -48,6 +48,11 @@ html {
   scroll-behavior: smooth;
 }
 
+// The top bar stays at the top of the window, so a section title that a menu link scrolls to is left below it.
+.page__content > h1 {
+  scroll-margin-top: 5.2rem;
+}
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
@@ -144,7 +149,7 @@ b {
 
 .masthead__menu-item:not(.masthead__menu-home-item) a {
   &:hover,
-  &:focus,
+  &:focus-visible,
   &.is-current {
     color: $ink;
     box-shadow: inset 0 -2px 0 $accent;
@@ -191,6 +196,10 @@ b {
 
 .sidebar .author__urls a:hover {
   color: $link;
+}
+
+.sidebar .author__location {
+  font-size: 0.88em;
 }
 
 // The theme paints each icon in the brand color of its service (a bright blue for LinkedIn, and so on). Here they

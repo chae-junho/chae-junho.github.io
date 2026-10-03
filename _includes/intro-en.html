@@ -1,6 +1,7 @@
 {%- include counts.html -%}
 {%- assign hero_honors = site.data.honors | where_exp: "h", "h.hero" | sort: "hero" -%}
 {%- assign pros = site.data.languages | where: "short", "Professional" -%}
+{%- assign number_words = "one|two|three|four|five|six|seven|eight|nine|ten" | split: "|" -%}
 {%- capture native_names -%}{%- for l in natives -%}{{ l.name }}{%- if forloop.last -%}{%- elsif forloop.rindex == 2 %} and {% else %}, {% endif -%}{%- endfor -%}{%- endcapture -%}
 {%- capture pro_names -%}{%- for l in pros -%}{{ l.name }}{%- if forloop.last -%}{%- elsif forloop.rindex == 2 %} and {% else %}, {% endif -%}{%- endfor -%}{%- endcapture -%}
 {%- capture ccf_names -%}{%- for g in ccf_a_venues -%}{{ g.name }}{%- if forloop.last -%}{%- elsif forloop.rindex == 2 %} and {% else %}, {% endif -%}{%- endfor -%}{%- endcapture -%}
@@ -10,24 +11,26 @@
 {%- for h in hero_honors -%}
 {%- assign rank_val = h.rank | replace: "Top ", "" -%}
 {%- capture name_tag -%}<strong>{{ h.name }}</strong>{%- endcapture -%}
-{%- capture times_val -%}{% case h.times %}{% when 2 %}twice{% when 3 %}three times{% else %}{{ h.times }} times{% endcase %}{%- endcapture -%}
-{%- if h.hero_en -%}{%- assign phrase = h.hero_en | replace: "{name}", name_tag | replace: "{times}", h.times | replace: "{rank}", rank_val -%}{{ phrase }}{%- else -%}the {{ name_tag }}{% if h.times or h.rank %} ({% if h.times %}{{ times_val }}{% endif %}{% if h.times and h.rank %}, {% endif %}{% if h.rank %}top {{ rank_val }}{% endif %}){% endif %}{%- endif -%}
+{%- capture times_word -%}{% case h.times %}{% when 2 %}twice{% when 3 %}three times{% else %}{{ h.times }} times{% endcase %}{%- endcapture -%}
+{%- assign number_word = "" -%}
+{%- if h.times -%}{%- assign idx = h.times | minus: 1 -%}{%- assign number_word = number_words[idx] | default: h.times -%}{%- endif -%}
+{%- if h.hero_en -%}{%- assign phrase = h.hero_en | replace: "{name}", name_tag | replace: "{times_word}", times_word | replace: "{times}", h.times | replace: "{number}", number_word | replace: "{rank}", rank_val -%}{{ phrase }}{%- else -%}the {{ name_tag }}{% if h.times or h.rank %} ({% if h.times %}{{ times_word }}{% endif %}{% if h.times and h.rank %}, {% endif %}{% if h.rank %}top {{ rank_val }}{% endif %}){% endif %}{%- endif -%}
 {%- if forloop.last -%}{%- elsif forloop.rindex == 2 %} and {% else %}, {% endif -%}
 {%- endfor -%}
 {%- endcapture -%}
 {%- comment -%}
-  Short on purpose, so that it can be read in half a minute: who I am and what I offer, the language advantage, the
-  proof in numbers, and how to reach me. Details (GPA, projects, service, hobbies, what is under review) are in the
-  sections below and are not repeated here. The honors named here are the ones with a hero number in honors.yml.
-  Written the way an English speaker would write it. The Korean and Chinese versions are written separately in the
-  way those languages are written, not translated from this one.
+  Short on purpose, so that it can be read in half a minute: who I am, the language advantage, the proof, the honors,
+  and how to reach me. Details (GPA, projects, service, hobbies, what is under review) are in the sections below and
+  are not repeated here. The honors named here are the ones with a hero number in honors.yml.
+  Written the way an English speaker writes a homepage: contractions, plain verbs. The Korean and Chinese versions are
+  written separately in the way those languages are written, not translated from this one.
 {%- endcomment -%}
-<p>Hello, I am Junhao Cai, {% if phd_en %}<span class="phd-year" data-start="{{ phd_start }}" data-words="{{ phd_words_en }}">{{ phd_en }}</span>{% else %}a{% endif %} Ph.D. student in <a href="https://cs.korea.ac.kr/cs/index.do">Computer Science and Engineering</a> at <a href="https://www.korea.ac.kr/sites/ko/index.do">Korea University</a> in Seoul. <strong>Give me a challenge. I will break it down, then build an AI system that solves it.</strong></p>
+<p>Hello, I'm Junhao Cai, {% if phd_en %}<span class="phd-year" data-start="{{ phd_start }}" data-words="{{ phd_words_en }}">{{ phd_en }}</span>{% else %}a{% endif %} Ph.D. student in <a href="https://cs.korea.ac.kr/cs/index.do">Computer Science and Engineering</a> at <a href="https://www.korea.ac.kr/sites/ko/index.do">Korea University</a> in Seoul. <strong>Give me a challenge. I'll break it down, then build an AI system that solves it.</strong></p>
 {%- if natives_n > 0 %}
-<p><strong>{{ native_names }} {% if natives_n == 1 %}is my native language{% elsif natives_n == 2 %}are both my native languages{% else %}are all my native languages{% endif %}</strong> (TOPIK Level 6){% if pros.size > 0 %}. I also work professionally in {{ pro_names }}{% endif %}.</p>
+<p><strong>I'm a native speaker of {% if natives_n == 2 %}both {% endif %}{{ native_names }}</strong> (TOPIK Level 6){% if pros.size > 0 %}, and I also work in {{ pro_names }}{% endif %}.</p>
 {%- endif %}
-<p>I work on machine unlearning (making trained models forget specific data on demand) and AI applications, with <strong>{{ papers_n }} papers</strong>{% if ccf_a_n > 0 %} ({{ ccf_a_n }} at top-tier conferences such as {{ ccf_names }}{% if ccf_a_oral_n == 1 %}, including an oral at {{ oral_names }}{% elsif ccf_a_oral_n > 1 %}, including {{ ccf_a_oral_n }} orals at {{ oral_names }}{% endif %}){% endif %}, <strong>{{ patents_n }} patents</strong> and <strong>{{ projects_n }} national research projects</strong> ({{ agency_names }}).</p>
+<p>I work on machine unlearning (making a trained model forget specific data on demand) and AI applications, with <strong>{{ papers_n }} papers</strong>{% if ccf_a_n > 0 %} ({{ ccf_a_n }} at top-tier conferences such as {{ ccf_names }}{% if ccf_a_oral_n == 1 %}, including an oral at {{ oral_names }}{% elsif ccf_a_oral_n > 1 %}, including {{ ccf_a_oral_n }} orals at {{ oral_names }}{% endif %}){% endif %}, <strong>{{ patents_n }} patents</strong> and <strong>{{ projects_n }} national research projects</strong> ({{ agency_names }}).</p>
 {%- if hero_honors.size > 0 %}
 <p>My honors include {{ honors_en }}.</p>
 {%- endif %}
-<p>You can reach me at <span class="hero__email">{{ site.author.email }}</span> or on <a href="https://www.linkedin.com/in/{{ site.author.linkedin }}">LinkedIn</a>.</p>
+<p>Feel free to reach me at <span class="hero__email">{{ site.author.email }}</span> or on <a href="https://www.linkedin.com/in/{{ site.author.linkedin }}">LinkedIn</a>.</p>

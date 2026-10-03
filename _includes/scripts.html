@@ -1,30 +1,84 @@
 <script src="assets/js/main.min.js"></script>
 
 <script>
-// Marks the link of the section you are reading in the top bar (the color under it is set in _sass/_custom.scss).
+// The links in the top bar. Following one scrolls to its section with the browser's own smooth scrolling. The theme has a
+// script of its own that animates the same scroll, and two animations at once made the page stutter and left the
+// section title under the top bar, so this handler takes the click first. The link of the section you are reading is
+// marked (.is-current; the underline is set in _sass/_custom.scss). The link you click is marked at once and stays marked
+// until you scroll yourself, so the mark does not run through the links in between, and the last sections, which cannot
+// scroll up to the top of the window, keep the mark of the link you clicked.
 (function () {
-  var links = {}, ids = [];
-  var anchors = document.querySelectorAll('#site-nav a[href*="#"]');
+  var nav = document.getElementById('site-nav');
+  if (!nav) { return; }
+  var links = {}, ids = [], locked = false, waiting = false;
+  var anchors = nav.querySelectorAll('a[href*="#"]');
   for (var i = 0; i < anchors.length; i++) {
     var id = anchors[i].getAttribute('href').split('#')[1];
-    if (id && id !== 'about-me' && document.getElementById(id)) { links[id] = anchors[i]; ids.push(id); }
+    if (id && document.getElementById(id) && !anchors[i].closest('.masthead__menu-home-item')) { links[id] = anchors[i]; ids.push(id); }
   }
   if (!ids.length) { return; }
-  var waiting = false;
-  function update() {
-    waiting = false;
-    var current = null, line = window.innerHeight * 0.3;
-    for (var j = 0; j < ids.length; j++) {
-      if (document.getElementById(ids[j]).getBoundingClientRect().top <= line) { current = ids[j]; }
-    }
+
+  function setCurrent(current) {
     for (var k = 0; k < ids.length; k++) {
       if (ids[k] === current) { links[ids[k]].classList.add('is-current'); }
       else { links[ids[k]].classList.remove('is-current'); }
     }
   }
+
+  function update() {
+    waiting = false;
+    if (locked) { return; }
+    var bar = document.querySelector('.masthead');
+    var barBottom = bar ? bar.getBoundingClientRect().bottom : 0;
+    var room = window.innerHeight - barBottom;
+    // a section counts as reached when its title is above a line a quarter of the way down the window; near the end of the
+    // page the line moves down to the bottom, so that the last sections can be reached by scrolling
+    var max = document.documentElement.scrollHeight - window.innerHeight;
+    var ratio = max > 0 ? Math.min(1, Math.max(0, window.scrollY / max)) : 0;
+    var line = barBottom + room * (0.25 + 0.75 * Math.pow(ratio, 8));
+    var current = ids[0];
+    for (var j = 0; j < ids.length; j++) {
+      if (document.getElementById(ids[j]).getBoundingClientRect().top <= line) { current = ids[j]; }
+    }
+    setCurrent(current);
+  }
+
   function schedule() {
     if (!waiting) { waiting = true; window.requestAnimationFrame(update); }
   }
+
+  document.addEventListener('click', function (e) {
+    if (e.defaultPrevented || e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) { return; }
+    var a = e.target.closest ? e.target.closest('a[href*="#"]') : null;
+    if (!a) { return; }
+    var url;
+    try { url = new URL(a.href, location.href); } catch (err) { return; }
+    var here = location.pathname.replace(/index\.html$/, '');
+    if (url.origin !== location.origin || url.pathname.replace(/index\.html$/, '') !== here || url.hash.length < 2) { return; }
+    var target = document.getElementById(decodeURIComponent(url.hash.slice(1)));
+    if (!target) { return; }
+    e.preventDefault();
+    e.stopImmediatePropagation();
+    var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    target.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'start' });
+    if (history.pushState && location.hash !== url.hash) { history.pushState(null, '', url.hash); }
+    var id = url.hash.slice(1);
+    if (links[id]) { locked = true; setCurrent(id); }
+    // a link in the menu of a narrow window: close the menu
+    var button = document.querySelector('.greedy-nav button');
+    if (a.closest('.hidden-links') && button && button.classList.contains('close')) { button.click(); }
+  }, true);
+
+  // scrolling by yourself ends the hold on the mark
+  ['wheel', 'touchstart', 'keydown', 'mousedown'].forEach(function (name) {
+    window.addEventListener(name, function (ev) {
+      if (!locked) { return; }
+      if (name === 'mousedown' && ev.target.closest && ev.target.closest('#site-nav')) { return; }
+      locked = false;
+      schedule();
+    }, { passive: true });
+  });
+
   window.addEventListener('scroll', schedule, { passive: true });
   window.addEventListener('resize', schedule);
   update();

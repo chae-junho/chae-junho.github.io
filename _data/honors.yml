@@ -5,8 +5,9 @@
 #   bold:   true sets the honor in bold (the ones the row is about)
 #   hero:   a number. The honors that have one are named in the short opening text at the top of the page, in this order.
 #           Their wording there is made from name, times and rank ("the Samsung Electronic Scholarship (twice, top 1%)").
-#   hero_en, hero_ko, hero_zh:  the wording to use instead, when that is not enough. {name}, {times} and {rank} (the
-#           rank without "Top ") are filled in from the entry.
+#   hero_en, hero_ko, hero_zh:  the wording to use instead, when that is not enough. Filled in from the entry: {name},
+#           {rank} (without "Top "), {times} (the number), {times_word} (twice, 两次, 2회) and {number} (the number as a
+#           word: eight, 八). The Chinese wording is written as a verb phrase, because the Chinese text reads "我 ...".
 
 - degree: "Ph.D."
   name: "Global Leader Scholarship"
@@ -20,7 +21,7 @@
   hero: 2
   hero_en: "the {name} from Korea University"
   hero_ko: "Korea University {name}"
-  hero_zh: "Korea University 颁发的 {name}"
+  hero_zh: "获得过 Korea University 颁发的 {name}"
 
 - degree: "M.S."
   name: "Global Leader Scholarship"
@@ -44,20 +45,23 @@
   rank: "Top 1%"
   bold: true
   hero: 1
+  hero_en: "the {name} ({times_word}, top {rank})"
+  hero_ko: "{name} {times}회(상위 {rank})"
+  hero_zh: "{times_word}获得 {name}（前 {rank}）"
 
 - degree: "B.E."
   name: "National Inspirational Scholarship"
   rank: "Top 1%"
-  hero: 4
-  hero_en: "the {name} (national level, top {rank})"
+  hero: 3
+  hero_en: "the {name} (a national-level award, top {rank})"
   hero_ko: "국가급 {name}(상위 {rank})"
-  hero_zh: "国家级奖学金 {name}（前 {rank}）"
+  hero_zh: "还拿到了国家级奖学金 {name}（前 {rank}）"
 
 - degree: "B.E."
   name: "Excellent Student Scholarship"
   times: 8
   rank: "Top 1-5%"
-  hero: 3
-  hero_en: "the {name} in all {times} undergraduate semesters"
+  hero: 4
+  hero_en: "the {name} in all {number} undergraduate semesters"
   hero_ko: "학부 {times}학기 연속 {name}"
-  hero_zh: "本科四年每学期都获得的 {name}（共 {times} 次）"
+  hero_zh: "本科四年每学期都获得 {name}（共 {times} 次）"

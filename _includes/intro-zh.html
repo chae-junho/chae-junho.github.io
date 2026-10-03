@@ -1,5 +1,6 @@
 {%- include counts.html -%}
 {%- assign hero_honors = site.data.honors | where_exp: "h", "h.hero" | sort: "hero" -%}
+{%- assign number_words = "一|二|三|四|五|六|七|八|九|十" | split: "|" -%}
 {%- capture ccf_names -%}{%- for g in ccf_a_venues -%}{{ g.name }}{%- unless forloop.last -%}、{%- endunless -%}{%- endfor -%}{%- endcapture -%}
 {%- capture oral_names -%}{%- for g in ccf_a_oral_venues -%}{{ g.name }}{%- unless forloop.last -%}、{%- endunless -%}{%- endfor -%}{%- endcapture -%}
 {%- capture agency_names -%}{%- for g in agencies -%}{{ g.name }}{%- unless forloop.last -%}、{%- endunless -%}{%- endfor -%}{%- endcapture -%}
@@ -7,20 +8,23 @@
 {%- for h in hero_honors -%}
 {%- assign rank_val = h.rank | replace: "Top ", "" -%}
 {%- capture name_tag -%}<strong>{{ h.name }}</strong>{%- endcapture -%}
-{%- capture times_val -%}{% case h.times %}{% when 2 %}两次{% when 3 %}三次{% else %}{{ h.times }} 次{% endcase %}{%- endcapture -%}
-{%- if h.hero_zh -%}{%- assign phrase = h.hero_zh | replace: "{name}", name_tag | replace: "{times}", h.times | replace: "{rank}", rank_val -%}{{ phrase }}{%- else -%}{{ name_tag }}{% if h.times or h.rank %}（{% if h.times %}{{ times_val }}{% endif %}{% if h.times and h.rank %}，{% endif %}{% if h.rank %}前 {{ rank_val }}{% endif %}）{% endif %}{%- endif -%}
-{%- if forloop.last -%}{%- elsif forloop.rindex == 2 -%}，还有{%- else -%}、{%- endif -%}
+{%- capture times_word -%}{% case h.times %}{% when 2 %}两次{% when 3 %}三次{% else %}{{ h.times }} 次{% endcase %}{%- endcapture -%}
+{%- assign number_word = "" -%}
+{%- if h.times -%}{%- assign idx = h.times | minus: 1 -%}{%- assign number_word = number_words[idx] | default: h.times -%}{%- endif -%}
+{%- if h.hero_zh -%}{%- assign phrase = h.hero_zh | replace: "{name}", name_tag | replace: "{times_word}", times_word | replace: "{times}", h.times | replace: "{number}", number_word | replace: "{rank}", rank_val -%}{{ phrase }}{%- else -%}获得{{ name_tag }}{% if h.times or h.rank %}（{% if h.times %}{{ times_word }}{% endif %}{% if h.times and h.rank %}，{% endif %}{% if h.rank %}前 {{ rank_val }}{% endif %}）{% endif %}{%- endif -%}
+{%- unless forloop.last -%}，{%- endunless -%}
 {%- endfor -%}
 {%- endcapture -%}
 {%- comment -%}
-  Short on purpose (see intro-en.html). Written the way a Chinese speaker writes a personal introduction: name first,
-  then the stage of study and where ("博士二年级，就读于 ... 的 ..."), with no city in front of the school, short clauses,
-  and a space between Chinese text and Latin letters or numbers. It is not a translation of the English version.
+  Short on purpose (see intro-en.html). Written the way a Chinese speaker writes a personal introduction: 您好，我是 ...,
+  then who I am and where ("目前是 ... 的博士二年级学生"), with no city in front of the school, verbs instead of noun lists
+  (已发表, 另有, 参与了, 获得), and a space between Chinese text and Latin letters or numbers. It is not a translation
+  of the English version. The honors sentence reads "我 ...", so every honor in honors.yml is a verb phrase (hero_zh).
 {%- endcomment -%}
-<p>您好，我是蔡俊豪，{% if phd_zh %}博士<span class="phd-year" data-start="{{ phd_start }}" data-words="{{ phd_words_zh }}">{{ phd_zh }}</span>年级{% else %}博士生{% endif %}，就读于 <a href="https://www.korea.ac.kr/sites/ko/index.do">Korea University</a> 的 <a href="https://cs.korea.ac.kr/cs/index.do">Computer Science and Engineering</a>。<strong>遇到复杂的问题，我倾向于先把它拆解清楚，再一步步解决。</strong></p>
-<p><strong>中文和韩语都是我的母语</strong>（TOPIK 6 级），工作中也可以使用英语。</p>
-<p>我研究机器遗忘（让训练好的 AI 模型按需忘掉指定的数据）和 AI 应用。目前已有<strong>论文 {{ papers_n }} 篇</strong>{% if ccf_a_n > 0 %}（其中 {{ ccf_a_n }} 篇发表在 {{ ccf_names }} 等人工智能顶级会议上{% if ccf_a_oral_n > 0 %}，{{ oral_names }} 论文被选为 Oral{% endif %}）{% endif %}、<strong>专利 {{ patents_n }} 项</strong>，以及<strong>韩国国家级科研项目 {{ projects_n }} 项</strong>（{{ agency_names }}）。</p>
+<p>您好，我是蔡俊豪，目前是 <a href="https://www.korea.ac.kr/sites/ko/index.do">Korea University</a> <a href="https://cs.korea.ac.kr/cs/index.do">Computer Science and Engineering</a> 的{% if phd_zh %}博士<span class="phd-year" data-start="{{ phd_start }}" data-words="{{ phd_words_zh }}">{{ phd_zh }}</span>年级学生{% else %}博士生{% endif %}。<strong>做研究或做项目时，我倾向于先做出一个端到端跑通的 MVP，再逐步迭代优化。</strong></p>
+<p><strong>我的母语是中文和韩语</strong>（TOPIK 6 级），也能用英语工作。</p>
+<p>我主要研究机器遗忘（让训练好的 AI 模型按需忘掉指定的数据）和 AI 应用。已发表<strong>论文 {{ papers_n }} 篇</strong>{% if ccf_a_n > 0 %}（其中 {{ ccf_a_n }} 篇发表在 {{ ccf_names }} 等人工智能顶级会议上{% if ccf_a_oral_n > 0 %}，{{ oral_names }} 论文入选 Oral{% endif %}）{% endif %}，另有<strong>专利 {{ patents_n }} 项</strong>，并参与了<strong>韩国国家级科研项目 {{ projects_n }} 项</strong>（{{ agency_names }}）。</p>
 {%- if hero_honors.size > 0 %}
-<p>奖项方面，有 {{ honors_zh }}。</p>
+<p>我{{ honors_zh }}。</p>
 {%- endif %}
 <p>欢迎发邮件到 <span class="hero__email">{{ site.author.email }}</span>，或者通过 <a href="https://www.linkedin.com/in/{{ site.author.linkedin }}">LinkedIn</a> 联系我。</p>
