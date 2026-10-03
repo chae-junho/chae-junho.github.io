@@ -54,8 +54,8 @@ $type-size-8                : 0.625em;  // ~10px
 // bar and the menu button. _custom.scss and the theme's primary and info colors below take it from here, and the
 // grays (also in _custom.scss) are mixed from it, so changing the color of the page means changing the next three
 // lines and nothing else.
-$accent                     : #14284b; // a deep ink navy
-$link                       : #2a5288;  // link text: the same blue a step lighter, so that links read as links next to the near black text (use $accent for one flat color)
+$accent                     : #8b0029; // the crimson of Korea University
+$link                       : $accent;  // link text (a little lighter than the accent if the accent is so dark that links hardly differ from the text)
 $badge-ink                  : #fff;     // text on the solid accent badges (dark if the accent is a light color)
 
 $gray                       : mix($accent, #7a7a7a, 12%);

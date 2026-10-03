@@ -6,11 +6,10 @@
 //      width of the column beside the profile card, so that its right end lines up with the rule under the section
 //      titles. Chinese and Korean use the serif fonts that go with Times in academic documents there (Songti /
 //      SimSun and Batang / Myeongjo).
-//   2. Near black text on white and ONE color, a deep ink navy (named once, in _variables.scss, with a lighter step of
-//      the same blue for link text), for the badges, the language shown, the thin rules and the links, plus grays that
-//      carry a few percent of the same blue. Nothing else is colored. Only the conference badges are solid; every
-//      other label (journals, patents, projects, honors, activities) and the CCF tags are thin outlines. No shadows
-//      or gradients.
+//   2. Near black text on white and ONE color, the crimson of Korea University (named once, in _variables.scss), for
+//      the badges, the language shown, the thin rules and the links, plus grays that carry a few percent of the same
+//      color. Nothing else is colored. Only the conference badges are solid; every other label (journals, patents,
+//      projects, honors, activities) and the CCF tags are thin outlines. No shadows or gradients.
 //   3. Section titles are bold capitals with some letter spacing, over a thin rule in the accent color.
 //   4. Entries that start with a badge (publications, patents, projects, honors, activities) keep the badges in a
 //      column of their own, so that all titles of a list start at the same place and the left edge stays straight.
