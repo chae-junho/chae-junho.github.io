@@ -17,6 +17,10 @@
 - degree: "Ph.D."
   name: "Outstanding Paper Award"
   bold: true
+  hero: 2
+  hero_en: "the {name} from Korea University"
+  hero_ko: "Korea University {name}"
+  hero_zh: "Korea University 颁发的 {name}"
 
 - degree: "M.S."
   name: "Global Leader Scholarship"
@@ -44,7 +48,7 @@
 - degree: "B.E."
   name: "National Inspirational Scholarship"
   rank: "Top 1%"
-  hero: 2
+  hero: 4
   hero_en: "the {name} (national level, top {rank})"
   hero_ko: "국가급 {name}(상위 {rank})"
   hero_zh: "国家级奖学金 {name}（前 {rank}）"
