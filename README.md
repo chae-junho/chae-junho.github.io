@@ -54,13 +54,10 @@ make one tag ("SCIE, IF 8.2"); `topic`. A row with `status: review` and a `count
 patents.yml: `kind` is patent or software; `year`; `title`; `url`; `authors`; `topic`. A row with `status: review` and a
 `count` stands for filings under review.
 
-projects.yml: `agency` (projects with the same agency are counted together in the opening text); `badge_extra`;
-`title` and `title_ko`; `from` and `to`; `since`; `role` with `role_ko` and `role_zh`; `program`; `topics`.
+projects.yml: `agency`; `badge_extra`; `title` and `title_ko`; `from` and `to`; `since`; `role` with `role_ko` and `role_zh`; `program`; `topics`.
 
 honors.yml: `degree` groups the rows (Ph.D., M.S., B.E.); `name`; `times`; `rank`; `bold`. A `hero` number puts the honor
-in the opening text, in that order, worded by `hero_en`, `hero_ko` and `hero_zh`. The placeholders are `{name}`,
-`{rank}`, `{times}`, `{times_word}` and `{number}`; a Korean clause ends in `{c}`, which becomes the ending that fits
-its place in the sentence.
+in the opening text, worded by `hero_en`, `hero_ko` and `hero_zh`.
 
 education.yml: `period`, `degree`, `school`, `tag`, `gpa`, `highlights`. The Ph.D. entry whose period ends with Present
 gives the year of study named in the opening text. `schools.yml` gives the emblems of a school by the same `name`.
@@ -70,8 +67,7 @@ a `period` of its own; `roles` is a list written on one line.
 
 activities.yml: `venue` (the badge, with its year), `url`, `role`, and a `year` that is not shown. languages.yml: `name`,
 `short` (Native or Professional, used by the opening text), `level`, `detail`. skills.yml: `name`, `tags`, `suffix`,
-`items`. navigation.yml: `title` and `url`, the id of a section. agencies.yml: the Korean name of a funding agency for
-the Korean opening text.
+`items`. navigation.yml: `title` and `url`, the id of a section.
 
 ## Code
 

@@ -6,7 +6,6 @@
 {%- capture pro_names -%}{%- for l in pros -%}{{ l.name }}{%- if forloop.last -%}{%- elsif forloop.rindex == 2 %} and {% else %}, {% endif -%}{%- endfor -%}{%- endcapture -%}
 {%- capture ccf_names -%}{%- for g in ccf_a_venues -%}{{ g.name }}{%- if forloop.last -%}{%- elsif forloop.rindex == 2 %} and {% else %}, {% endif -%}{%- endfor -%}{%- endcapture -%}
 {%- capture oral_names -%}{%- for g in ccf_a_oral_venues -%}{{ g.name }}{%- if forloop.last -%}{%- elsif forloop.rindex == 2 %} and {% else %}, {% endif -%}{%- endfor -%}{%- endcapture -%}
-{%- capture agency_names -%}{%- for g in agencies -%}{{ g.name }}{%- if forloop.last -%}{%- elsif forloop.rindex == 2 %} and {% else %}, {% endif -%}{%- endfor -%}{%- endcapture -%}
 {%- capture honors_en -%}
 {%- for h in hero_honors -%}
 {%- assign rank_val = h.rank | replace: "Top ", "" -%}
@@ -18,17 +17,13 @@
 {%- if forloop.last -%}{%- elsif forloop.rindex == 2 %} and {% else %}, {% endif -%}
 {%- endfor -%}
 {%- endcapture -%}
-<p>Hello, I'm Junhao Cai, {% if phd_en %}<span class="phd-year" data-start="{{ phd_start }}" data-words="{{ phd_words_en }}">{{ phd_en }}</span>{% else %}a{% endif %} Ph.D. student in <a href="https://cs.korea.ac.kr/cs/index.do">Computer Science and Engineering</a> at <a href="https://www.korea.ac.kr/sites/ko/index.do">Korea University</a> in Seoul. I work on machine unlearning (making a trained model forget specific data on demand) and AI applications. <strong>Whether it's research or a project, I tend to get an end-to-end minimum viable product (MVP) running first, then improve it step by step.</strong></p>
-<p>So far that adds up to <strong>{{ papers_n }} papers</strong>{% if ccf_a_n > 0 %}, {{ ccf_a_n }} of them at top-tier conferences such as {{ ccf_names }}{% if ccf_a_oral_n == 1 %} (with an oral at {{ oral_names }}){% elsif ccf_a_oral_n > 1 %} (with {{ ccf_a_oral_n }} orals at {{ oral_names }}){% endif %}{% endif %}, and <strong>{{ patents_n }} patents</strong>. I'm also part of <strong>{{ projects_n }} national research projects</strong> funded by {{ agency_names }}.</p>
-{%- assign has_gpa = false %}
-{%- if edu_phd.gpa and edu_ms.gpa and edu_be.gpa %}{% assign has_gpa = true %}{% endif %}
-{%- if has_gpa or hero_honors.size > 0 %}
-<p>{% if has_gpa %}My GPA is <strong>{{ edu_phd.gpa }}</strong> in the Ph.D. and <strong>{{ edu_ms.gpa }}</strong> in the M.S. I graduated from Yanbian University as an Engineering Innovation Class student with a B.E. in Computer Science and Technology (<strong>{{ edu_be.gpa }}</strong>){% if be_rank > 0 %}, in the top {{ be_rank }} of my major{% endif %}.{% endif %}{% if hero_honors.size > 0 %} My honors include {{ honors_en }}.{% endif %}</p>
+<p>Hello, I'm Junhao Cai, {% if phd_en %}<span class="phd-year" data-start="{{ phd_start }}" data-words="{{ phd_words_en }}">{{ phd_en }}</span>{% else %}a{% endif %} Ph.D. student in <a href="https://cs.korea.ac.kr/cs/index.do">Computer Science and Engineering</a> at <a href="https://www.korea.ac.kr/sites/ko/index.do">Korea University</a>. I work on machine unlearning (making a trained model forget specific data on demand) and AI applications. <strong>I tend to get an end-to-end minimum viable product (MVP) running first, then improve it step by step.</strong></p>
+<p>I have <strong>{{ papers_n }} papers</strong>{% if ccf_a_n > 0 %} ({{ ccf_a_n }} at top-tier conferences such as {{ ccf_names }}{% if ccf_a_oral_n == 1 %}, with an oral at {{ oral_names }}{% elsif ccf_a_oral_n > 1 %}, with {{ ccf_a_oral_n }} orals at {{ oral_names }}{% endif %}){% endif %}, <strong>{{ patents_n }} patents</strong> and <strong>{{ projects_n }} national research projects</strong>.{% if hero_honors.size > 0 %} I also received {{ honors_en }}.{% endif %}</p>
+{%- if edu_phd.gpa and edu_ms.gpa %}
+<p>My GPA is <strong>{{ edu_phd.gpa }}</strong> in the Ph.D. and <strong>{{ edu_ms.gpa }}</strong> in the M.S. I graduated from Yanbian University as an Engineering Innovation Class student with a B.E. in Computer Science and Technology.</p>
 {%- endif %}
 {%- if natives_n > 0 %}
-<p>Outside of research and work, I enjoy playing the piano and badminton.</p>
-<p><strong>I can communicate at a native level in {% if natives_n == 2 %}both {% endif %}{{ native_names }}</strong> (TOPIK Level 6 in Korean){% if pros.size > 0 %} and I also work in {{ pro_names }}{% endif %}, so feel free to reach out in whichever language suits you, at <span class="hero__email">{{ site.author.email }}</span> or on <a href="https://www.linkedin.com/in/{{ site.author.linkedin }}">LinkedIn</a>.</p>
+<p><strong>I can communicate at a native level in {% if natives_n == 2 %}both {% endif %}{{ native_names }}</strong> (TOPIK Level 6 in Korean){% if pros.size > 0 %} and I also work in {{ pro_names }}{% endif %}, so feel free to reach out at <span class="hero__email">{{ site.author.email }}</span> or on <a href="https://www.linkedin.com/in/{{ site.author.linkedin }}">LinkedIn</a>.</p>
 {%- else %}
-<p>Outside of research and work, I enjoy playing the piano and badminton.</p>
 <p>Feel free to reach out at <span class="hero__email">{{ site.author.email }}</span> or on <a href="https://www.linkedin.com/in/{{ site.author.linkedin }}">LinkedIn</a>.</p>
 {%- endif %}

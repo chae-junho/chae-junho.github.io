@@ -21,7 +21,6 @@
 {%- for p in patents_all -%}{%- if p.status == "review" -%}{%- assign patents_review_n = patents_review_n | plus: p.count -%}{%- endif -%}{%- endfor -%}
 {%- assign software_n = site.data.patents | where: "kind", "software" | size -%}
 {%- assign projects_n = site.data.projects | size -%}
-{%- assign agencies = site.data.projects | group_by: "agency" -%}
 {%- assign edu_phd = site.data.education | where_exp: "e", "e.degree contains 'Ph.D.'" | first -%}
 {%- assign edu_ms = site.data.education | where_exp: "e", "e.degree contains 'M.S.'" | first -%}
 {%- assign edu_be = site.data.education | where_exp: "e", "e.degree contains 'B.E.'" | first -%}

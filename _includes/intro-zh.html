@@ -3,7 +3,6 @@
 {%- assign number_words = "一|二|三|四|五|六|七|八|九|十" | split: "|" -%}
 {%- capture ccf_names -%}{%- for g in ccf_a_venues -%}{{ g.name }}{%- unless forloop.last -%}、{%- endunless -%}{%- endfor -%}{%- endcapture -%}
 {%- capture oral_names -%}{%- for g in ccf_a_oral_venues -%}{{ g.name }}{%- unless forloop.last -%}、{%- endunless -%}{%- endfor -%}{%- endcapture -%}
-{%- capture agency_names -%}{%- for g in agencies -%}{{ g.name }}{%- unless forloop.last -%}、{%- endunless -%}{%- endfor -%}{%- endcapture -%}
 {%- capture honors_zh -%}
 {%- for h in hero_honors -%}
 {%- assign rank_val = h.rank | replace: "Top ", "" -%}
@@ -15,12 +14,9 @@
 {%- unless forloop.last -%}，{%- endunless -%}
 {%- endfor -%}
 {%- endcapture -%}
-<p>您好，我是蔡俊豪，<a href="https://www.korea.ac.kr/sites/ko/index.do">高丽大学</a>{% if qs_rank > 0 %}（QS 排名第 {{ qs_rank }} 位）{% endif %}<a href="https://cs.korea.ac.kr/cs/index.do">计算机科学与工程系</a>{% if phd_zh %}博士<span class="phd-year" data-start="{{ phd_start }}" data-words="{{ phd_words_zh }}">{{ phd_zh }}</span>年级在读{% else %}博士在读{% endif %}，主要研究机器遗忘（让训练好的 AI 模型按需忘掉指定的数据）和 AI 应用。<strong>不管是做研究还是做项目，我都倾向于先做出一个端到端跑通的最小可行产品（MVP），再一步步迭代优化。</strong></p>
-<p>到目前为止，我有<strong>论文 {{ papers_n }} 篇</strong>被录用{% if ccf_a_n > 0 %}，其中 {{ ccf_a_n }} 篇被 {{ ccf_names }} 等顶会录用{% if ccf_a_oral_n > 0 %}，{{ oral_names }} 的论文还入选了 Oral{% endif %}{% endif %}；另有<strong>专利 {{ patents_n }} 项</strong>，并正在参与 {{ agency_names }} 资助的<strong>韩国国家级科研项目 {{ projects_n }} 项</strong>。</p>
-{%- assign has_gpa = false %}
-{%- if edu_phd.gpa and edu_ms.gpa and edu_be.gpa %}{% assign has_gpa = true %}{% endif %}
-{%- if has_gpa or hero_honors.size > 0 %}
-<p>{% if has_gpa %}成绩方面，我的博士 GPA 是 <strong>{{ edu_phd.gpa }}</strong>，硕士是 <strong>{{ edu_ms.gpa }}</strong>；本科就读于延边大学工科创新班（计算机科学与技术专业），GPA <strong>{{ edu_be.gpa }}</strong>{% if be_rank > 0 %}，专业排名前 {{ be_rank }}{% endif %}。{% endif %}{% if hero_honors.size > 0 %}荣誉方面，我{{ honors_zh }}。{% endif %}</p>
+<p>您好，我是蔡俊豪，<a href="https://www.korea.ac.kr/sites/ko/index.do">高丽大学</a>{% if qs_rank > 0 %}（QS 排名第 {{ qs_rank }} 位）{% endif %}<a href="https://cs.korea.ac.kr/cs/index.do">计算机科学与工程系</a>{% if phd_zh %}博士<span class="phd-year" data-start="{{ phd_start }}" data-words="{{ phd_words_zh }}">{{ phd_zh }}</span>年级在读{% else %}博士在读{% endif %}，主要研究机器遗忘（让训练好的 AI 模型按需忘掉指定的数据）和 AI 应用。<strong>我倾向于先做出一个端到端跑通的最小可行产品（MVP），再一步步迭代优化。</strong></p>
+<p>我有<strong>论文 {{ papers_n }} 篇</strong>被录用{% if ccf_a_n > 0 %}，其中 {{ ccf_a_n }} 篇为 {{ ccf_names }} 等顶会论文{% if ccf_a_oral_n > 0 %}，{{ oral_names }} 的论文还入选了 Oral{% endif %}{% endif %}；另有<strong>专利 {{ patents_n }} 项</strong>，并正在参与<strong>韩国国家级科研项目 {{ projects_n }} 项</strong>。{% if hero_honors.size > 0 %}荣誉方面，我{{ honors_zh }}。{% endif %}</p>
+{%- if edu_phd.gpa and edu_ms.gpa %}
+<p>成绩方面，我的博士 GPA 是 <strong>{{ edu_phd.gpa }}</strong>，硕士是 <strong>{{ edu_ms.gpa }}</strong>；本科就读于延边大学工科创新班（计算机科学与技术专业）。</p>
 {%- endif %}
-<p>科研和工作之余，我喜欢弹钢琴和打羽毛球。</p>
-<p><strong>中文和韩语我都能以母语水平交流</strong>（韩语有 TOPIK 6 级），英语也可以作为工作语言，无论您习惯哪种语言，都欢迎通过邮箱 <span class="hero__email">{{ site.author.email }}</span> 或 <a href="https://www.linkedin.com/in/{{ site.author.linkedin }}">LinkedIn</a> 联系我。</p>
+<p><strong>中文和韩语我都能以母语水平交流</strong>（韩语有 TOPIK 6 级），英语也可以作为工作语言，欢迎通过邮箱 <span class="hero__email">{{ site.author.email }}</span> 或 <a href="https://www.linkedin.com/in/{{ site.author.linkedin }}">LinkedIn</a> 联系我。</p>
