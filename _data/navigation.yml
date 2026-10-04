@@ -1,30 +1,30 @@
 main:
   - title: "About Me"
-    url: "/#about-me"
+    url: "#about-me"
 
   - title: "Publications"
-    url: "/#publications"
+    url: "#publications"
 
   - title: "Patents"
-    url: "/#patents"
+    url: "#patents"
 
   - title: "Projects"
-    url: "/#research-projects"
+    url: "#research-projects"
 
   - title: "Honors"
-    url: "/#honors-and-awards"
+    url: "#honors-and-awards"
 
   - title: "Education"
-    url: "/#education"
+    url: "#education"
 
   - title: "Experience"
-    url: "/#experience"
+    url: "#experience"
 
   - title: "Activities"
-    url: "/#academic-activities"
+    url: "#academic-activities"
 
   - title: "Languages"
-    url: "/#languages"
+    url: "#languages"
 
   - title: "Skills"
-    url: "/#skills"
+    url: "#skills"
