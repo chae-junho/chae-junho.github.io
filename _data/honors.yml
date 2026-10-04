@@ -7,6 +7,7 @@
 - degree: "Ph.D."
   name: "Outstanding Paper Award"
   bold: true
+  hero: 1
   hero_en: "the {name} from Korea University"
   hero_ko: "고려대학교에서는 {name}를 받았{c}"
   hero_zh: "博士期间获得了高丽大学的 {name}"
@@ -32,7 +33,7 @@
   times: 2
   rank: "Top 1%"
   bold: true
-  hero: 1
+  hero: 2
   hero_en: "the {name} ({times_word}, top {rank})"
   hero_ko: "학부 시절에는 {name}을 {times}회(상위 {rank}) 수상했{c}"
   hero_zh: "本科期间{times_word}获得 {name}（前 {rank}）"
@@ -40,6 +41,7 @@
 - degree: "B.E."
   name: "National Inspirational Scholarship"
   rank: "Top 1%"
+  hero: 3
   hero_en: "the {name} (a national-level award in China, top {rank})"
   hero_ko: "중국 국가급 장학금인 {name}(상위 {rank})도 받았{c}"
   hero_zh: "还获得了国家励志奖学金 {name}（前 {rank}）"
@@ -48,6 +50,7 @@
   name: "Excellent Student Scholarship"
   times: 8
   rank: "Top 1-5%"
+  hero: 4
   hero_en: "the {name} in all {number} undergraduate semesters"
   hero_ko: "{name}은 {times}학기 내내 빠짐없이 받았{c}"
   hero_zh: "{name} 则 {times} 个学期一次都没落下"
