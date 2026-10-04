@@ -17,12 +17,17 @@ class SectionBand {
 
   start() {
     window.addEventListener('scroll', () => this.schedule(), { passive: true });
-    window.addEventListener('resize', () => {
-      if (this.following) {
-        this.following.dirty = true;
-      }
-      this.schedule();
-    });
+    window.addEventListener('resize', () => this.refit());
+    if (window.ResizeObserver) {
+      new ResizeObserver(() => this.refit()).observe(this.content);
+    }
+  }
+
+  refit() {
+    if (this.following) {
+      this.following.dirty = true;
+    }
+    this.schedule();
   }
 
   show(target, elements, origin) {

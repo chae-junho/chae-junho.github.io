@@ -1,7 +1,8 @@
 class Reveal {
-  constructor(root, { targets, openingSelector, sidebarSelector, headingSelector, shownClass = 'is-in', step = 80, maxSteps = 9 }) {
+  constructor(root, { targets, entrance, openingSelector, sidebarSelector, headingSelector, shownClass = 'is-in', step = 80, maxSteps = 9 }) {
     this.root = root;
     this.targets = targets;
+    this.entrance = entrance;
     this.items = [];
     this.openingSelector = openingSelector;
     this.sidebarSelector = sidebarSelector;
@@ -14,7 +15,7 @@ class Reveal {
   }
 
   static create(root, options) {
-    if (!/\bjs-reveal\b/.test(root.className) || !('IntersectionObserver' in window)) {
+    if (Motion.prefersReducedMotion() || !('IntersectionObserver' in window)) {
       return null;
     }
     const targets = Dom.token('reveal-targets');
@@ -22,11 +23,14 @@ class Reveal {
       root.className = root.className.replace(/\bjs-reveal\b/g, '');
       return null;
     }
-    return new Reveal(root, Object.assign({ targets }, options));
+    return new Reveal(root, Object.assign({ targets, entrance: /\bjs-reveal\b/.test(root.className) }, options));
   }
 
   start() {
     this.items = Array.from(document.querySelectorAll(this.targets));
+    if (!this.entrance) {
+      return;
+    }
     this.items.forEach((item) => this.observer.observe(item));
     window.addEventListener('scroll', () => this.showAtPageEnd(), { passive: true });
     window.addEventListener('resize', () => this.showAtPageEnd());
