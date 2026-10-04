@@ -12,6 +12,7 @@ class VisitorGlobe {
     this.tint = tint;
     this.onLayout = onLayout;
     this.drawnSizes = new WeakMap();
+    this.awake = false;
     this.stage = document.createElement('div');
     this.stage.className = 'globe-stage';
     this.holder.appendChild(this.stage);
@@ -33,7 +34,7 @@ class VisitorGlobe {
     } else {
       this.wide.addListener(() => this.place());
     }
-    this.load();
+    this.loadWhenIdle();
     this.observe();
   }
 
@@ -63,6 +64,21 @@ class VisitorGlobe {
     window.addEventListener('load', () => this.fit());
   }
 
+  loadWhenIdle() {
+    const schedule = () => {
+      if (window.requestIdleCallback) {
+        window.requestIdleCallback(() => this.load(), { timeout: 4000 });
+      } else {
+        setTimeout(() => this.load(), 1500);
+      }
+    };
+    if (document.readyState === 'complete') {
+      schedule();
+    } else {
+      window.addEventListener('load', schedule, { once: true });
+    }
+  }
+
   load() {
     const widget = document.createElement('script');
     widget.type = 'text/javascript';
@@ -76,6 +92,13 @@ class VisitorGlobe {
         this.hide();
       }
     }, this.timeout);
+  }
+
+  wake() {
+    if (!this.awake && window.globe_jq) {
+      this.awake = true;
+      window.globe_jq(window).trigger('load');
+    }
   }
 
   hide() {
@@ -115,6 +138,7 @@ class VisitorGlobe {
     this.stage.style.width = shown + 'px';
     this.stage.style.height = height + 'px';
     this.adoptLabel();
+    this.wake();
   }
 
   adoptLabel() {
