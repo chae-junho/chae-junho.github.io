@@ -33,6 +33,9 @@ class Site {
     if (reveal) {
       this.attempt(() => reveal.start());
     }
+    if (PageSaver.requested()) {
+      this.attempt(() => new PageSaver().run());
+    }
   }
 
   attempt(step) {

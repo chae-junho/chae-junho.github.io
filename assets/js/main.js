@@ -29,6 +29,7 @@ layout: null
 {% include js/sticky-column.js %}
 {% include js/globe-tint.js %}
 {% include js/globe-spin.js %}
+{% include js/page-saver.js %}
 {% include js/visitor-globe.js %}
 {% include js/site.js %}
 }());
