@@ -16,7 +16,7 @@ class Site {
       sidebarSelector: '.sidebar',
       headingSelector: HEADING,
     }));
-    const tint = new GlobeTint({ landColor: Dom.token('globe-land') });
+    const tint = new GlobeTint();
     this.attempt(() => this.startLanguageSwitch(reveal));
     this.attempt(() => this.startAccentPicker(tint));
     this.attempt(() => this.startVisitors(tint));
@@ -45,7 +45,7 @@ class Site {
   startAccentPicker(tint) {
     const group = document.querySelector('.accent-picker');
     if (group) {
-      new AccentPicker(group, { onChange: () => tint.follow('globe-land', 900) }).start();
+      new AccentPicker(group, { onChange: () => tint.follow(900) }).start();
     }
   }
 

@@ -35,6 +35,7 @@ $globe-width: 7.5rem;
     left: 50%;
     transform: translateX(-50%);
     transform-origin: 50% 0;
+    transition: none;
   }
 }
 
@@ -55,13 +56,6 @@ $globe-width: 7.5rem;
     font-size: 0.75rem;
     letter-spacing: 0.02em;
   }
-}
-
-.visitors__defs {
-  position: absolute;
-  width: 0;
-  height: 0;
-  overflow: hidden;
 }
 
 .globe-global-container {
@@ -86,8 +80,9 @@ $globe-width: 7.5rem;
   }
 
   .mmvst_map_f,
-  .mmvst_map_b {
-    filter: url(#globe-land);
+  .mmvst_map_b,
+  .mmvst_dots {
+    will-change: transform;
   }
 
   .clstr_old,

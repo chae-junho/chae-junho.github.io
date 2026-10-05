@@ -11,8 +11,11 @@ class Dom {
     if (!Dom.palette) {
       Dom.palette = document.createElement('canvas').getContext('2d', { willReadFrequently: true });
     }
-    Dom.palette.fillStyle = '#000';
+    Dom.palette.fillStyle = '#010203';
     Dom.palette.fillStyle = color;
+    if (Dom.palette.fillStyle === '#010203') {
+      return null;
+    }
     Dom.palette.clearRect(0, 0, 1, 1);
     Dom.palette.fillRect(0, 0, 1, 1);
     return Array.from(Dom.palette.getImageData(0, 0, 1, 1).data).slice(0, 3).map((value) => value / 255);

@@ -13,6 +13,9 @@ class VisitorGlobe {
     this.onLayout = onLayout;
     this.drawnSizes = new WeakMap();
     this.awake = false;
+    this.prepared = false;
+    this.checkFrame = 0;
+    this.spin = new GlobeSpin();
     this.stage = document.createElement('div');
     this.stage.className = 'globe-stage';
     this.holder.appendChild(this.stage);
@@ -27,7 +30,6 @@ class VisitorGlobe {
   }
 
   start() {
-    this.tint.install(this.box);
     this.place();
     if (this.wide.addEventListener) {
       this.wide.addEventListener('change', () => this.place());
@@ -94,10 +96,26 @@ class VisitorGlobe {
     }, this.timeout);
   }
 
+  prepare() {
+    if (this.prepared || !window.globe_jq) {
+      return;
+    }
+    this.prepared = true;
+    this.tint.attach(Array.from(this.holder.querySelectorAll('.mmvst_map_f, .mmvst_map_b')));
+    this.spin.adopt(window.globe_jq);
+  }
+
   wake() {
     if (!this.awake && window.globe_jq) {
       this.awake = true;
       window.globe_jq(window).trigger('load');
+    }
+  }
+
+  recheck() {
+    if (this.awake) {
+      cancelAnimationFrame(this.checkFrame);
+      this.checkFrame = requestAnimationFrame(() => window.globe_jq(window).trigger('scroll'));
     }
   }
 
@@ -122,6 +140,7 @@ class VisitorGlobe {
     if (!outer) {
       return;
     }
+    this.prepare();
     if (this.box.style.display === 'none') {
       this.box.style.display = '';
     }
@@ -139,6 +158,7 @@ class VisitorGlobe {
     this.stage.style.height = height + 'px';
     this.adoptLabel();
     this.wake();
+    this.recheck();
   }
 
   adoptLabel() {
