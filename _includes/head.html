@@ -7,6 +7,7 @@
 <link rel="shortcut icon" href="images/favicon.ico">
 <link rel="manifest" href="images/site.webmanifest">
 <meta name="theme-color" content="#ffffff">
+<link rel="stylesheet" href="assets/css/main.css?v={{ site.time | date: '%s' }}">
 <script data-reveal-gate>
   (function (root) {
     root.className = root.className.replace(/\bno-js\b/g, '') + ' js ';
@@ -31,6 +32,5 @@
     }, 3000);
   }(document.documentElement));
 </script>
-<link rel="stylesheet" href="assets/css/main.css?v={{ site.time | date: '%s' }}">
 <script src="assets/js/main.js?v={{ site.time | date: '%s' }}" defer></script>
 <base target="_blank">
