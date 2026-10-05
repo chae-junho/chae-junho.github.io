@@ -121,19 +121,21 @@ $globe-width: 7.5rem;
   border-top: 1px solid $rule;
 }
 
-.sidebar--free .visitors {
-  padding: 1.4em 0;
-}
+@media (min-width: $wide-screen) {
+  .sidebar--free .visitors {
+    padding: 1.4em 0;
+  }
 
-.sidebar--fill .visitors {
-  padding: 1em 0;
-  display: flex;
-  flex: 1 1 auto;
-  flex-direction: column;
-  justify-content: center;
-  container-type: size;
-}
+  .sidebar--fill .visitors {
+    padding: 1em 0;
+    display: flex;
+    flex: 1 1 auto;
+    flex-direction: column;
+    justify-content: center;
+    container-type: size;
+  }
 
-.sidebar--fill .visitors__size {
-  width: clamp(#{$globe-width}, 36cqh, 10rem);
+  .sidebar--fill .visitors__size {
+    width: clamp(#{$globe-width}, 36cqh, 10rem);
+  }
 }

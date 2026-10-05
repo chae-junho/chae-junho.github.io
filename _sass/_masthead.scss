@@ -92,6 +92,13 @@ html:not(:has(script[data-reveal-gate])) #site-nav a {
   pointer-events: none;
 }
 
+@media (max-width: $below-wide-screen) {
+  html:not(:has(script[data-reveal-gate])) #site-nav {
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+}
+
 .greedy-nav {
   position: relative;
   min-width: 250px;
