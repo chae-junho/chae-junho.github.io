@@ -6,7 +6,16 @@ class Site {
     this.root = root;
   }
 
+  static clean() {
+    document.querySelectorAll('.nav-glass, .nav-indicator, .nav-page, .section-glow, .globe-stage, .mmvst_outer, #mmvst_globe, .lang-switch__thumb, .accent-picker__thumb').forEach((element) => element.remove());
+    const refraction = document.getElementById('glass-refraction');
+    if (refraction && refraction.ownerSVGElement) {
+      refraction.ownerSVGElement.remove();
+    }
+  }
+
   start() {
+    Site.clean();
     this.attempt(() => new ScrollFlag(this.root).start());
     this.attempt(() => new InputModality(this.root).start());
     this.attempt(() => new PhdYear(document).start());

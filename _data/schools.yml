@@ -1,11 +1,11 @@
 - name: "Korea University"
   logos:
-    - src: "/images/logos/korea-university-emblem.svg"
+    - src: "images/logos/korea-university-emblem.svg"
       alt: "Korea University"
       url: "https://www.korea.ac.kr/sites/ko/index.do"
       w: 214
       h: 288
-    - src: "/images/logos/college-of-informatics-emblem.png"
+    - src: "images/logos/college-of-informatics-emblem.png"
       alt: "College of Informatics, Korea University"
       url: "https://info.korea.ac.kr/"
       w: 256
@@ -13,12 +13,12 @@
 
 - name: "Yanbian University"
   logos:
-    - src: "/images/logos/yanbian-university-emblem.png"
+    - src: "images/logos/yanbian-university-emblem.png"
       alt: "Yanbian University"
       w: 316
       h: 316
       round: true
-    - src: "/images/logos/college-of-engineering-emblem.png"
+    - src: "images/logos/college-of-engineering-emblem.png"
       alt: "College of Engineering, Yanbian University"
       w: 220
       h: 220

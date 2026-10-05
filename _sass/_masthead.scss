@@ -88,6 +88,10 @@
   outline-offset: 0.2rem;
 }
 
+html:not(:has(script[data-reveal-gate])) #site-nav a {
+  pointer-events: none;
+}
+
 .greedy-nav {
   position: relative;
   min-width: 250px;

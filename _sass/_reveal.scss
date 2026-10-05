@@ -9,7 +9,7 @@ $reveal-selector: join-with-commas($reveal-targets);
   --reveal-targets: #{$reveal-selector};
 }
 
-.js-reveal {
+.js-reveal:has(script[data-reveal-gate]) {
 
   #main {
     animation: none;

@@ -1,9 +1,17 @@
 class InPageLinks {
   constructor({ onNavigate }) {
     this.onNavigate = onNavigate;
+    this.pages = [];
+  }
+
+  static pageOf(address) {
+    const url = new URL(address, location.href);
+    return url.origin + url.pathname.replace(/index\.html$/, '');
   }
 
   start() {
+    const canonical = document.querySelector('link[rel="canonical"]');
+    this.pages = [location.href].concat(canonical ? [canonical.href] : []).map((address) => InPageLinks.pageOf(address));
     document.addEventListener('click', (event) => this.handle(event), true);
   }
 
@@ -30,13 +38,14 @@ class InPageLinks {
 
   destinationOf(anchor) {
     let url;
+    let page;
     try {
       url = new URL(anchor.href, location.href);
+      page = InPageLinks.pageOf(anchor.href);
     } catch (error) {
       return null;
     }
-    const withoutIndex = (path) => path.replace(/index\.html$/, '');
-    if (url.origin !== location.origin || withoutIndex(url.pathname) !== withoutIndex(location.pathname) || url.hash.length < 2) {
+    if (!this.pages.includes(page) || url.hash.length < 2) {
       return null;
     }
     const target = document.getElementById(decodeURIComponent(url.hash.slice(1)));
@@ -47,10 +56,14 @@ class InPageLinks {
     if (!history.pushState || location.hash === hash) {
       return;
     }
-    if (window.top !== window.self) {
-      history.replaceState(null, '', hash);
-    } else {
-      history.pushState(null, '', hash);
+    try {
+      if (window.top !== window.self) {
+        history.replaceState(null, '', hash);
+      } else {
+        history.pushState(null, '', hash);
+      }
+    } catch (error) {
+      return;
     }
   }
 }
