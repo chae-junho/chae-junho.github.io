@@ -1,0 +1,157 @@
+.save-copy {
+  display: none;
+  justify-content: flex-end;
+  margin: 2.4em 0 0.6em;
+}
+
+html:has(script[data-reveal-gate]) .save-copy.is-ready {
+  display: flex;
+}
+
+.save-copy__open {
+  position: relative;
+  width: 1.7rem;
+  height: 1.7rem;
+  padding: 0.3rem;
+  color: $faint;
+  background: transparent;
+  border: 0;
+  border-radius: 999px;
+  opacity: 0.4;
+  cursor: pointer;
+  transition: opacity 0.3s $ease, color 0.3s $ease, background-color 0.3s $ease;
+
+  &::after {
+    content: "";
+    position: absolute;
+    inset: -0.5rem;
+  }
+
+  svg {
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+
+  &:hover,
+  &:focus-visible {
+    color: $accent;
+    background: $tint;
+    opacity: 1;
+  }
+}
+
+@keyframes save-copy-in {
+  from {
+    opacity: 0;
+    transform: translateY(0.7rem) scale(0.96);
+  }
+}
+
+@keyframes save-copy-fade {
+  from {
+    opacity: 0;
+  }
+}
+
+.save-copy__dialog {
+  width: min(21rem, calc(100vw - 2rem));
+  padding: 0;
+  color: $ink;
+  background: #fff;
+  border: 1px solid $border-color;
+  border-radius: 1.2rem;
+  box-shadow: 0 24px 60px -16px rgba(#000, 0.4);
+  font-family: $serif;
+
+  &[open] {
+    animation: save-copy-in 0.4s $ease;
+
+    @supports (animation-timing-function: linear(0, 1)) {
+      animation: save-copy-in 0.6s $spring-soft;
+    }
+  }
+
+  &::backdrop {
+    background: rgba(#000, 0.28);
+    -webkit-backdrop-filter: blur(6px);
+    backdrop-filter: blur(6px);
+  }
+
+  &[open]::backdrop {
+    animation: save-copy-fade 0.3s $ease;
+  }
+}
+
+.save-copy__panel {
+  padding: 1.2rem 1.3rem 1.1rem;
+}
+
+.save-copy__title {
+  margin: 0 0 0.8rem;
+  font-size: 1.05em;
+  font-weight: 700;
+}
+
+.save-copy__label {
+  display: block;
+  margin-bottom: 0.3rem;
+  color: $muted;
+  font-size: 0.85em;
+}
+
+.save-copy__input {
+  box-sizing: border-box;
+  width: 100%;
+  padding: 0.5rem 0.7rem;
+  color: $ink;
+  background: #fff;
+  border: 1px solid $border-color;
+  border-radius: 0.6rem;
+  font: inherit;
+  font-size: 16px;
+  -webkit-text-security: disc;
+
+  &:focus-visible {
+    outline: 2px solid fade($accent, 0.5);
+    outline-offset: 1px;
+  }
+}
+
+.save-copy__message {
+  min-height: 1.4em;
+  margin: 0.5rem 0 0;
+  color: $accent;
+  font-size: 0.85em;
+}
+
+.save-copy__actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.5rem;
+  margin-top: 0.6rem;
+
+  button {
+    padding: 0.35rem 1.1rem;
+    border: 0;
+    border-radius: 999px;
+    font: inherit;
+    cursor: pointer;
+  }
+}
+
+.save-copy__cancel {
+  color: $muted;
+  background: transparent;
+}
+
+.save-copy__confirm {
+  color: #fff;
+  background: $chip-solid;
+  font-weight: 700;
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: default;
+  }
+}

@@ -63,3 +63,8 @@ timezone: Asia/Seoul
 plugins:
   - jekyll-sitemap
   - jekyll-redirect-from
+
+copy_gate:
+  salt: "MLXyw24fVlaJtXi0KpDelQ=="
+  iterations: 600000
+  hash: "LtnRq4vMw/vi5R5yoycmWB2uliqLL+eDLCr9Lg0ttFE="

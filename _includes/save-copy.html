@@ -1,0 +1,19 @@
+{%- if site.copy_gate.hash -%}
+<div class="save-copy" data-save-copy data-salt="{{ site.copy_gate.salt }}" data-iterations="{{ site.copy_gate.iterations }}" data-hash="{{ site.copy_gate.hash }}">
+  <button type="button" class="save-copy__open" aria-label="Save a copy of this page" title="Save a copy">
+    <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 4v10m0 0-4-4m4 4 4-4M5 19h14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+  </button>
+  <dialog class="save-copy__dialog" aria-labelledby="save-copy-title">
+    <div class="save-copy__panel">
+      <p class="save-copy__title" id="save-copy-title">Save a copy of this page</p>
+      <label class="save-copy__label" for="save-copy-code">Password</label>
+      <input class="save-copy__input" id="save-copy-code" type="text" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" data-lpignore="true" data-1p-ignore data-bwignore data-form-type="other">
+      <p class="save-copy__message" role="alert"></p>
+      <div class="save-copy__actions">
+        <button type="button" class="save-copy__cancel">Cancel</button>
+        <button type="button" class="save-copy__confirm">Save</button>
+      </div>
+    </div>
+  </dialog>
+</div>
+{%- endif -%}

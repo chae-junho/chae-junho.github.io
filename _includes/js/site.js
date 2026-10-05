@@ -34,8 +34,12 @@ class Site {
     if (reveal) {
       this.attempt(() => reveal.start());
     }
-    if (PageSaver.requested()) {
-      this.attempt(() => new PageSaver().run());
+    const gate = this.attempt(() => CopyGate.create(() => new PageSaver().run()));
+    if (gate) {
+      this.attempt(() => gate.start());
+      if (PageSaver.requested()) {
+        this.attempt(() => gate.open());
+      }
     }
   }
 

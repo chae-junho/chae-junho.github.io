@@ -123,8 +123,8 @@ Open http://127.0.0.1:4000. Run the build again after each change.
 
 ## Send the page as one file
 
-Open the page with `?download` added to the address, for example https://chae-junho.github.io/?download. The browser
-saves `Junhao-Cai-Homepage.html`, one file that opens by double click, also offline.
+Use the small save icon at the very end of the page, or add `?download` to the address, and enter the password. The
+browser saves `Junhao-Cai-Homepage.html`, one file that opens by double click, also offline.
 
 ## Publish
 

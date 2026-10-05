@@ -35,6 +35,7 @@ class PageSaver {
     const script = doc.querySelector('script[src]');
     const code = await this.text(new URL(script.getAttribute('src'), page.url).href);
     script.remove();
+    doc.querySelectorAll('[data-save-copy]').forEach((element) => element.remove());
     const inline = doc.createElement('script');
     inline.textContent = code.replace(/<\/script/gi, '<\\/script');
     doc.body.appendChild(inline);
