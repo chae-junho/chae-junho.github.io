@@ -4,6 +4,7 @@ const LARGE_SCREEN = '(min-width: 57.8125em)';
 class Site {
   constructor(root) {
     this.root = root;
+    this.jump = null;
   }
 
   static clean() {
@@ -50,7 +51,16 @@ class Site {
   startLanguageSwitch(reveal) {
     const hero = document.querySelector('.hero');
     if (hero) {
-      new LanguageSwitch(hero, { onChange: () => reveal && reveal.replayOpeningText() }).start();
+      new LanguageSwitch(hero, { onChange: () => this.changeLanguage(reveal) }).start();
+    }
+  }
+
+  changeLanguage(reveal) {
+    if (this.jump) {
+      this.jump.cancel();
+    }
+    if (reveal) {
+      reveal.replayOpeningText();
     }
   }
 
@@ -95,6 +105,7 @@ class Site {
       }
     };
     const jump = reveal && this.createJump(reveal, bar, masthead, content);
+    this.jump = jump || null;
     new InPageLinks({
       onNavigate: ({ id, target, anchor, origin }) => {
         if (jump) {

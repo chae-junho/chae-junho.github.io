@@ -3,6 +3,12 @@ class SectionJump {
     this.reveal = reveal;
     this.band = band;
     this.lens = lens;
+    this.version = 0;
+  }
+
+  cancel() {
+    this.version += 1;
+    this.band.end();
   }
 
   arrive(target, origin) {
@@ -10,6 +16,7 @@ class SectionJump {
     if (!elements.length) {
       return;
     }
+    const version = this.version;
     const fresh = elements.filter((element) => !this.reveal.isShown(element));
     this.reveal.unobserve(fresh);
     this.lens.charge();
@@ -27,7 +34,9 @@ class SectionJump {
       this.reveal.show(fresh);
       this.reveal.showVisible();
       this.lens.release();
-      this.band.show(target, elements, origin);
+      if (version === this.version) {
+        this.band.show(target, elements, origin);
+      }
     };
     const distance = this.distanceTo(target);
     if (distance < 3) {
