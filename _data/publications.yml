@@ -7,6 +7,7 @@
   authors: ["J Cai", "D Kim", "D Kim", "SI Choi", "C Jin", "J Park", "C Joo*"]
   ccf: "A"
   bk: "BK+ IF 4"
+  topic: "Machine Unlearning"
 
 - status: accepted
   type: conference
@@ -17,6 +18,7 @@
   authors: ["SI Choi", "J Cai", "D Kim", "C Joo*"]
   ccf: "A"
   bk: "BK+ IF 4"
+  topic: "Machine Unlearning"
 
 - status: accepted
   type: journal
@@ -28,6 +30,7 @@
   authors: ["J Bae", "H Kang", "T Kim", "T An", "S Lee", "J Cai", "C Joo", "K Lee"]
   impact_factor: 8.2
   scie: true
+  topic: "AI application"
 
 - status: accepted
   type: conference
@@ -36,7 +39,7 @@
   oral: true
   venue_url: https://aaai.org/conference/aaai/aaai-26/
   title: "HCF: Hierarchical Cascade Framework for Distributed Multi-Stage Image Compression"
-  title_url: https://doi.org/10.48550/arXiv.2508.02051
+  title_url: https://doi.org/10.1609/aaai.v40i17.38467
   authors: ["J Cai", "T An", "C Jin", "SI Choi", "J Park", "C Joo"]
   ccf: "A"
   bk: "BK+ IF 4"
