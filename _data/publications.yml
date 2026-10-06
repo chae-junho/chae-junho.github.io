@@ -24,6 +24,7 @@
   year: 2026
   venue_url: https://www.comsoc.org/publications/magazines/ieee-communications-magazine
   title: "RXC: Runtime Extra Compression for Time-Critical Content Delivery"
+  title_url: https://doi.org/10.1109/MCOM.001.2500395
   authors: ["J Bae", "H Kang", "T Kim", "T An", "S Lee", "J Cai", "C Joo", "K Lee"]
   impact_factor: 8.2
   scie: true
