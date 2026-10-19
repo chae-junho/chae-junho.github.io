@@ -54,7 +54,8 @@ class VisitLog {
     }
     const groups = [];
     list.forEach((point) => {
-      const place = point && typeof point.name === 'string' ? point.name : '';
+      const name = point && typeof point.name === 'string' ? point.name : '';
+      const place = /^unknown location$/i.test(name.trim()) ? '' : name;
       const count = point && point.v >= 1 ? Math.floor(point.v) : 1;
       const group = groups.find((item) => item.place === place);
       if (group) {
