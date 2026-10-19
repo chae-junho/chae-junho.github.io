@@ -129,8 +129,9 @@ browser saves `Junhao-Cai-Homepage.html`, one file that opens by double click, a
 ## Visit times
 
 The globe opens a list of the latest visits in Seoul time. A scheduled job (`.github/workflows/visits.yml`) copies the
-visit log of mapmyvisitors.com to the `data` branch every quarter of an hour, and `VisitLog` reads it from there. Where
-the copy is missing, the globe opens the statistics page as before.
+visit log of mapmyvisitors.com to the `data` branch every five minutes, and `VisitLog` reads it from there. Visits that
+are newer than the copy are added by place from the live feed of the globe and get their time with the next copy.
+Where the copy is missing, the globe opens the statistics page as before.
 
 ## Publish
 

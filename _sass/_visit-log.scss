@@ -35,17 +35,21 @@
     padding: 0.45rem 0;
     border-bottom: 1px solid fade($ink, 0.08);
     font-size: 0.95em;
-  }
 
-  time {
-    flex: none;
-    font-variant-numeric: tabular-nums;
+    &.is-new .visit-log__when {
+      color: $accent;
+    }
   }
+}
 
-  span {
-    color: $muted;
-    text-align: right;
-  }
+.visit-log__when {
+  flex: none;
+  font-variant-numeric: tabular-nums;
+}
+
+.visit-log__where {
+  color: $muted;
+  text-align: right;
 }
 
 .visit-log__actions {

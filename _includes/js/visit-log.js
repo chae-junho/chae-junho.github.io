@@ -1,16 +1,25 @@
 const KOREA_OFFSET = 9 * 3600000;
 const MONTH_NAMES = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+let liveCalls = 0;
 
 class VisitLog {
-  constructor(box, { url, limit = 30, staleAfter = 300000, timeout = 8000 }) {
+  constructor(box, { url, liveUrl, limit = 30, staleAfter = 180000, interval = 15000, timeout = 8000 }) {
     this.box = box;
     this.url = url;
+    this.liveUrl = liveUrl;
     this.limit = limit;
     this.staleAfter = staleAfter;
+    this.interval = interval;
     this.timeout = timeout;
     this.visits = null;
     this.updated = null;
+    this.last = null;
     this.loadedAt = 0;
+    this.live = [];
+    this.polledAt = 0;
+    this.busy = false;
+    this.ticker = 0;
+    this.address = '';
     this.dialog = null;
     this.pressed = false;
   }
@@ -18,7 +27,7 @@ class VisitLog {
   static create(box) {
     const url = box && box.getAttribute('data-visits');
     const supported = url && location.protocol !== 'file:' && typeof HTMLDialogElement === 'function' && window.fetch && window.AbortController;
-    return supported ? new VisitLog(box, { url }) : null;
+    return supported ? new VisitLog(box, { url, liveUrl: box.getAttribute('data-live') }) : null;
   }
 
   static rows(data) {
@@ -29,10 +38,40 @@ class VisitLog {
       .sort((first, second) => second.time - first.time);
   }
 
-  static clock(time) {
+  static points(code) {
+    const found = typeof code === 'string' && /_helper\.add\s*\(\s*(\[[\s\S]*\])\s*,\s*true\s*\)/.exec(code);
+    let list = null;
+    try {
+      list = found ? JSON.parse(found[1]) : null;
+    } catch (error) {
+      list = null;
+    }
+    if (!Array.isArray(list)) {
+      return null;
+    }
+    const groups = [];
+    list.forEach((point) => {
+      const place = point && typeof point.name === 'string' ? point.name : '';
+      const count = point && point.v >= 1 ? Math.floor(point.v) : 1;
+      const group = groups.find((item) => item.place === place);
+      if (group) {
+        group.count += count;
+      } else {
+        groups.push({ place, count });
+      }
+    });
+    return groups;
+  }
+
+  static hour(time) {
     const seoul = new Date(time + KOREA_OFFSET);
     const pad = (number) => (number < 10 ? '0' : '') + number;
-    return MONTH_NAMES[seoul.getUTCMonth()] + ' ' + seoul.getUTCDate() + ', ' + pad(seoul.getUTCHours()) + ':' + pad(seoul.getUTCMinutes());
+    return pad(seoul.getUTCHours()) + ':' + pad(seoul.getUTCMinutes());
+  }
+
+  static clock(time) {
+    const seoul = new Date(time + KOREA_OFFSET);
+    return MONTH_NAMES[seoul.getUTCMonth()] + ' ' + seoul.getUTCDate() + ', ' + VisitLog.hour(time);
   }
 
   start() {
@@ -51,11 +90,15 @@ class VisitLog {
     }
   }
 
+  fresh() {
+    return this.url + (this.url.indexOf('?') === -1 ? '?' : '&') + 't=' + Math.floor(Date.now() / 60000);
+  }
+
   async load() {
     const controller = new AbortController();
     const timer = setTimeout(() => controller.abort(), this.timeout);
     try {
-      const response = await fetch(this.url, { signal: controller.signal, credentials: 'omit' });
+      const response = await fetch(this.fresh(), { signal: controller.signal, credentials: 'omit' });
       if (!response.ok) {
         return false;
       }
@@ -64,14 +107,81 @@ class VisitLog {
       if (!visits.length) {
         return false;
       }
+      const last = /^[0-9]+$/.test(String(data.last)) ? String(data.last) : null;
+      if (last !== this.last) {
+        this.live = [];
+        this.polledAt = 0;
+      }
       this.visits = visits;
       this.updated = Date.parse(data.updated);
+      this.last = last;
       this.loadedAt = Date.now();
       return true;
     } catch (error) {
       return false;
     } finally {
       clearTimeout(timer);
+    }
+  }
+
+  ask(last) {
+    return new Promise((resolve) => {
+      liveCalls += 1;
+      const name = 'visitLog' + liveCalls + 'x' + Date.now();
+      const script = document.createElement('script');
+      const done = (value) => {
+        clearTimeout(timer);
+        delete window[name];
+        script.remove();
+        resolve(value);
+      };
+      const timer = setTimeout(() => done(null), this.timeout);
+      window[name] = (code) => done(VisitLog.points(code));
+      script.onerror = () => done(null);
+      script.src = this.liveUrl + (this.liveUrl.indexOf('?') === -1 ? '?' : '&') + 'last_hit_id=' + last + '&initial_hit_id=' + last + '&callback=' + name + '&_=' + Date.now();
+      document.head.appendChild(script);
+    });
+  }
+
+  async poll() {
+    const last = this.last;
+    if (!this.liveUrl || !last) {
+      return;
+    }
+    const groups = await this.ask(last);
+    if (!groups || last !== this.last) {
+      return;
+    }
+    const recent = this.polledAt > 0 && Date.now() - this.polledAt < this.interval * 3;
+    groups.forEach((group) => {
+      const known = this.live.filter((row) => row.place === group.place).reduce((sum, row) => sum + row.count, 0);
+      if (group.count > known) {
+        this.live.push({ place: group.place, count: group.count - known, at: recent ? Date.now() : null });
+      }
+    });
+    this.polledAt = Date.now();
+  }
+
+  signature() {
+    return JSON.stringify([this.updated, this.live]);
+  }
+
+  async tick() {
+    if (this.busy || document.hidden) {
+      return;
+    }
+    this.busy = true;
+    const before = this.signature();
+    try {
+      if (Date.now() - this.loadedAt > this.staleAfter) {
+        await this.load();
+      }
+      await this.poll();
+    } finally {
+      this.busy = false;
+    }
+    if (this.dialog && this.dialog.open && this.signature() !== before) {
+      this.fill();
     }
   }
 
@@ -86,18 +196,15 @@ class VisitLog {
   }
 
   open(address) {
+    this.address = address;
     const dialog = this.build();
-    this.fill(address);
+    this.fill();
     if (!dialog.open) {
       dialog.showModal();
     }
-    if (Date.now() - this.loadedAt > this.staleAfter) {
-      this.load().then((loaded) => {
-        if (loaded && dialog.open) {
-          this.fill(address);
-        }
-      });
-    }
+    this.tick();
+    clearInterval(this.ticker);
+    this.ticker = setInterval(() => this.tick(), this.interval);
   }
 
   build() {
@@ -116,6 +223,7 @@ class VisitLog {
       + '<button type="button" class="visit-log__close" autofocus>Close</button>'
       + '</div></div>';
     dialog.querySelector('.visit-log__close').addEventListener('click', () => dialog.close());
+    dialog.addEventListener('close', () => clearInterval(this.ticker));
     dialog.addEventListener('pointerdown', (event) => {
       this.pressed = event.target === dialog;
     });
@@ -129,21 +237,39 @@ class VisitLog {
     return dialog;
   }
 
-  fill(address) {
+  merged() {
+    const since = isFinite(this.updated) ? 'after ' + VisitLog.hour(this.updated) : 'new';
+    const stamped = this.live.filter((row) => row.at).sort((first, second) => second.at - first.at);
+    const waiting = this.live.filter((row) => !row.at);
+    const fresh = stamped.map((row) => ({ label: 'about ' + VisitLog.hour(row.at), place: row.place, count: row.count, exact: false }))
+      .concat(waiting.map((row) => ({ label: since, place: row.place, count: row.count, exact: false })));
+    const known = this.visits.map((visit) => ({ label: VisitLog.clock(visit.time), time: visit.time, place: visit.place, count: 1, exact: true }));
+    return fresh.concat(known);
+  }
+
+  fill() {
     const note = 'Seoul time (KST)' + (isFinite(this.updated) ? ', updated ' + VisitLog.clock(this.updated) : '');
     this.dialog.querySelector('.visit-log__note').textContent = note;
     const list = this.dialog.querySelector('.visit-log__list');
+    const scrolled = list.scrollTop;
     list.textContent = '';
-    this.visits.slice(0, this.limit).forEach((visit) => {
+    this.merged().slice(0, this.limit).forEach((row) => {
       const item = document.createElement('li');
-      const time = document.createElement('time');
-      time.dateTime = new Date(visit.time).toISOString();
-      time.textContent = VisitLog.clock(visit.time);
-      const place = document.createElement('span');
-      place.textContent = visit.place || 'Unknown location';
-      item.append(time, place);
+      const when = document.createElement(row.exact ? 'time' : 'span');
+      when.className = 'visit-log__when';
+      if (row.exact) {
+        when.dateTime = new Date(row.time).toISOString();
+      } else {
+        item.className = 'is-new';
+      }
+      when.textContent = row.label;
+      const where = document.createElement('span');
+      where.className = 'visit-log__where';
+      where.textContent = (row.place || 'Unknown location') + (row.count > 1 ? ' ×' + row.count : '');
+      item.append(when, where);
       list.appendChild(item);
     });
-    this.dialog.querySelector('.visit-log__more').href = address;
+    list.scrollTop = scrolled;
+    this.dialog.querySelector('.visit-log__more').href = this.address;
   }
 }

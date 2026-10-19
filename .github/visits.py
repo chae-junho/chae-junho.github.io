@@ -48,7 +48,8 @@ def publish(folder, url):
 
 def main():
     try:
-        rows = visits(fetch(SOURCE))
+        data = fetch(SOURCE)
+        rows = visits(data)
     except Exception as error:
         print('visit log not copied:', error)
         return 0
@@ -56,6 +57,9 @@ def main():
         print('visit log is empty, nothing copied')
         return 0
     document = {'updated': datetime.now(timezone.utc).strftime('%Y-%m-%dT%H:%M:%SZ'), 'visits': rows}
+    last = str(data.get('last_hit_id') or '')
+    if last.isdigit():
+        document['last'] = last
     folder = tempfile.mkdtemp()
     with open(os.path.join(folder, 'visits.json'), 'w', encoding='utf-8') as handle:
         json.dump(document, handle, ensure_ascii=False, separators=(',', ':'))

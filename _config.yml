@@ -6,6 +6,7 @@ baseurl: ""
 me: "J Cai"
 visitor_globe_url: "https://mapmyvisitors.com/globe.js?d=4zSjajbb3_Ic7lmO_NtdPgAowE3L4QJZqk6GfdWOQAI"
 visit_log_url: "https://raw.githubusercontent.com/chae-junho/chae-junho.github.io/data/visits.json"
+visit_live_url: "https://mapmyvisitors.com/ajax/globe?id=2238843"
 google_analytics_id:
 google_site_verification:
 bing_site_verification:
