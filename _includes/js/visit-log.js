@@ -3,9 +3,9 @@ const MONTH_NAMES = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Se
 let liveCalls = 0;
 
 class VisitLog {
-  constructor(box, { url, liveUrl, limit = 30, staleAfter = 180000, interval = 15000, timeout = 8000 }) {
+  constructor(box, { urls, liveUrl, limit = 30, staleAfter = 30000, interval = 15000, timeout = 8000 }) {
     this.box = box;
-    this.url = url;
+    this.urls = urls;
     this.liveUrl = liveUrl;
     this.limit = limit;
     this.staleAfter = staleAfter;
@@ -25,9 +25,9 @@ class VisitLog {
   }
 
   static create(box) {
-    const url = box && box.getAttribute('data-visits');
-    const supported = url && location.protocol !== 'file:' && typeof HTMLDialogElement === 'function' && window.fetch && window.AbortController;
-    return supported ? new VisitLog(box, { url, liveUrl: box.getAttribute('data-live') }) : null;
+    const urls = ((box && box.getAttribute('data-visits')) || '').split(/\s+/).filter(Boolean);
+    const supported = urls.length && location.protocol !== 'file:' && typeof HTMLDialogElement === 'function' && window.fetch && window.AbortController;
+    return supported ? new VisitLog(box, { urls, liveUrl: box.getAttribute('data-live') }) : null;
   }
 
   static rows(data) {
@@ -90,15 +90,24 @@ class VisitLog {
     }
   }
 
-  fresh() {
-    return this.url + (this.url.indexOf('?') === -1 ? '?' : '&') + 't=' + Math.floor(Date.now() / 60000);
+  fresh(url) {
+    return url + (url.indexOf('?') === -1 ? '?' : '&') + 't=' + Math.floor(Date.now() / 60000);
   }
 
   async load() {
+    for (const url of this.urls) {
+      if (await this.read(url)) {
+        return true;
+      }
+    }
+    return false;
+  }
+
+  async read(url) {
     const controller = new AbortController();
     const timer = setTimeout(() => controller.abort(), this.timeout);
     try {
-      const response = await fetch(this.fresh(), { signal: controller.signal, credentials: 'omit' });
+      const response = await fetch(this.fresh(url), { signal: controller.signal, credentials: 'omit' });
       if (!response.ok) {
         return false;
       }

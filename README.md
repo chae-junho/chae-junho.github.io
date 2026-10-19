@@ -128,10 +128,12 @@ browser saves `Junhao-Cai-Homepage.html`, one file that opens by double click, a
 
 ## Visit times
 
-The globe opens a list of the latest visits in Seoul time. A scheduled job (`.github/workflows/visits.yml`) copies the
-visit log of mapmyvisitors.com to the `data` branch every five minutes, and `VisitLog` reads it from there. Visits that
-are newer than the copy are added by place from the live feed of the globe and get their time with the next copy.
-Where the copy is missing, the globe opens the statistics page as before.
+The globe opens a list of the latest visits in Seoul time. `VisitLog` reads the list from the address in
+`visit_proxy_url` of `_config.yml` if there is one: a Cloudflare Worker made of `.github/visits-worker.js`, which is
+always current. Otherwise, or when the Worker does not answer, it reads the copy on the `data` branch that
+`.github/workflows/visits.yml` writes (on every push to those files, by hand under Actions, and on a schedule that
+GitHub may run late or not at all). Visits that are newer than the list are added by place from the live feed of the
+globe. Where no list can be read, the globe opens the statistics page as before.
 
 ## Publish
 
