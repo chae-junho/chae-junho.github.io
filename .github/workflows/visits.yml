@@ -1,0 +1,27 @@
+name: visits
+
+on:
+  schedule:
+    - cron: "7,22,37,52 * * * *"
+  workflow_dispatch:
+  push:
+    branches: [master]
+    paths:
+      - .github/workflows/visits.yml
+      - .github/visits.py
+
+permissions:
+  contents: write
+
+concurrency:
+  group: visits
+  cancel-in-progress: true
+
+jobs:
+  copy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: python3 .github/visits.py
+        env:
+          PUSH_URL: https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git

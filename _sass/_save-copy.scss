@@ -41,46 +41,9 @@ html:has(script[data-reveal-gate]) .save-copy.is-ready {
   }
 }
 
-@keyframes save-copy-in {
-  from {
-    opacity: 0;
-    transform: translateY(0.7rem) scale(0.96);
-  }
-}
-
-@keyframes save-copy-fade {
-  from {
-    opacity: 0;
-  }
-}
-
 .save-copy__dialog {
+  @include modal-surface;
   width: min(21rem, calc(100vw - 2rem));
-  padding: 0;
-  color: $ink;
-  background: #fff;
-  border: 1px solid $border-color;
-  border-radius: 1.2rem;
-  box-shadow: 0 24px 60px -16px rgba(#000, 0.4);
-  font-family: $serif;
-
-  &[open] {
-    animation: save-copy-in 0.4s $ease;
-
-    @supports (animation-timing-function: linear(0, 1)) {
-      animation: save-copy-in 0.6s $spring-soft;
-    }
-  }
-
-  &::backdrop {
-    background: rgba(#000, 0.28);
-    -webkit-backdrop-filter: blur(6px);
-    backdrop-filter: blur(6px);
-  }
-
-  &[open]::backdrop {
-    animation: save-copy-fade 0.3s $ease;
-  }
 }
 
 .save-copy__panel {

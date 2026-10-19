@@ -1,6 +1,6 @@
 {%- if site.visitor_globe_url -%}
 <div class="visitors-end">
-<div class="visitors" data-widget="{{ site.visitor_globe_url }}">
+<div class="visitors" data-widget="{{ site.visitor_globe_url }}"{% if site.visit_log_url %} data-visits="{{ site.visit_log_url }}"{% endif %}>
 <span class="visitors__size" aria-hidden="true"></span>
 <div class="globe-global-container"></div>
 <p class="visitors__caption">Where visitors come from</p>

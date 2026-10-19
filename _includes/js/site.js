@@ -91,6 +91,10 @@ class Site {
     if (globe) {
       globe.start();
     }
+    const log = VisitLog.create(box);
+    if (log) {
+      log.start();
+    }
   }
 
   startNavigation(reveal) {

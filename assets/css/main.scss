@@ -22,6 +22,7 @@ $themes: ({% for theme in site.data.themes %}"{{ theme.id }}": {{ theme.accent }
 @import "accent-picker";
 @import "globe";
 @import "save-copy";
+@import "visit-log";
 @import "reveal";
 @import "section-band";
 @import "print";

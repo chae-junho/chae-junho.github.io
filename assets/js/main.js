@@ -32,5 +32,6 @@ layout: null
 {% include js/page-saver.js %}
 {% include js/copy-gate.js %}
 {% include js/visitor-globe.js %}
+{% include js/visit-log.js %}
 {% include js/site.js %}
 }());

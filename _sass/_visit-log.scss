@@ -1,0 +1,73 @@
+.visit-log {
+  @include modal-surface;
+  width: min(24rem, calc(100vw - 2rem));
+}
+
+.visit-log__panel {
+  padding: 1.2rem 1.3rem 1.1rem;
+}
+
+.visit-log__title {
+  margin: 0;
+  font-size: 1.05em;
+  font-weight: 700;
+}
+
+.visit-log__note {
+  margin: 0.15rem 0 0.7rem;
+  color: $muted;
+  font-size: 0.85em;
+}
+
+.visit-log__list {
+  max-height: min(55vh, 22rem);
+  margin: 0;
+  padding: 0;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  list-style: none;
+  border-top: 1px solid fade($ink, 0.08);
+
+  li {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 0.45rem 0;
+    border-bottom: 1px solid fade($ink, 0.08);
+    font-size: 0.95em;
+  }
+
+  time {
+    flex: none;
+    font-variant-numeric: tabular-nums;
+  }
+
+  span {
+    color: $muted;
+    text-align: right;
+  }
+}
+
+.visit-log__actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.8rem;
+  margin-top: 0.8rem;
+}
+
+.visit-log__more {
+  color: $accent;
+  font-size: 0.9em;
+}
+
+.visit-log__close {
+  padding: 0.35rem 1.1rem;
+  color: #fff;
+  background: $chip-solid;
+  border: 0;
+  border-radius: 999px;
+  font: inherit;
+  font-weight: 700;
+  cursor: pointer;
+}

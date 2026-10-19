@@ -126,11 +126,17 @@ Open http://127.0.0.1:4000. Run the build again after each change.
 Use the small save icon at the very end of the page, or add `?download` to the address, and enter the password. The
 browser saves `Junhao-Cai-Homepage.html`, one file that opens by double click, also offline.
 
+## Visit times
+
+The globe opens a list of the latest visits in Seoul time. A scheduled job (`.github/workflows/visits.yml`) copies the
+visit log of mapmyvisitors.com to the `data` branch every quarter of an hour, and `VisitLog` reads it from there. Where
+the copy is missing, the globe opens the statistics page as before.
+
 ## Publish
 
 ```bash
 git add -A
-git commit -m "Update"
+git commit -m "update"
 git push origin master
 ```
 
