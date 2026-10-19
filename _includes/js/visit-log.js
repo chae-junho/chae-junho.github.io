@@ -1,5 +1,6 @@
 const KOREA_OFFSET = 9 * 3600000;
 const MONTH_NAMES = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+const FRESH_LIST = 60000;
 let liveCalls = 0;
 
 class VisitLog {
@@ -161,14 +162,16 @@ class VisitLog {
     if (!groups || last !== this.last) {
       return;
     }
-    const recent = this.polledAt > 0 && Date.now() - this.polledAt < this.interval * 3;
+    const now = Date.now();
+    const recent = this.polledAt > 0 && now - this.polledAt < this.interval * 3;
+    const young = isFinite(this.updated) && Math.abs(now - this.updated) < FRESH_LIST;
     groups.forEach((group) => {
       const known = this.live.filter((row) => row.place === group.place).reduce((sum, row) => sum + row.count, 0);
       if (group.count > known) {
-        this.live.push({ place: group.place, count: group.count - known, at: recent ? Date.now() : null });
+        this.live.push({ place: group.place, count: group.count - known, at: recent || young ? now : null });
       }
     });
-    this.polledAt = Date.now();
+    this.polledAt = now;
   }
 
   signature() {
@@ -247,11 +250,10 @@ class VisitLog {
   }
 
   merged() {
-    const since = isFinite(this.updated) ? 'after ' + VisitLog.hour(this.updated) : 'new';
     const stamped = this.live.filter((row) => row.at).sort((first, second) => second.at - first.at);
     const waiting = this.live.filter((row) => !row.at);
-    const fresh = stamped.map((row) => ({ label: 'about ' + VisitLog.hour(row.at), place: row.place, count: row.count, exact: false }))
-      .concat(waiting.map((row) => ({ label: since, place: row.place, count: row.count, exact: false })));
+    const fresh = stamped.map((row) => ({ label: VisitLog.clock(row.at), place: row.place, count: row.count, exact: false }))
+      .concat(waiting.map((row) => ({ label: 'New', place: row.place, count: row.count, exact: false })));
     const known = this.visits.map((visit) => ({ label: VisitLog.clock(visit.time), time: visit.time, place: visit.place, count: 1, exact: true }));
     return fresh.concat(known);
   }
