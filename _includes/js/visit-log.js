@@ -1,6 +1,7 @@
 const KOREA_OFFSET = 9 * 3600000;
 const MONTH_NAMES = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
 const FRESH_LIST = 60000;
+const RECENT_FOR = 300000;
 let liveCalls = 0;
 
 class VisitLog {
@@ -23,6 +24,7 @@ class VisitLog {
     this.address = '';
     this.dialog = null;
     this.pressed = false;
+    this.shown = '';
   }
 
   static create(box) {
@@ -175,7 +177,7 @@ class VisitLog {
   }
 
   signature() {
-    return JSON.stringify([this.updated, this.live]);
+    return JSON.stringify([this.updated, this.live, this.merged().map((row) => row.recent)]);
   }
 
   async tick() {
@@ -183,7 +185,6 @@ class VisitLog {
       return;
     }
     this.busy = true;
-    const before = this.signature();
     try {
       if (Date.now() - this.loadedAt > this.staleAfter) {
         await this.load();
@@ -192,7 +193,7 @@ class VisitLog {
     } finally {
       this.busy = false;
     }
-    if (this.dialog && this.dialog.open && this.signature() !== before) {
+    if (this.dialog && this.dialog.open && this.signature() !== this.shown) {
       this.fill();
     }
   }
@@ -250,11 +251,19 @@ class VisitLog {
   }
 
   merged() {
-    const stamped = this.live.filter((row) => row.at).sort((first, second) => second.at - first.at);
-    const waiting = this.live.filter((row) => !row.at);
-    const fresh = stamped.map((row) => ({ label: VisitLog.clock(row.at), place: row.place, count: row.count, exact: false }))
-      .concat(waiting.map((row) => ({ label: 'New', place: row.place, count: row.count, exact: false })));
-    const known = this.visits.map((visit) => ({ label: VisitLog.clock(visit.time), time: visit.time, place: visit.place, count: 1, exact: true }));
+    const now = Date.now();
+    const near = (time) => Math.abs(now - time) < RECENT_FOR;
+    const listed = isFinite(this.updated) && near(this.updated);
+    const split = (entry, label, recent) => (entry.count > this.limit
+      ? [{ label, place: entry.place, count: entry.count, exact: false, recent }]
+      : Array.from({ length: entry.count }, () => ({ label, place: entry.place, count: 1, exact: false, recent })));
+    const stamped = this.live.filter((entry) => entry.at).sort((first, second) => second.at - first.at);
+    const waiting = this.live.filter((entry) => !entry.at);
+    const fresh = [].concat(
+      ...stamped.map((entry) => split(entry, VisitLog.clock(entry.at), near(entry.at))),
+      ...waiting.map((entry) => split(entry, 'New', listed))
+    );
+    const known = this.visits.map((visit) => ({ label: VisitLog.clock(visit.time), time: visit.time, place: visit.place, count: 1, exact: true, recent: near(visit.time) }));
     return fresh.concat(known);
   }
 
@@ -270,8 +279,9 @@ class VisitLog {
       when.className = 'visit-log__when';
       if (row.exact) {
         when.dateTime = new Date(row.time).toISOString();
-      } else {
-        item.className = 'is-new';
+      }
+      if (row.recent) {
+        item.className = 'is-recent';
       }
       when.textContent = row.label;
       const where = document.createElement('span');
@@ -282,5 +292,6 @@ class VisitLog {
     });
     list.scrollTop = scrolled;
     this.dialog.querySelector('.visit-log__more').href = this.address;
+    this.shown = this.signature();
   }
 }

@@ -132,8 +132,9 @@ The globe opens a list of the latest visits in Seoul time. `VisitLog` reads the 
 `visit_proxy_url` of `_config.yml` if there is one: a Cloudflare Worker made of `.github/visits-worker.js`, which is
 always current. Otherwise, or when the Worker does not answer, it reads the copy on the `data` branch that
 `.github/workflows/visits.yml` writes (on every push to those files, by hand under Actions, and on a schedule that
-GitHub may run late or not at all). Visits that are newer than the list are added by place from the live feed of the
-globe. Where no list can be read, the globe opens the statistics page as before.
+GitHub may run late or not at all). Visits that are newer than the list are added, one row each, from the live feed of
+the globe. Rows of the last five minutes have their time in the accent color. Where no list can be read, the globe
+opens the statistics page as before.
 
 ## Publish
 
