@@ -1,12 +1,17 @@
 {%- assign description = page.description | default: page.excerpt | default: site.description | markdownify | strip_html | strip_newlines | escape_once -%}
 {%- assign canonical = page.url | replace: "/index.html", "/" | prepend: site.url -%}
+{%- assign share_image = site.author.avatar | absolute_url -%}
 <title>{{ site.tab_title | default: "Homepage" }}</title>
 <meta name="description" content="{{ description }}">
+<meta property="og:type" content="website">
 <meta property="og:locale" content="en">
 <meta property="og:site_name" content="{{ site.title }}">
 <meta property="og:title" content="{{ site.title }}">
 <meta property="og:description" content="{{ description }}">
 <meta property="og:url" content="{{ canonical }}">
+<meta property="og:image" content="{{ share_image }}?v={{ site.time | date: '%s' }}">
+<meta property="og:image:alt" content="{{ site.author.name | escape }}">
+<meta name="twitter:card" content="summary">
 <link rel="canonical" href="{{ canonical }}">
 {%- if site.google_site_verification %}
 <meta name="google-site-verification" content="{{ site.google_site_verification }}">

@@ -26,7 +26,7 @@ text (papers, patents, projects).
 | Top menu | `_data/navigation.yml` |
 | Name, bio, email, profile links | `_config.yml`, `_data/links.yml` |
 | Opening text | `_includes/intro-en.html`, `intro-ko.html`, `intro-zh.html` |
-| Photo | `images/profile-avatar.jpg` |
+| Photo, also the picture of shared links | `images/profile-avatar.jpg` |
 | Colors to choose from | `_data/themes.yml` (the first one is the default) |
 
 To add a paper, put an entry at the top of `_data/publications.yml`:
